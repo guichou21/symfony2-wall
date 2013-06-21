@@ -1,0 +1,3 @@
+gb_creation_wall_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: GbCreationWallBundle:Default:index }
