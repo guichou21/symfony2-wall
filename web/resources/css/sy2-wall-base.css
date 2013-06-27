@@ -1,0 +1,100 @@
+
+body {
+	padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+	background-image: url("../img/bg.png");
+}
+
+
+/*********************************/
+/* Grille Affichage Accueil      */
+/*********************************/
+.column .item {
+    position: relative;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.column .item img {
+    box-shadow: 1px 1px 5px #999999;
+}
+
+.column .item img, .column .item video {
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+}
+
+/* marche pas?
+.column .item img, .column .item video, .picture img {
+    -moz-box-shadow: 1px 1px 5px #999;
+    -webkit-box-shadow: 1px 1px 5px #999;
+    box-shadow: 1px 1px 5px #999;
+
+    -webkit-transition: width 1s ease, height 1s ease;
+    -moz-transition: width 1s ease, height 1s ease;
+    -o-transition: width 1s ease, height 1s ease;
+    -ms-transition: width 1s ease, height 1s ease;
+    transition: width 1s ease, height 1s ease;
+}*/
+
+.column .item img:hover, .column .item video:hover {
+    -moz-box-shadow: 2px 2px 6px #FFFFBC;
+    -webkit-box-shadow: 2px 2px 6px #FFFFBC;
+    box-shadow: 2px 2px 6px #FFFFBC;
+}
+
+img {
+    border: 0 none;
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+.column .item .date, .column .item .description, .column .item .nb-comments {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+    bottom: 0;
+    color: #FFFFFF;
+    font-size: large;
+    margin: 0;
+    padding: 4px 0;
+    position: absolute;
+    text-align: center;
+    visibility: hidden;
+    width: 100%;
+}
+
+.column .item:hover .date, .column .item:hover .description, .column .item:hover .nb-comments {
+    visibility: visible;
+}
+
+.column .item .date {
+    bottom: auto;
+    font-size: medium;
+    left: 0;
+    padding: 4px 5px;
+    text-align: center;
+    top: 0;
+    width: auto;
+    z-index: 2;
+}
+
+.column .item .nb-comments {
+    background-position: right;
+    background-repeat: no-repeat;
+    bottom: auto;
+    font-size: medium;
+    padding: 4px 20px 4px 5px;
+    right: 0;
+    top: 0;
+    width: auto;
+    z-index: 2;
+}
+
+/*
+.column .item span {
+    visibility: hidden;
+}
+ 
+.column .item img:hover + span {
+    visibility: visible;
+}*/

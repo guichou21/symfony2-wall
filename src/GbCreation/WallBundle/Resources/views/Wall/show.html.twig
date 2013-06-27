@@ -1,0 +1,13 @@
+{% extends 'GbCreationWallBundle::layout.html.twig' %}
+
+{% block title %}{{ item.description }}{% endblock %}
+
+{% block body %}
+    <article class="item">
+        <header>
+         <div class="date"><time datetime="{{ item.date|date('c') }}">{{ item.date|date('l, F j, Y') }}</time></div>
+            <h2>{{ item.description }}</h2>
+        </header>
+         <img src="{{ asset(['images/wall/', item.file]|join) }}" alt="{{ item.file }} n'a pas été trouvée" class="large" />
+    </article>
+{% endblock %}

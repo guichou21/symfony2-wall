@@ -133,9 +133,33 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // gb_creation_wall_homepage
-        if (0 === strpos($pathinfo, '/wall/hello') && preg_match('#^/wall/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'gb_creation_wall_homepage')), array (  '_controller' => 'GbCreation\\WallBundle\\Controller\\DefaultController::indexAction',));
+        if (0 === strpos($pathinfo, '/wall')) {
+            // gb_creation_wall_homepage
+            if (rtrim($pathinfo, '/') === '/wall') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_gb_creation_wall_homepage;
+                }
+
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'gb_creation_wall_homepage');
+                }
+
+                return array (  '_controller' => 'GbCreation\\WallBundle\\Controller\\WallController::indexAction',  '_route' => 'gb_creation_wall_homepage',);
+            }
+            not_gb_creation_wall_homepage:
+
+            // gb_creation_wall__show
+            if (preg_match('#^/wall/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_gb_creation_wall__show;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'gb_creation_wall__show')), array (  '_controller' => 'GbCreation\\WallBundle\\Controller\\WallController::showAction',));
+            }
+            not_gb_creation_wall__show:
+
         }
 
         // _welcome

@@ -27,9 +27,6 @@ class __TwigTemplate_e98f5952982c376ce53134ea60118173 extends Twig_Template
     // line 3
     public function block_sidebar($context, array $blocks = array())
     {
-        // line 4
-        echo "    Sidebar content
-";
     }
 
     public function getTemplateName()
@@ -44,6 +41,6 @@ class __TwigTemplate_e98f5952982c376ce53134ea60118173 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  31 => 4,  28 => 3,  38 => 7,  35 => 6,  29 => 4,);
+        return array (  28 => 3,);
     }
 }

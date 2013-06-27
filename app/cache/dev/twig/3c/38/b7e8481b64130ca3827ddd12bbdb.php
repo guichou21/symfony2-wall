@@ -35,9 +35,9 @@ class __TwigTemplate_3c38b7e8481b64130ca3827ddd12bbdb extends Twig_Template
     public function block_body($context, array $blocks = array())
     {
         // line 7
-        echo "Bienvenue sur le wall :<b>";
+        echo "<p>Bienvenue sur le wall :<b>";
         echo twig_escape_filter($this->env, $this->getContext($context, "name"), "html", null, true);
-        echo "</b>!
+        echo "</b>!</p>
 ";
     }
 
