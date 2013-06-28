@@ -34,8 +34,8 @@
               <a class="brand" href="#">Karen.Guiom</a>
               <div class="nav-collapse collapse">
                 <ul class="nav">
-                  <li class="active"><a href="#">Accueil</a></li>
-                  <li><a href="#about">Wall</a></li>
+                  <li class="active"><a href="{{ path('gb_creation_wall_homepage') }}">Accueil</a></li>
+                  <li><a href="{{ path('gb_creation_wall_homepage') }}">Wall</a></li>
                   <li><a href="#contact">Contact</a></li>
                 </ul>
               </div><!--/.nav-collapse -->
@@ -45,7 +45,6 @@
 
         <div class="container">
 
-          <h1>Accueil</h1>
           {% block sidebar %}{% endblock %} 
           {% block body %}{% endblock %}
 

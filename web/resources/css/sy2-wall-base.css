@@ -5,20 +5,26 @@ body {
 }
 
 
+
 /*********************************/
 /* Grille Affichage Accueil      */
 /*********************************/
-.column .item {
-    position: relative;
-    margin-top: 2%;
-    margin-bottom: 2%;
+.grid{
+    margin:0 auto;
 }
 
-.column .item img {
+.myItem{
+     width: 31.6239%;
+     min-width: 300px;
+     float:left;
+     margin: 10px;
+}
+
+.column .myItem img {
     box-shadow: 1px 1px 5px #999999;
 }
 
-.column .item img, .column .item video {
+.column .myItem img, .column .myItem video {
     cursor: pointer;
     position: relative;
     width: 100%;
@@ -37,7 +43,7 @@ body {
     transition: width 1s ease, height 1s ease;
 }*/
 
-.column .item img:hover, .column .item video:hover {
+.column .myItem img:hover, .column .myItem video:hover {
     -moz-box-shadow: 2px 2px 6px #FFFFBC;
     -webkit-box-shadow: 2px 2px 6px #FFFFBC;
     box-shadow: 2px 2px 6px #FFFFBC;
@@ -50,7 +56,7 @@ img {
     vertical-align: middle;
 }
 
-.column .item .date, .column .item .description, .column .item .nb-comments {
+.column .myItem .date, .column .myItem .description, .column .myItem .nb-comments {
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
     bottom: 0;
     color: #FFFFFF;
@@ -63,11 +69,11 @@ img {
     width: 100%;
 }
 
-.column .item:hover .date, .column .item:hover .description, .column .item:hover .nb-comments {
+.column .myItem:hover .date, .column .myItem:hover .description, .column .myItem:hover .nb-comments {
     visibility: visible;
 }
 
-.column .item .date {
+.column .myItem .date {
     bottom: auto;
     font-size: medium;
     left: 0;
@@ -78,7 +84,7 @@ img {
     z-index: 2;
 }
 
-.column .item .nb-comments {
+.column .myItem .nb-comments {
     background-position: right;
     background-repeat: no-repeat;
     bottom: auto;

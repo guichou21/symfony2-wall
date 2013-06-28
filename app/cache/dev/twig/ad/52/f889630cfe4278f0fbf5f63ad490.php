@@ -62,8 +62,14 @@ class __TwigTemplate_ad52f889630cfe4278f0fbf5f63ad490 extends Twig_Template
               <a class=\"brand\" href=\"#\">Karen.Guiom</a>
               <div class=\"nav-collapse collapse\">
                 <ul class=\"nav\">
-                  <li class=\"active\"><a href=\"#\">Accueil</a></li>
-                  <li><a href=\"#about\">Wall</a></li>
+                  <li class=\"active\"><a href=\"";
+        // line 37
+        echo $this->env->getExtension('routing')->getPath("gb_creation_wall_homepage");
+        echo "\">Accueil</a></li>
+                  <li><a href=\"";
+        // line 38
+        echo $this->env->getExtension('routing')->getPath("gb_creation_wall_homepage");
+        echo "\">Wall</a></li>
                   <li><a href=\"#contact\">Contact</a></li>
                 </ul>
               </div><!--/.nav-collapse -->
@@ -73,15 +79,14 @@ class __TwigTemplate_ad52f889630cfe4278f0fbf5f63ad490 extends Twig_Template
 
         <div class=\"container\">
 
-          <h1>Accueil</h1>
           ";
-        // line 49
+        // line 48
         $this->displayBlock('sidebar', $context, $blocks);
         echo " 
           ";
-        // line 50
+        // line 49
         $this->displayBlock('body', $context, $blocks);
-        // line 51
+        // line 50
         echo "
         </div> <!-- /container -->
 
@@ -92,9 +97,9 @@ class __TwigTemplate_ad52f889630cfe4278f0fbf5f63ad490 extends Twig_Template
       </footer>
 
       ";
-        // line 60
+        // line 59
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 61
+        // line 60
         echo "
     </body>
 </html>";
@@ -124,17 +129,17 @@ class __TwigTemplate_ad52f889630cfe4278f0fbf5f63ad490 extends Twig_Template
         ";
     }
 
-    // line 49
+    // line 48
     public function block_sidebar($context, array $blocks = array())
     {
     }
 
-    // line 50
+    // line 49
     public function block_body($context, array $blocks = array())
     {
     }
 
-    // line 60
+    // line 59
     public function block_javascripts($context, array $blocks = array())
     {
     }
@@ -151,6 +156,6 @@ class __TwigTemplate_ad52f889630cfe4278f0fbf5f63ad490 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  138 => 60,  133 => 50,  128 => 49,  122 => 17,  118 => 16,  113 => 15,  110 => 14,  104 => 11,  98 => 61,  96 => 60,  85 => 51,  83 => 50,  79 => 49,  47 => 19,  45 => 14,  40 => 12,  36 => 11,  24 => 1,);
+        return array (  143 => 59,  138 => 49,  133 => 48,  127 => 17,  123 => 16,  118 => 15,  115 => 14,  109 => 11,  103 => 60,  101 => 59,  90 => 50,  88 => 49,  84 => 48,  71 => 38,  67 => 37,  47 => 19,  45 => 14,  40 => 12,  36 => 11,  24 => 1,);
     }
 }

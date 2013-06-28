@@ -3,9 +3,10 @@
 {% block body %}
 <div class="grid">
     <div class="row-fluid">
-        <div class="column">
+        <div id="column" class="column">
         {% for item in items %}
-            <article id="{{ item.id }}" class="item span4">
+            <!-- <article id="{{ item.id }}" class="item span4">-->
+            <article id="{{ item.id }}" class="myItem">
                 <header>
                 </header>
                 <a href="{{ path('gb_creation_wall__show', { 'id': item.id }) }}">
