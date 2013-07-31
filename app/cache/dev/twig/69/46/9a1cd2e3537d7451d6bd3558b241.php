@@ -68,7 +68,7 @@ class __TwigTemplate_69469a1cd2e3537d7451d6bd3558b241 extends Twig_Template
             echo "</span>
                     <span class=\"nb-comments\">";
             // line 17
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "item"), "like"), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "item"), "nbLike"), "html", null, true);
             echo " <i class=\"icon-comment icon-white\"></i></span>
                 <!--<footer class=\"meta\">
                     <p>Comments: todo</p>
@@ -78,7 +78,7 @@ class __TwigTemplate_69469a1cd2e3537d7451d6bd3558b241 extends Twig_Template
             echo "</h4>
                     <h4> il y a ";
             // line 21
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "item"), "like"), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "item"), "nbLike"), "html", null, true);
             echo " likes</h4>
                     <h4>ceci est type : ";
             // line 22

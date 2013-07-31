@@ -1,0 +1,37 @@
+{% extends 'GbCreationWallBundle::admin.layout.html.twig' %}
+
+{% block body %}
+     
+     <section id="add">
+    {% include 'GbCreationWallBundle:Item:form.html.twig' with { 'form': form } %}
+    </section>
+
+	{% for flashMessage in app.session.flashbag.get('notice') %}
+		<div id="alertMsg" class="alert alert-success">
+		<button class="close" data-dismiss="alert" type="button">×</button>
+			{{ flashMessage }}
+			</div>
+	{% endfor %}
+
+{% endblock %}
+
+
+{# http://trentrichardson.com/examples/timepicker/#timezone_examples #}
+{% block javascripts %} 
+<script src="{{ asset('resources/js/jquery-ui/1.10/minified/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('resources/js/jquery-ui/jquery-ui-timepicker-addon.js') }}"></script>
+<script src="{{ asset('resources/js/jquery-ui/jquery-ui-sliderAccess.js') }}"></script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+	$("#alertMsg").fadeOut(3000);
+
+	$('.datepicker').datetimepicker({
+		dateFormat: "dd/mm/yy",
+		timeFormat: "HH:mm"
+	});
+
+  } );
+
+</script>
+{% endblock %}

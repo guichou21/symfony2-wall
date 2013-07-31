@@ -3,11 +3,16 @@
 namespace GbCreation\WallBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="gbc_wall_item")
- */
+* @ORM\Entity(repositoryClass="GbCreation\WallBundle\Repository\ItemRepository")
+* @ORM\Table(name="gbc_wall_item")
+* @ORM\HasLifecycleCallbacks()
+*/
 class Item
 {
 
@@ -17,6 +22,11 @@ class Item
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    public $fileToUpload;
 
 
     /**
@@ -31,6 +41,7 @@ class Item
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\DateTime(message="La date n'est pas valide") 
      */
     protected $date;
 
@@ -48,7 +59,7 @@ class Item
      /**
      * @ORM\Column(type="integer", nullable=false)
      */
-    protected $like;
+    protected $nbLike;
 
      /**
      * @ORM\Column(type="string", length=7, nullable=false)
@@ -60,16 +71,100 @@ class Item
      */
     protected $tags;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="idItem", cascade={"remove"})
+     */
+    protected $comments;
 
 
     public function __construct()
     {
         $this->setRatio(1.000000);
         $this->setReverseRatio(1.000000);
-        $this->setLike(0);
+        $this->setNbLike(0);
         $this->setType("Picture");
+        $this->setDate(new \DateTime());
+
+
+
+        $this->comments = new ArrayCollection();
+
+        $this->setTags('');
     }
 
+    public function __toString()
+    {
+        return $this->getDescription();
+    }
+
+    /*
+    Ajout des fonctions d'upload d'image
+    */
+
+    public function getFullImagePath() {
+        return null === $this->fileToUpload ? null : $this->getUploadRootDir(). $this->fileToUpload;
+    }
+ 
+    protected function getUploadRootDir() {
+        // the absolute directory path where uploaded documents should be saved
+        return $this->getTmpUploadRootDir();
+    }
+ 
+    protected function getTmpUploadRootDir() {
+        // the absolute directory path where uploaded documents should be saved
+        return __DIR__ . '/../../../../web/images/wall/';
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        // la propriété « file » peut être vide si le champ n'est pas requis
+        if (null === $this->fileToUpload) {
+            return;
+        }
+
+        // la méthode « move » prend comme arguments le répertoire cible et le nom de fichier cible où le fichier doit être déplacé
+        $this->fileToUpload->move($this->getUploadRootDir(), $this->file);
+
+        unset($this->fileToUpload);
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->fileToUpload) {
+            // faites ce que vous voulez pour générer un nom unique
+            //$this->file = sha1(uniqid(mt_rand(), true)).'.'.$this->fileToUpload->guessExtension();
+            $this->file = $this->fileToUpload->getClientOriginalName();
+        }
+    }
+
+ /**
+   * @ORM\PreRemove()
+   */
+  public function preRemoveUpload()
+  {
+    // On met a jour le path du fichier a supprimer
+    $this->fileToUpload =  $this->getTmpUploadRootDir().$this->file;
+    
+  }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+          if (isset($this->fileToUpload) && file_exists ( $this->fileToUpload)) {
+              unlink($this->fileToUpload);
+        }
+        
+    }
 
     /**
      * Get id
@@ -198,29 +293,6 @@ class Item
     }
 
     /**
-     * Set like
-     *
-     * @param float $like
-     * @return Item
-     */
-    public function setLike($like)
-    {
-        $this->like = $like;
-    
-        return $this;
-    }
-
-    /**
-     * Get like
-     *
-     * @return float 
-     */
-    public function getLike()
-    {
-        return $this->like;
-    }
-
-    /**
      * Set type
      *
      * @param float $type
@@ -265,4 +337,61 @@ class Item
     {
         return $this->tags;
     }
+
+    /**
+     * Add comments
+     *
+     * @param \GbCreation\WallBundle\Entity\Comment $comments
+     * @return Item
+     */
+    public function addComment(\GbCreation\WallBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+    
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \GbCreation\WallBundle\Entity\Comment $comments
+     */
+    public function removeComment(\GbCreation\WallBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Set nbLike
+     *
+     * @param integer $nbLike
+     * @return Item
+     */
+    public function setNbLike($nbLike)
+    {
+        $this->nbLike = $nbLike;
+    
+        return $this;
+    }
+
+    /**
+     * Get nbLike
+     *
+     * @return integer 
+     */
+    public function getNbLike()
+    {
+        return $this->nbLike;
+    }
+
 }

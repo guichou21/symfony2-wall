@@ -6,14 +6,17 @@
 
 
 {% block javascripts %}
-<script src="{{ asset('resources/js/jquery.js') }}"></script>
+<script src="{{ asset('resources/bootstrap/js/jquery.js') }}"></script>
 <script src="{{ asset('resources/js/masonry/masonry.min.js') }}"></script>
+<script src="{{ asset('resources/bootstrap/js/bootstrap-scrollspy.js') }}"></script>
 
 <script type="text/javascript">
-$('#column').masonry({
-    itemSelector: '.myItem',
-    isAnimated: true,
-    isFitWidth: true
+$(function(){ // document ready
+	$('#column').masonry({
+	    itemSelector: '.myItem',
+	    isAnimated: true,
+	    isFitWidth: true
+	});
 });
 </script>
 {% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'GbCreationWallBundle::admin.layout.html.twig' %}
+
+{% block body %}
+     
+     <section id="edit">
+      <div class="page-header">
+        <h1>Modification</h1>
+      </div>
+
+    {% include 'GbCreationWallBundle:Item:edit.form.html.twig' with { 'form': form, 'item_id': item_id  } %}
+    </section>
+
+{% endblock %}
+
+
+
+{% block javascripts %} 
+<script src="{{ asset('resources/js/jquery-ui/1.10/minified/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('resources/js/jquery-ui/jquery-ui-timepicker-addon.js') }}"></script>
+<script src="{{ asset('resources/js/jquery-ui/jquery-ui-sliderAccess.js') }}"></script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+	$('.datepicker').datetimepicker({
+		dateFormat: "dd/mm/yy",
+		timeFormat: "HH:mm"
+	});
+
+  } );
+
+</script>
+{% endblock %}

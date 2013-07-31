@@ -160,6 +160,144 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
             not_gb_creation_wall__show:
 
+            // gb_creation_comment__create
+            if (0 === strpos($pathinfo, '/wall/comment') && preg_match('#^/wall/comment/(?P<item_id>\\d+)$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_gb_creation_comment__create;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'gb_creation_comment__create')), array (  '_controller' => 'GbCreation\\WallBundle\\Controller\\CommentController::createAction',));
+            }
+            not_gb_creation_comment__create:
+
+            if (0 === strpos($pathinfo, '/wall/admin')) {
+                // gb_creation_admin__index
+                if (rtrim($pathinfo, '/') === '/wall/admin') {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_gb_creation_admin__index;
+                    }
+
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'gb_creation_admin__index');
+                    }
+
+                    return array (  '_controller' => 'GbCreation\\WallBundle\\Controller\\AdminController::addAction',  '_route' => 'gb_creation_admin__index',);
+                }
+                not_gb_creation_admin__index:
+
+                // gb_creation_admin__add
+                if (rtrim($pathinfo, '/') === '/wall/admin/add') {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_gb_creation_admin__add;
+                    }
+
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'gb_creation_admin__add');
+                    }
+
+                    return array (  '_controller' => 'GbCreation\\WallBundle\\Controller\\AdminController::addAction',  '_route' => 'gb_creation_admin__add',);
+                }
+                not_gb_creation_admin__add:
+
+                if (0 === strpos($pathinfo, '/wall/admin/item')) {
+                    // gb_creation_admin_items_show
+                    if ($pathinfo === '/wall/admin/items') {
+                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'HEAD'));
+                            goto not_gb_creation_admin_items_show;
+                        }
+
+                        return array (  '_controller' => 'GbCreation\\WallBundle\\Controller\\AdminController::itemsAction',  '_route' => 'gb_creation_admin_items_show',);
+                    }
+                    not_gb_creation_admin_items_show:
+
+                    // gb_creation_admin_item_create
+                    if ($pathinfo === '/wall/admin/item/create/') {
+                        if ($this->context->getMethod() != 'POST') {
+                            $allow[] = 'POST';
+                            goto not_gb_creation_admin_item_create;
+                        }
+
+                        return array (  '_controller' => 'GbCreation\\WallBundle\\Controller\\AdminController::createItemAction',  '_route' => 'gb_creation_admin_item_create',);
+                    }
+                    not_gb_creation_admin_item_create:
+
+                    // gb_creation_admin_item_edit
+                    if (0 === strpos($pathinfo, '/wall/admin/item/edit') && preg_match('#^/wall/admin/item/edit/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                        if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                            goto not_gb_creation_admin_item_edit;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'gb_creation_admin_item_edit')), array (  '_controller' => 'GbCreation\\WallBundle\\Controller\\AdminController::editItemAction',));
+                    }
+                    not_gb_creation_admin_item_edit:
+
+                    // gb_creation_admin_item_delete
+                    if (0 === strpos($pathinfo, '/wall/admin/item/delete') && preg_match('#^/wall/admin/item/delete/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                        if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                            goto not_gb_creation_admin_item_delete;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'gb_creation_admin_item_delete')), array (  '_controller' => 'GbCreation\\WallBundle\\Controller\\AdminController::deleteItemAction',));
+                    }
+                    not_gb_creation_admin_item_delete:
+
+                }
+
+                if (0 === strpos($pathinfo, '/wall/admin/comments')) {
+                    // gb_creation_admin_comments_show
+                    if ($pathinfo === '/wall/admin/comments') {
+                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'HEAD'));
+                            goto not_gb_creation_admin_comments_show;
+                        }
+
+                        return array (  '_controller' => 'GbCreation\\WallBundle\\Controller\\AdminController::commentsAction',  '_route' => 'gb_creation_admin_comments_show',);
+                    }
+                    not_gb_creation_admin_comments_show:
+
+                    // gb_creation_admin_comment_edit
+                    if (0 === strpos($pathinfo, '/wall/admin/comments/edit') && preg_match('#^/wall/admin/comments/edit/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                        if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                            goto not_gb_creation_admin_comment_edit;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'gb_creation_admin_comment_edit')), array (  '_controller' => 'GbCreation\\WallBundle\\Controller\\AdminController::editCommentAction',));
+                    }
+                    not_gb_creation_admin_comment_edit:
+
+                    // gb_creation_admin_comment_delete
+                    if (0 === strpos($pathinfo, '/wall/admin/comments/delete') && preg_match('#^/wall/admin/comments/delete/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'HEAD'));
+                            goto not_gb_creation_admin_comment_delete;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'gb_creation_admin_comment_delete')), array (  '_controller' => 'GbCreation\\WallBundle\\Controller\\AdminController::deleteCommentAction',));
+                    }
+                    not_gb_creation_admin_comment_delete:
+
+                }
+
+                // gb_creation_admin_stats
+                if ($pathinfo === '/wall/admin/stats') {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_gb_creation_admin_stats;
+                    }
+
+                    return array (  '_controller' => 'GbCreation\\WallBundle\\Controller\\AdminController::statsAction',  '_route' => 'gb_creation_admin_stats',);
+                }
+                not_gb_creation_admin_stats:
+
+            }
+
         }
 
         // _welcome

@@ -4,7 +4,7 @@ namespace GbCreation\WallBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * Blog controller.
+ * Item controller.
  */
 class WallController extends Controller
 {
@@ -21,8 +21,11 @@ class WallController extends Controller
             throw $this->createNotFoundException('Aucune image trouvée....');
         }
 
+        $comments = $em->getRepository('GbCreationWallBundle:Comment')->getCommentsForBlog($item->getId());
+
         return $this->render('GbCreationWallBundle:Wall:show.html.twig', array(
             'item'      => $item,
+            'comments'  => $comments
         ));
     }
 

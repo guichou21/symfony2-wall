@@ -55,6 +55,27 @@ class __TwigTemplate_291e318346a559d2f780cf0680ce07d4 extends Twig_Template
         echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "item"), "file"), "html", null, true);
         echo " n'a pas été trouvée\" class=\"large\" />
     </article>
+
+    <article class=\"comments\">
+        <section class=\"comments\" id=\"comments\">
+        <section class=\"previous-comments\">
+            <h3>Commentaires  (";
+        // line 17
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "item"), "nbLike"), "html", null, true);
+        echo ")</h3>
+            ";
+        // line 18
+        $this->env->loadTemplate("GbCreationWallBundle:Comment:index.html.twig")->display(array_merge($context, array("comments" => $this->getContext($context, "comments"))));
+        // line 19
+        echo "        </section>
+
+          <h3>Ajouter un commentaire</h3>
+           ";
+        // line 22
+        echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("GbCreationWallBundle:Comment:new", array("item_id" => $this->getAttribute($this->getContext($context, "item"), "id"))));
+        echo "
+    </section>
+    </article>
 ";
     }
 
@@ -70,6 +91,6 @@ class __TwigTemplate_291e318346a559d2f780cf0680ce07d4 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  53 => 11,  48 => 9,  42 => 8,  38 => 6,  35 => 5,  29 => 3,);
+        return array (  75 => 22,  70 => 19,  68 => 18,  64 => 17,  53 => 11,  48 => 9,  42 => 8,  38 => 6,  35 => 5,  29 => 3,);
     }
 }

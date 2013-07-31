@@ -1,0 +1,66 @@
+
+
+
+
+-------------------
+- Evols  &   Bugs -
+-------------------
+* NbCom et nb Photos affichées ds entete
+* pb icon gyfloconblabla non trouvé sur certaines pages
+* Mise en place droits admin
+* JSON
+* ajax requete pour afficher photo site
+* rss photo et commentaire
+* js scroll infiny rafraichi fenetre !!!!!!!!!!!!!!!!!!!!
+* Migration donnees BDD yo -> ma base !!!!!!!!!!!!!
+* Page d'accueil
+* recréer page d'accueil php seule ds mon bundle
+* nettoyer import js et css des twifg. mettre que dans layout père?
+* Filtre Photo / Vidéo / Année
+* Item - constructeur new Date possède 2heures de moins
+* jquery : TimePicker sur item : add et edit manque un positionnement top 50px  (enlever le top mis par jquery et rajouter un top 50px)
+* Designer le form de edition
+* Designer le form de add
+* Pagination sur item et Commentaires
+* form vidéo ou form photo dans onglet
+* afficher vidéo en html5
+* customizer error page
+* preparation mise en prod
+* nettoyer github les différents fichiers non à mon nom
+* faire tourner sur travis! pour voir
+
+---------
+- Futur -
+---------
+* dropzone en jquery
+* upload photo : récupérer date dans le mime type? du fichier
+* afficher photo sur survol (partie admin item ou com)
+* admin proposer voir commentaires lors suppression item et gestion commentaires (supr un a un / tous / rien)
+
+erreur eu. a réactiver ou non? a voir...
+Unable to guess the mime type as no guessers are available (Did you enable the php_fileinfo extension?) 
+
+------------------
+- Tutos & autres -
+------------------
+Mise en place user admin
+http://iabsis.com/FR/article/21-10/Mise-en-place-de-l-authentification
+
+
+Bundle upload file
+https://github.com/punkave/symfony2-file-uploader-bundle
+
+
+Ajax
+!!  http://j-place.developpez.com/tutoriels/php/ameliorez-vos-applications-developpees-avec-symfony2/
+
+Upload ajax file    Tuto
+http://net.tutsplus.com/tutorials/javascript-ajax/uploading-files-with-ajax/
+a voir http://www.siteduzero.com/forum/sujet/symfony2-upload-file-21967
+
+
+System notif
+http://appventus.com/blog/les-notifications-ou-comment-ameliorer-la-user-experience-grace-a-noty-et-aux-modals-en-2-minutes
+
+redimensionner a upload
+http://www.siteduzero.com/forum/sujet/symfony2-redimensionner-une-image-a-l-upload-44969

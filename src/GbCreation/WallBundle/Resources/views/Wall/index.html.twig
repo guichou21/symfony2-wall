@@ -14,11 +14,11 @@
                 </a>
                     <span class="date"><time datetime="{{ item.date|date('c') }}">{{ item.date|date('d/m/Y') }}</time></span>
                     <span class="description">{{ item.description }}</span>
-                    <span class="nb-comments">{{ item.like }} <i class="icon-comment icon-white"></i></span>
+                    <span class="nb-comments">{{ item.nbLike }} <i class="icon-comment icon-white"></i></span>
                 <!--<footer class="meta">
                     <p>Comments: todo</p>
                     <h4>tags : {{ item.tags }}</h4>
-                    <h4> il y a {{ item.like }} likes</h4>
+                    <h4> il y a {{ item.nbLike }} likes</h4>
                     <h4>ceci est type : {{ item.type }}</h4>     
                 </footer>-->
             </article>

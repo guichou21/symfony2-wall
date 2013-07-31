@@ -35,6 +35,7 @@ class appDevDebugProjectContainer extends Container
         $this->scopeChildren = array('request' => array());
         $this->methodMap = array(
             'acme.demo.listener' => 'getAcme_Demo_ListenerService',
+            'acme_hello.twig.extension.debug' => 'getAcmeHello_Twig_Extension_DebugService',
             'annotation_reader' => 'getAnnotationReaderService',
             'assetic.asset_factory' => 'getAssetic_AssetFactoryService',
             'assetic.asset_manager' => 'getAssetic_AssetManagerService',
@@ -112,6 +113,7 @@ class appDevDebugProjectContainer extends Container
             'fragment.listener' => 'getFragment_ListenerService',
             'fragment.renderer.hinclude' => 'getFragment_Renderer_HincludeService',
             'fragment.renderer.inline' => 'getFragment_Renderer_InlineService',
+            'gb_creation_wall.antispam' => 'getGbCreationWall_AntispamService',
             'http_kernel' => 'getHttpKernelService',
             'kernel' => 'getKernelService',
             'locale_listener' => 'getLocaleListenerService',
@@ -252,6 +254,19 @@ class appDevDebugProjectContainer extends Container
     protected function getAcme_Demo_ListenerService()
     {
         return $this->services['acme.demo.listener'] = new \Acme\DemoBundle\EventListener\ControllerListener($this->get('twig.extension.acme.demo'));
+    }
+
+    /**
+     * Gets the 'acme_hello.twig.extension.debug' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Twig_Extension_Debug A Twig_Extension_Debug instance.
+     */
+    protected function getAcmeHello_Twig_Extension_DebugService()
+    {
+        return $this->services['acme_hello.twig.extension.debug'] = new \Twig_Extension_Debug();
     }
 
     /**
@@ -1285,6 +1300,19 @@ class appDevDebugProjectContainer extends Container
         $instance->setFragmentPath('/_fragment');
 
         return $instance;
+    }
+
+    /**
+     * Gets the 'gb_creation_wall.antispam' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return GbCreation\WallBundle\Antispam\GbcAntispam A GbCreation\WallBundle\Antispam\GbcAntispam instance.
+     */
+    protected function getGbCreationWall_AntispamService()
+    {
+        return $this->services['gb_creation_wall.antispam'] = new \GbCreation\WallBundle\Antispam\GbcAntispam(3);
     }
 
     /**
@@ -2795,6 +2823,7 @@ class appDevDebugProjectContainer extends Container
     {
         $this->services['twig'] = $instance = new \Twig_Environment($this->get('twig.loader'), array('debug' => true, 'strict_variables' => true, 'exception_controller' => 'twig.controller.exception:showAction', 'autoescape_service' => NULL, 'autoescape_service_method' => NULL, 'cache' => 'C:/wamp/www/workspace/symfony-wall/app/cache/dev/twig', 'charset' => 'UTF-8', 'paths' => array()));
 
+        $instance->addExtension($this->get('acme_hello.twig.extension.debug'));
         $instance->addExtension(new \Symfony\Bundle\SecurityBundle\Twig\Extension\LogoutUrlExtension($this->get('templating.helper.logout_url')));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\SecurityExtension($this->get('security.context', ContainerInterface::NULL_ON_INVALID_REFERENCE)));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\TranslationExtension($this->get('translator')));

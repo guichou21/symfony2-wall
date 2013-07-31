@@ -77,7 +77,7 @@ class __TwigTemplate_ad52f889630cfe4278f0fbf5f63ad490 extends Twig_Template
           </div>
         </div>
 
-        <div class=\"container\">
+        <div class=\"container-fluid\">
 
           ";
         // line 48
@@ -96,10 +96,11 @@ class __TwigTemplate_ad52f889630cfe4278f0fbf5f63ad490 extends Twig_Template
         <p>&copy; GBCreation 2013</p>
       </footer>
 
+
       ";
-        // line 59
-        $this->displayBlock('javascripts', $context, $blocks);
         // line 60
+        $this->displayBlock('javascripts', $context, $blocks);
+        // line 61
         echo "
     </body>
 </html>";
@@ -116,11 +117,11 @@ class __TwigTemplate_ad52f889630cfe4278f0fbf5f63ad490 extends Twig_Template
     {
         // line 15
         echo "        <link href=\"";
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("resources/css/bootstrap.css"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("resources/bootstrap/css/bootstrap.css"), "html", null, true);
         echo "\" rel=\"stylesheet\">
         <link href=\"";
         // line 16
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("resources/css/bootstrap-responsive.css"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("resources/bootstrap/css/bootstrap-responsive.css"), "html", null, true);
         echo "\" rel=\"stylesheet\">     
         <link href=\"";
         // line 17
@@ -139,7 +140,7 @@ class __TwigTemplate_ad52f889630cfe4278f0fbf5f63ad490 extends Twig_Template
     {
     }
 
-    // line 59
+    // line 60
     public function block_javascripts($context, array $blocks = array())
     {
     }
@@ -156,6 +157,6 @@ class __TwigTemplate_ad52f889630cfe4278f0fbf5f63ad490 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  143 => 59,  138 => 49,  133 => 48,  127 => 17,  123 => 16,  118 => 15,  115 => 14,  109 => 11,  103 => 60,  101 => 59,  90 => 50,  88 => 49,  84 => 48,  71 => 38,  67 => 37,  47 => 19,  45 => 14,  40 => 12,  36 => 11,  24 => 1,);
+        return array (  144 => 60,  139 => 49,  134 => 48,  128 => 17,  124 => 16,  119 => 15,  116 => 14,  110 => 11,  104 => 61,  102 => 60,  90 => 50,  88 => 49,  84 => 48,  71 => 38,  67 => 37,  47 => 19,  45 => 14,  40 => 12,  36 => 11,  24 => 1,  46 => 11,  42 => 10,  37 => 9,  34 => 8,  29 => 3,);
     }
 }
