@@ -15,3 +15,4 @@ web/images/wall/*
 #app/config/parameters.yml
 
 #faire un : git config --global core.excludesfile ~/.gitignore_global
+#Plutot !!! car pas ds le ~ ici.... faire un : git config --global core.excludesfile .gitignore_global
