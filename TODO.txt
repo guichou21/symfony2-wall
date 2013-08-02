@@ -25,6 +25,7 @@
 * jquery : TimePicker sur item : add et edit manque un positionnement top 50px  (enlever le top mis par jquery et rajouter un top 50px)
 * Tests
 * Slug
+* Nettoyer git
 * Designer le form de edition
 * Designer le form de add
 * Pagination sur item et Commentaires
