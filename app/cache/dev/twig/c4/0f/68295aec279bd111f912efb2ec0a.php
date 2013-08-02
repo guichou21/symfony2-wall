@@ -65,12 +65,32 @@ class __TwigTemplate_c40f68295aec279bd111f912efb2ec0a extends Twig_Template
                   <li ><a href=\"";
         // line 40
         echo $this->env->getExtension('routing')->getPath("gb_creation_wall_homepage");
-        echo "\">Accueil</a></li>
+        echo "\">Wall</a></li>
                   <li class=\"active\"><a href=\"";
         // line 41
         echo $this->env->getExtension('routing')->getPath("gb_creation_admin__index");
         echo "\">Admin</a></li>
                 </ul>
+                 <p class=\"navbar-text pull-right\">
+                    ";
+        // line 44
+        if ($this->env->getExtension('security')->isGranted("IS_AUTHENTICATED_REMEMBERED")) {
+            // line 45
+            echo "                       ";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getContext($context, "app"), "user"), "username"), "html", null, true);
+            echo " <a href=\"";
+            echo $this->env->getExtension('routing')->getPath("fos_user_security_logout");
+            echo "\" title=\"Se déconnecter\"><i class=\"icon-off\"></i></a>
+                    ";
+        } else {
+            // line 47
+            echo "                        <a href=\"";
+            echo $this->env->getExtension('routing')->getPath("fos_user_security_login");
+            echo "\"><i class=\"icon-user\"></i></a>
+                    ";
+        }
+        // line 49
+        echo "                  </p>
               </div><!--/.nav-collapse -->
             </div>
           </div>
@@ -81,15 +101,15 @@ class __TwigTemplate_c40f68295aec279bd111f912efb2ec0a extends Twig_Template
          <div class=\"row-fluid\">
             <div class=\"span3\">
               ";
-        // line 52
+        // line 59
         $this->displayBlock('sidebar', $context, $blocks);
         echo " 
             </div>
              <div class=\"span9\">
               ";
-        // line 55
+        // line 62
         $this->displayBlock('body', $context, $blocks);
-        // line 56
+        // line 63
         echo "            </div>
           </div><!-- row -->
 
@@ -104,22 +124,22 @@ class __TwigTemplate_c40f68295aec279bd111f912efb2ec0a extends Twig_Template
 
       <!-- Partie import javascript-->
         <script src=\"";
-        // line 69
+        // line 76
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("resources/bootstrap/js/jquery.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 70
+        // line 77
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("resources/bootstrap/js/bootstrap-affix.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 71
+        // line 78
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("resources/bootstrap/js/bootstrap-scrollspy.js"), "html", null, true);
         echo "\"></script>
         <noscript>Votre navigateur ne supporte pas le javaScript</noscript>
       ";
-        // line 73
+        // line 80
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 76
+        // line 83
         echo "
     </body>
 </html>";
@@ -158,20 +178,20 @@ class __TwigTemplate_c40f68295aec279bd111f912efb2ec0a extends Twig_Template
         ";
     }
 
-    // line 52
+    // line 59
     public function block_sidebar($context, array $blocks = array())
     {
     }
 
-    // line 55
+    // line 62
     public function block_body($context, array $blocks = array())
     {
     }
 
-    // line 73
+    // line 80
     public function block_javascripts($context, array $blocks = array())
     {
-        // line 74
+        // line 81
         echo "      
       ";
     }
@@ -188,6 +208,6 @@ class __TwigTemplate_c40f68295aec279bd111f912efb2ec0a extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  175 => 74,  172 => 73,  167 => 55,  162 => 52,  156 => 20,  152 => 19,  147 => 17,  143 => 16,  138 => 15,  135 => 14,  129 => 11,  123 => 76,  121 => 73,  116 => 71,  112 => 70,  108 => 69,  93 => 56,  91 => 55,  85 => 52,  71 => 41,  67 => 40,  47 => 22,  45 => 14,  40 => 12,  24 => 1,  77 => 23,  73 => 22,  69 => 21,  64 => 20,  59 => 15,  50 => 12,  46 => 10,  42 => 9,  38 => 7,  36 => 11,  32 => 4,  29 => 3,);
+        return array (  195 => 81,  192 => 80,  187 => 62,  182 => 59,  176 => 20,  172 => 19,  167 => 17,  163 => 16,  158 => 15,  155 => 14,  149 => 11,  143 => 83,  141 => 80,  136 => 78,  132 => 77,  128 => 76,  113 => 63,  111 => 62,  105 => 59,  93 => 49,  79 => 45,  77 => 44,  71 => 41,  45 => 14,  36 => 11,  24 => 1,  95 => 30,  92 => 29,  87 => 47,  84 => 29,  81 => 27,  72 => 24,  67 => 40,  62 => 22,  54 => 15,  48 => 13,  40 => 12,  38 => 10,  32 => 6,  29 => 5,  55 => 16,  50 => 14,  47 => 22,  41 => 11,  39 => 10,  31 => 4,  28 => 3,);
     }
 }

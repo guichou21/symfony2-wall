@@ -1,0 +1,32 @@
+# Les définitions pour Droits en in_memory:
+#login:
+#    pattern:   /wall/admin/login
+#    defaults:  { _controller: GbCreationUserBundle:Security:login }
+
+#login_check:
+#    pattern:   /wall/admin/login_check
+
+#logout:
+#    pattern:   /wall/admin/logout
+
+
+
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            pattern:   ^/
+            anonymous: true
+            provider:  fos_userbundle
+            csrf_provider: form.csrf_provider
+            form_login:
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
+            logout:
+                path:   fos_user_security_logout
+                target: /wall
+            remember_me:
+                key:        %secret% # %secret% est un paramètre de parameters.yml

@@ -72,6 +72,10 @@ class __TwigTemplate_ad52f889630cfe4278f0fbf5f63ad490 extends Twig_Template
         echo "\">Wall</a></li>
                   <li><a href=\"#contact\">Contact</a></li>
                 </ul>
+                 <p class=\"navbar-text pull-right\"><a href=\"";
+        // line 41
+        echo $this->env->getExtension('routing')->getPath("fos_user_security_login");
+        echo "\"><i class=\"icon-user\"></i></a></p>
               </div><!--/.nav-collapse -->
             </div>
           </div>
@@ -80,13 +84,13 @@ class __TwigTemplate_ad52f889630cfe4278f0fbf5f63ad490 extends Twig_Template
         <div class=\"container-fluid\">
 
           ";
-        // line 48
+        // line 49
         $this->displayBlock('sidebar', $context, $blocks);
         echo " 
           ";
-        // line 49
-        $this->displayBlock('body', $context, $blocks);
         // line 50
+        $this->displayBlock('body', $context, $blocks);
+        // line 51
         echo "
         </div> <!-- /container -->
 
@@ -98,9 +102,9 @@ class __TwigTemplate_ad52f889630cfe4278f0fbf5f63ad490 extends Twig_Template
 
 
       ";
-        // line 60
-        $this->displayBlock('javascripts', $context, $blocks);
         // line 61
+        $this->displayBlock('javascripts', $context, $blocks);
+        // line 62
         echo "
     </body>
 </html>";
@@ -130,17 +134,17 @@ class __TwigTemplate_ad52f889630cfe4278f0fbf5f63ad490 extends Twig_Template
         ";
     }
 
-    // line 48
+    // line 49
     public function block_sidebar($context, array $blocks = array())
     {
     }
 
-    // line 49
+    // line 50
     public function block_body($context, array $blocks = array())
     {
     }
 
-    // line 60
+    // line 61
     public function block_javascripts($context, array $blocks = array())
     {
     }
@@ -157,6 +161,6 @@ class __TwigTemplate_ad52f889630cfe4278f0fbf5f63ad490 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  144 => 60,  139 => 49,  134 => 48,  128 => 17,  124 => 16,  119 => 15,  116 => 14,  110 => 11,  104 => 61,  102 => 60,  90 => 50,  88 => 49,  84 => 48,  71 => 38,  67 => 37,  47 => 19,  45 => 14,  40 => 12,  36 => 11,  24 => 1,  46 => 11,  42 => 10,  37 => 9,  34 => 8,  29 => 3,);
+        return array (  148 => 61,  143 => 50,  138 => 49,  132 => 17,  128 => 16,  123 => 15,  120 => 14,  114 => 11,  108 => 62,  106 => 61,  92 => 50,  88 => 49,  47 => 19,  45 => 14,  40 => 12,  24 => 1,  42 => 10,  37 => 9,  34 => 8,  29 => 3,  101 => 28,  94 => 51,  85 => 22,  81 => 21,  77 => 41,  71 => 38,  67 => 37,  61 => 15,  56 => 13,  52 => 12,  46 => 11,  41 => 8,  36 => 11,  31 => 4,  28 => 3,);
     }
 }

@@ -9,6 +9,13 @@
           <li class="{% if app.request.get('_route') == 'gb_creation_admin_stats' %}active{% endif %}"><a href="{{ path('gb_creation_admin_stats') }}" title="Voir les stats du site"><i class="icon-chevron-right"></i> Stats</a></li>
         </ul>
       </div>
+
+      <div class="bs-docs-sidebar">
+        <ul class="nav nav-list bs-docs-sidenav">
+          <li class="" ><a href="{{ path('fos_user_security_logout') }}" title="Se déconnecter"><i class="icon-off"></i> Déconnexion</a></li>
+        </ul>
+      </div>
+
             {# {{ app.request.get('_route') }}  #}
 {% endblock %}
 

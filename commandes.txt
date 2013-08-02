@@ -1,0 +1,13 @@
+
+
+#FosUSerBundle
+##############
+https://github.com/FriendsOfSymfony/FOSUserBundle/tree/master/Resources/doc
+
+php app/console fos:user:create testuser
+répondre questions
+puis
+php app/console fos:user:promote testuser ROLE_ADMIN
+
+ou
+php app/console fos:user:create adminuser --super-admin

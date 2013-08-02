@@ -6,19 +6,25 @@
 - Evols  &   Bugs -
 -------------------
 * NbCom et nb Photos affichées ds entete
-* pb icon gyfloconblabla non trouvé sur certaines pages
-* Mise en place droits admin
+* Mise en place droits admin -> msg d'erreurs a gérer / création compte / profile / + design formulaires
++ pb login différent de register et autres (appel pas layout) => supprimer : Controler - view - routing?
 * JSON
 * ajax requete pour afficher photo site
 * rss photo et commentaire
+* Pagination
+* Progress bar
+* breadcrum et Badges !  Pannes pour form photo - video
 * js scroll infiny rafraichi fenetre !!!!!!!!!!!!!!!!!!!!
 * Migration donnees BDD yo -> ma base !!!!!!!!!!!!!
 * Page d'accueil
 * recréer page d'accueil php seule ds mon bundle
+* composer.phar a mettre en place
 * nettoyer import js et css des twifg. mettre que dans layout père?
 * Filtre Photo / Vidéo / Année
 * Item - constructeur new Date possède 2heures de moins
 * jquery : TimePicker sur item : add et edit manque un positionnement top 50px  (enlever le top mis par jquery et rajouter un top 50px)
+* Tests
+* Slug
 * Designer le form de edition
 * Designer le form de add
 * Pagination sur item et Commentaires
@@ -28,6 +34,7 @@
 * preparation mise en prod
 * nettoyer github les différents fichiers non à mon nom
 * faire tourner sur travis! pour voir
+
 
 ---------
 - Futur -
@@ -43,6 +50,9 @@ Unable to guess the mime type as no guessers are available (Did you enable the p
 ------------------
 - Tutos & autres -
 ------------------
+tuto complet
+http://www.jobeet.thuau.fr/les-tests-unitaires
+
 Mise en place user admin
 http://iabsis.com/FR/article/21-10/Mise-en-place-de-l-authentification
 
@@ -64,3 +74,6 @@ http://appventus.com/blog/les-notifications-ou-comment-ameliorer-la-user-experie
 
 redimensionner a upload
 http://www.siteduzero.com/forum/sujet/symfony2-redimensionner-une-image-a-l-upload-44969
+
+sources sdz
+https://github.com/winzou/SdzBlog

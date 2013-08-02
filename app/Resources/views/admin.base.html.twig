@@ -37,9 +37,16 @@
               <a class="brand" href="#">Karen.Guiom</a>
               <div class="nav-collapse collapse">
                 <ul class="nav">
-                  <li ><a href="{{ path('gb_creation_wall_homepage') }}">Accueil</a></li>
+                  <li ><a href="{{ path('gb_creation_wall_homepage') }}">Wall</a></li>
                   <li class="active"><a href="{{ path('gb_creation_admin__index') }}">Admin</a></li>
                 </ul>
+                 <p class="navbar-text pull-right">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                       {{ app.user.username }} <a href="{{ path('fos_user_security_logout') }}" title="Se déconnecter"><i class="icon-off"></i></a>
+                    {% else %}
+                        <a href="{{ path('fos_user_security_login') }}"><i class="icon-user"></i></a>
+                    {% endif %}
+                  </p>
               </div><!--/.nav-collapse -->
             </div>
           </div>

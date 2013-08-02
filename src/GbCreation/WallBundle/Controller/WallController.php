@@ -4,7 +4,7 @@ namespace GbCreation\WallBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * Item controller.
+ * Wall controller.
  */
 class WallController extends Controller
 {
