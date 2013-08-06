@@ -2,7 +2,19 @@ gb_creation_wall_homepage:
     pattern:  /
     defaults: { _controller: GbCreationWallBundle:Wall:index }
     requirements:
+        _method:  GET  
+
+gb_creation_wall_list:
+    pattern:  /old
+    defaults: { _controller: GbCreationWallBundle:Wall:old }
+    requirements:
         _method:  GET    
+
+gb_creation_wall_search_item:
+    pattern:  /
+    defaults: { _controller: GbCreationWallBundle:Wall:search }
+    requirements:
+        _method:  POST  
 
 gb_creation_wall__show:
     pattern:  /{id}

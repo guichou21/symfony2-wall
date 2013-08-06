@@ -1,0 +1,5 @@
+gb_creation_home_homepage:
+    pattern:  /
+    defaults: { _controller: GbCreationHomeBundle:Home:index }
+    requirements:
+        _method:  GET    

@@ -37,6 +37,7 @@ class SecurityController extends Controller
   }
 
 
+
   /*
 http://www.siteduzero.com/informatique/tutoriels/developpez-votre-site-web-avec-le-framework-symfony2/utiliser-fosuserbundle
 // Dans un contrôleur :

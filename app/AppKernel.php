@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new GbCreation\WallBundle\GbCreationWallBundle(),
             new GbCreation\UserBundle\GbCreationUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new GbCreation\HomeBundle\GbCreationHomeBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

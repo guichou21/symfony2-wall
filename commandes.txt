@@ -11,3 +11,7 @@ php app/console fos:user:promote testuser ROLE_ADMIN
 
 ou
 php app/console fos:user:create adminuser --super-admin
+
+
+$logger = $this->get('logger');
+$logger->info('Nous avons récupéré le logger');

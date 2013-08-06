@@ -1,3 +1,7 @@
+gb_creation_home:
+    resource: "@GbCreationHomeBundle/Resources/config/routing.yml"
+    prefix:   /
+
 gb_creation_wall:
     resource: "@GbCreationWallBundle/Resources/config/routing.yml"
     prefix:   /wall

@@ -1,31 +1,96 @@
 {% extends 'GbCreationWallBundle::layout.html.twig' %}
 
 {% block body %}
+
+<span class="nb_item">{{nbItems}}</span> Photos et <span class="nb_comments">{{nbComments}}</span> Commentaires
+
 <div class="grid">
     <div class="row-fluid">
         <div id="column" class="column">
-        {% for item in items %}
-            <!-- <article id="{{ item.id }}" class="item span4">-->
-            <article id="{{ item.id }}" class="myItem">
-                <header>
-                </header>
-                <a href="{{ path('gb_creation_wall__show', { 'id': item.id }) }}">
-                    <img src="{{ asset(['images/wall/', item.file]|join) }}" />
-                </a>
-                    <span class="date"><time datetime="{{ item.date|date('c') }}">{{ item.date|date('d/m/Y') }}</time></span>
-                    <span class="description">{{ item.description }}</span>
-                    <span class="nb-comments">{{ item.nbLike }} <i class="icon-comment icon-white"></i></span>
-                <!--<footer class="meta">
-                    <p>Comments: todo</p>
-                    <h4>tags : {{ item.tags }}</h4>
-                    <h4> il y a {{ item.nbLike }} likes</h4>
-                    <h4>ceci est type : {{ item.type }}</h4>     
-                </footer>-->
-            </article>
-        {% else %}
-            <p>Il n'y a pas de photos dans le mur</p>
-        {% endfor %}
+            
+               {% include 'GbCreationWallBundle:Wall:list.html.twig' with {'items' : items}  %}
+
         </div>
     </div>
 </div>
+
+
+<div class="loading">
+    <img src="{{ asset('resources/img/ajax-loader.gif') }}" />
+    Chargement en cours...
+</div>
+<div class="noMore">
+    Tout a été affiché...
+</div>
+
+
+
+{% endblock %}
+
+{% block javascripts %} 
+<script src="{{ asset('resources/bootstrap/js/jquery.js') }}"></script>
+<script src="{{ asset('resources/js/masonry/masonry.min.js') }}"></script>
+<script src="{{ asset('resources/bootstrap/js/bootstrap-scrollspy.js') }}"></script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+        var $container = $('#column');
+
+        $(".loading").hide();
+        var load = false; // aucun chargement de commentaire n'est en cours
+        $(window).scroll(function(){ // On surveille l'évènement scroll
+
+            /* si aucun chargement n'est en cours, si tout les items ne sont pas affichés, alors on lance la fonction. */
+
+            if($(window).scrollTop()==$(document).height() - $(window).height() && load==false ){
+
+                if(($('.myItem').size()!=$('.nb_item').text())){
+                    //On affiche un loader
+                    $('.loading').show();
+
+                    // la valeur passe à vrai, on va charger
+                    load = true;
+
+                    //On récupère le nb d'item affichés
+                    var nbItems = $('.myItem').length;
+
+                    //On lance la fonction ajax
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ path('gb_creation_wall_search_item')}}",
+                        data: 'last='+nbItems,
+                        cache: false,
+                        success: function(data){
+                           $('.loading').fadeOut(500);
+                           $('.myItem:last').after(data);
+                            //On remet la valeur à faux car c'est fini
+                            load = false;
+                            //on reload les items
+                           $container.masonry('reloadItems');
+                           //on réaffiche les items
+                           $container.masonry({
+                                itemSelector: '.myItem',
+                                isAnimated: true,
+                                isFitWidth: true
+                            });
+                         }
+                    });
+
+                }
+                else{
+                     $('.noMore').show();
+                }
+            }
+        });
+
+    $(".noMore").hide();
+    $container.masonry({
+                    itemSelector: '.myItem',
+                    isAnimated: true,
+                    isFitWidth: true
+                });
+  } );
+
+</script>
 {% endblock %}

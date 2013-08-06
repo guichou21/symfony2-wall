@@ -23,6 +23,30 @@ class ItemRepository extends EntityRepository
     	return $query->getResult();
     }
 
+   public function getNbItems($nbItem=10)
+    {
+        
+      $query = $this->createQueryBuilder('i')
+      ->orderBy('i.date', 'DESC')
+      ->setMaxResults($nbItem)
+      ->getQuery();
+
+      return $query->getResult();
+    }
+
+    public function getItemsInRange($firstItem=0,$nbItem=10)
+    {
+        
+      $query = $this->createQueryBuilder('i')
+      ->orderBy('i.date', 'DESC')
+      ->setMaxResults($nbItem)
+      ->setFirstResult($firstItem)
+      ->getQuery();
+
+      return $query->getResult();
+    }
+
+
     public function getItemsWithComments()
     {
         
@@ -34,4 +58,17 @@ class ItemRepository extends EntityRepository
  
     	return $query->getResult();
     }
+
+    public function countAllItems()
+    {
+        
+      $query = $this->createQueryBuilder('i')
+      ->select('COUNT(i)')
+      ->getQuery();
+
+      return $query->getSingleScalarResult();
+    }
+
+
+
 }

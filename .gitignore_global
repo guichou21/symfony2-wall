@@ -14,5 +14,6 @@ web/images/wall/*
 #app/config/parameters.ini
 #app/config/parameters.yml
 
+# a mettre dans la home de git...
 #faire un : git config --global core.excludesfile ~/.gitignore_global
 #Plutot !!! car pas ds le ~ ici.... faire un : git config --global core.excludesfile .gitignore_global

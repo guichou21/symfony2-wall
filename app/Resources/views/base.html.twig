@@ -14,7 +14,10 @@
         {% block stylesheets %}
         <link href="{{ asset('resources/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
         <link href="{{ asset('resources/bootstrap/css/bootstrap-responsive.css') }}" rel="stylesheet">     
-        <link href="{{ asset('resources/css/sy2-wall-base.css') }}" rel="stylesheet">     
+        <link href="{{ asset('resources/css/sy2-wall-base.css') }}" rel="stylesheet">  
+
+
+        <link href="http://fonts.googleapis.com/css?family=La+Belle+Aurore" rel="stylesheet" type="text/css">   
         {% endblock %}
 
 
@@ -31,11 +34,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="brand" href="#">Karen.Guiom</a>
+              <a class="brand" href="{{ path('gb_creation_home_homepage') }}">Karen.Guiom</a>
               <div class="nav-collapse collapse">
                 <ul class="nav">
-                  <li class="active"><a href="{{ path('gb_creation_wall_homepage') }}">Accueil</a></li>
-                  <li><a href="{{ path('gb_creation_wall_homepage') }}">Wall</a></li>
+                  <li class="{% if app.request.get('_route') == 'gb_creation_home_homepage' %}active{% endif %}"><a href="{{ path('gb_creation_home_homepage') }}">Accueil</a></li>
+                  <li class="{% if app.request.get('_route') == 'gb_creation_wall_homepage' %}active{% endif %}"><a href="{{ path('gb_creation_wall_homepage') }}">Wall</a></li>
                   <li><a href="#contact">Contact</a></li>
                 </ul>
                  <p class="navbar-text pull-right"><a href="{{ path('fos_user_security_login') }}"><i class="icon-user"></i></a></p>
@@ -53,8 +56,11 @@
 
 
       <hr>
-       <footer>
-        <p>&copy; GBCreation 2013</p>
+       <footer  id="footer">
+        <p>
+          <img src="{{ asset('resources/img/GibeeCreationLogo.png') }}">
+          <h3>&copy; 2013 all rights reserved</h3>
+      </p>
       </footer>
 
 

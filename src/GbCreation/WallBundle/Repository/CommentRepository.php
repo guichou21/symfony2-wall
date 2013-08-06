@@ -43,5 +43,15 @@ class CommentRepository extends EntityRepository
         return $qb->getQuery()
                   ->getResult();
     }
+
+    public function countAllComments()
+    {
+        
+      $query = $this->createQueryBuilder('c')
+      ->select('COUNT(c)')
+      ->getQuery();
+
+      return $query->getSingleScalarResult();
+    }
     
 }
