@@ -23,7 +23,7 @@ class ItemRepository extends EntityRepository
     	return $query->getResult();
     }
 
-   public function getNbItems($nbItem=10)
+   public function getLastItems($nbItem=10)
     {
         
       $query = $this->createQueryBuilder('i')

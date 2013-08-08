@@ -30,7 +30,23 @@ gb_creation_comment__create:
         _method:  POST
         item_id: \d+
 
+gb_creation_rss_feed:
+    pattern:  /rss
+    defaults: { _controller: GbCreationWallBundle:Rss:feed }
+    requirements:
+        _method:  GET
 
+gb_creation_rss_item:
+    pattern:  /rss/items
+    defaults: { _controller: GbCreationWallBundle:Rss:item }
+    requirements:
+        _method:  GET
+
+gb_creation_rss_comment:
+    pattern:  /rss/comments
+    defaults: { _controller: GbCreationWallBundle:Rss:comment }
+    requirements:
+        _method:  GET
 
 gb_creation_admin__index:
     pattern:  /admin/

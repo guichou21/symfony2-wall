@@ -69,6 +69,10 @@ services:
         class:        Twig_Extension_Debug
         tags:
              - { name: 'twig.extension' }
+    twig.extension.intl:
+       class: Twig_Extensions_Extension_Intl
+       tags:
+           - { name: twig.extension }
 
 fos_user:
     db_driver:     orm                        # Le type de BDD à utiliser, nous utilisons l'ORM Doctrine depuis le début

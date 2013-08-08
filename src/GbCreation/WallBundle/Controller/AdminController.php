@@ -4,6 +4,7 @@ namespace GbCreation\WallBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+
 use GbCreation\WallBundle\Entity\Item;
 use GbCreation\WallBundle\Form\ItemType;
 use GbCreation\WallBundle\Form\ItemEditedType;
@@ -70,15 +71,6 @@ class AdminController extends Controller
         $items = $em->getRepository('GbCreationWallBundle:Item')
                 ->getAllItems();
 
-
-        /*$items = $em->createQueryBuilder()
-                ->select('i')
-                ->from('GbCreationWallBundle:Item',  'i')
-                ->addOrderBy('i.date', 'DESC')
-                ->getQuery()
-                ->getResult();*/
-
-
         return $this->render('GbCreationWallBundle:Admin:items.show.html.twig', array(
             'items' => $items
         ));
@@ -95,6 +87,8 @@ class AdminController extends Controller
           throw new AccessDeniedHttpException('Accès limité aux Admins');
         }
 
+        $params = $this->container->getParameter('Upload');
+
         $entity  = new Item();
         $request = $this->getRequest();
         $form    = $this->createForm(new ItemType(), $entity);
@@ -106,6 +100,18 @@ class AdminController extends Controller
 
             /* ne plus appeler le move vu que callbacks*/
             //$entity->upload();
+
+            $extensions = $params['extensions'];
+            $extension = strrchr($entity->fileToUpload->getClientOriginalName(), '.');
+
+            if(!in_array($extension, $extensions)){  
+                $this->get('session')->getFlashBag()->add('error', 'Fichier non autorisé');
+                return $this->render('GbCreationWallBundle:Admin:add.html.twig', array(
+                    'entity' => $entity,
+                    'form'   => $form->createView()
+                    ));
+            }
+
 
             $em->persist($entity);
             $em->flush();

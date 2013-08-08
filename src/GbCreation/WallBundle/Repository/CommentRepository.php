@@ -54,4 +54,15 @@ class CommentRepository extends EntityRepository
       return $query->getSingleScalarResult();
     }
     
+    public function getLastComments($nbComment=10)
+    {
+        
+      $query = $this->createQueryBuilder('c')
+      ->orderBy('c.created', 'DESC')
+      ->setMaxResults($nbComment)
+      ->getQuery();
+
+      return $query->getResult();
+    }
+
 }

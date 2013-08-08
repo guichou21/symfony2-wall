@@ -1,12 +1,147 @@
+@font-face {
+  font-family: 'La Belle Aurore';
+  font-style: normal;
+  font-weight: 400;
+  src: local('La Belle Aurore'), local('LaBelleAurore'), url('fonts/LaBelleAurore.woff') format('woff');
+}
 
-body {
-	padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-	background-image: url("../img/bg.png");
+@font-face {
+  font-family: 'Irish Grover';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Irish Grover'), local('IrishGrover'), url('fonts/IrishGrover.woff') format('woff');
+}
+@font-face {
+  font-family: 'Simonetta';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Simonetta'), local('Simonetta-Regular'), url('fonts/Simonetta.woff') format('woff');
 }
 
 
 
+body {
+	padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+	background-image: url("../img/bg.png");
+    font-family: 'Simonetta', Arial, Helvetica, sans-serif;
+    color: #000000;
 
+}
+
+h1, h2, h3, h4, h5, h6 {
+     font-family: 'Irish Grover',cursive, Arial, Helvetica, sans-serif ;
+     color: #0193A3;
+}
+
+.myBrand{
+    font-family: 'Irish Grover',cursive;
+    font-weight: 300;
+    color: #266BB2 !important;
+}
+
+/*********************************/
+/* Menu / bandeau haut du site   */
+/*********************************/
+#resume{
+    display:inline-block;
+    line-height: 20px;
+    color: #777777;
+    float: none;
+    padding: 10px 15px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #FFFFFF;
+    margin-left: 50px;
+}
+
+#resume .nb_item, #resume .nb_comments{
+    color:#777777;
+    font-weight: bold;
+}
+
+
+#itemDescription{
+    font-size: large;
+    line-height: 40px;
+    margin: 0;
+}
+#itemDescription .date{
+    font-style: italic;
+}
+
+#itemDescription .description{
+    color: #266BB2 !important;
+    font-family: 'Irish Grover',cursive;
+    /*font-weight: bold;*/
+}
+
+
+/* partie affichage d'une photo*/
+.pictureBar img{
+    cursor: pointer;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067)
+}
+.commentBar{
+    background-color: #FAFAFA;
+    background-image: linear-gradient(to bottom, #FFFFFF, #F2F2F2);
+    background-repeat: repeat-x;
+    border: 1px solid #D4D4D4;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+}
+.commentBar h3{
+    font-size: 1.3em;
+    text-align: center;
+    margin: 0 auto;
+    /*font-family: 'La Belle Aurore',cursive;*/
+
+}
+
+.comments{
+    text-align: left;
+    padding: 6px;
+    text-align: left;
+}
+.comment{
+    border: 1px solid #D4D4D4;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+    border-radius: 4px 4px 4px 4px;
+    width:100%;
+    margin: 0 auto 10px;
+    overflow: hidden;
+
+}
+.comment .author{
+    margin-left: 2px;
+    color:#777777;
+    border-bottom: 2px solid #777777;
+    font-size: large;
+    font-weight: bold;
+    width: 100%;
+}
+
+.comment .date {
+    float: right;
+    font-size: x-small;
+    font-weight: normal;
+    line-height: 15px;
+    padding-bottom: 10px;
+}
+
+.comment p{
+    margin-left: 5px;
+    padding-top:5px;
+}
+.comments .odd{
+
+}
+.comments .even{
+
+}
+
+/*********************************/
+/* Footer                        */
+/*********************************/
 #footer {
     /*border-top: 1px solid #CCCCCC;*/
     clear: both;

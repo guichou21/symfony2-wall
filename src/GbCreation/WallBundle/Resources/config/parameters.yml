@@ -1,0 +1,12 @@
+parameters:
+    RSS:
+        NB_MAX_ITEM: 10
+        NB_MAX_COMMENT: 10
+    Request:
+        NB_ITEM_PER_PAGE: 10
+    Upload:
+        extensions: 
+            - '.png'
+            - '.gif'
+            - '.jpg'
+            - '.jpeg'

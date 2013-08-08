@@ -142,6 +142,8 @@ class Item
             // faites ce que vous voulez pour générer un nom unique
             //$this->file = sha1(uniqid(mt_rand(), true)).'.'.$this->fileToUpload->guessExtension();
             $this->file = $this->fileToUpload->getClientOriginalName();
+            //Remplace les caractères autres que alphanumériqu epar des -
+            $this->file = preg_replace('/([^.a-z0-9]+)/i', '-', $this->file);
         }
     }
 

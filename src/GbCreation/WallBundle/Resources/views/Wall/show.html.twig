@@ -2,24 +2,48 @@
 
 {% block title %}{{ item.description }}{% endblock %}
 
+   {% block menu %}
+     <div class="navbar navbar navbar-fixed-top">
+          <div class="navbar-inner">
+            <div class="container">
+              <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="brand myBrand" href="{{ path('gb_creation_wall_homepage') }}">Karen.Guiom</a>
+              <span id="itemDescription">
+                  Le <span class="date">{{ item.date|localizeddate('long', 'none') }}</span>
+                 : &ldquo;<span class="description">{{ item.description }}&rdquo;</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      {% endblock %} 
+
 {% block body %}
-    <article class="item">
-        <header>
-         <div class="date"><time datetime="{{ item.date|date('c') }}">{{ item.date|date('l, F j, Y') }}</time></div>
-            <h2>{{ item.description }}</h2>
-        </header>
-         <img src="{{ asset(['images/wall/', item.file]|join) }}" alt="{{ item.file }} n'a pas été trouvée" class="large" />
-    </article>
 
-    <article class="comments">
-        <section class="comments" id="comments">
-        <section class="previous-comments">
-            <h3>Commentaires  ({{ item.nbLike }})</h3>
-            {% include 'GbCreationWallBundle:Comment:index.html.twig' with { 'comments': comments } %}
-        </section>
+    <div class="row-fluid">
+      <div class="span9 pictureBar">
+        <img src="{{ asset(['images/wall/', item.file]|join) }}" alt="{{ item.file }} n'a pas été trouvée" class="large" />
+      </div>
+      
+      <div class="span3 commentBar" style="min-height: 712px;">
+          <section class="row-fluid">
+              <h3>Ajouter un commentaire</h3>
+              <div class="span11 commentForm">
+                  {{ render(controller( 'GbCreationWallBundle:Comment:new', { 'item_id': item.id } )) }}
+              </div>
+          </section>
+          <section class="row-fluid ">
+              <h3>Commentaires  ({{ item.nbLike }})</h3>
+              <div class="span11 comments">
+                    {% include 'GbCreationWallBundle:Comment:index.html.twig' with { 'comments': comments } %}
+              </div>
+          </section>
 
-          <h3>Ajouter un commentaire</h3>
-           {{ render(controller( 'GbCreationWallBundle:Comment:new', { 'item_id': item.id } )) }}
-    </section>
-    </article>
+      </div>
+    </div>
+
+
 {% endblock %}

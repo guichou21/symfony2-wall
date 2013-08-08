@@ -1,0 +1,4 @@
+parameters:
+    param:
+        NB_SLIDE: 3
+        MAX_COMMENT: 15

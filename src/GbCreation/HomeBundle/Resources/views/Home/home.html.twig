@@ -1,0 +1,21 @@
+    <article class="container" id="top">
+        <div class="row">
+            <div class="12u">
+                <header>
+                    <h1>Karen.Guiom <span class="intro">And Alice</span></h1>
+                </header>
+                <div class="homeSlider">
+                    <div id="slider">
+                        {% for img in headerSlide %}
+                        {% debug  img%}
+                        <img src="{{ asset('images/slider/',img) }}" alt="header slide" /><br/>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+    <footer>
+            <p>Mise à jour de la version 2 de notre petit site récapitulant nos sites de Photos, Vidéos, Voyage,...</p>
+                <a href="#news" class="button button-big">Voir les nouveautés</a>
+    </footer>

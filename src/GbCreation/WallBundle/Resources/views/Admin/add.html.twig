@@ -12,6 +12,12 @@
 			{{ flashMessage }}
 			</div>
 	{% endfor %}
+	{% for flashMessage in app.session.flashbag.get('error') %}
+		<div id="alertMsg" class="alert alert-error">
+		<button class="close" data-dismiss="alert" type="button">×</button>
+			{{ flashMessage }}
+			</div>
+	{% endfor %}
 
 {% endblock %}
 

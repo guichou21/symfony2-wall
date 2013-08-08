@@ -2,7 +2,8 @@
 {% for comment in comments %}
     <article class="comment {{ cycle(['odd', 'even'], loop.index0) }}" id="comment-{{ comment.id }}">
         <header>
-            <p><span class="highlight">{{ comment.author }}</span> commented <time datetime="{{ comment.created|date('c') }}">{{ comment.created|date('l, F j, Y') }}</time></p>
+            <span class="author">{{ comment.author }}</span>
+            <span class="date"><time datetime="{{ comment.created|date('d/m/Y') }}">{{ comment.created|date('d/m/Y') }}</time></span>
         </header>
         <p>{{ comment.comment }}</p>
     </article>

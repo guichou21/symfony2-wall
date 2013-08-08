@@ -5,28 +5,35 @@
 -------------------
 - Evols  &   Bugs -
 -------------------
-* NbCom et nb Photos affichées ds entete : ecrire dans parent !? comment faire ds twig...? / ajax ds parent??
-* Mise en place droits admin -> msg d'erreurs a gérer / création compte / profile / + design formulaires
-+ pb login différent de register et autres (appel pas layout) => supprimer : Controler - view - routing?
-* JSON
-* rss photo et commentaire
-* Pagination
-* page d'accueil "tout a été affiché" pas centré verticalement
-* Progress bar
-* breadcrum et Badges !  Pannes pour form photo - video
+* definir couleur et font text css
 * Migration donnees BDD yo -> ma base !!!!!!!!!!!!!
 * Page d'accueil
 * recréer page d'accueil php seule ds mon bundle
 * Readme : procédure install !!!
-* Définir vos formulaire en tant que services (cf doc sy2=> Form!)
-* composer.phar a mettre en place
+* réecrire et adapter le fichier param.yml http://www.squareeyes.fr/actualite/jouer-avec-les-variables-globales-dans-symfony-2
+
 * nettoyer import js et css des twifg. mettre que dans layout père?
 * Filtre Photo / Vidéo / Année
+* composer.phar a mettre en place
+* durée session
+* Nettoyer git
+
+* Mise en place droits admin -> msg d'erreurs a gérer / création compte / profile / + design formulaires
++ pb login différent de register et autres (appel pas layout) => supprimer : Controler - view - routing?
+* JSON
+* Pagination
+* page d'accueil "tout a été affiché" pas centré verticalement
+* Progress bar
+* breadcrum et Badges !  Pannes pour form photo - video
+
+* externaliser url(rss.twig) et valeur nbItem a recuperer dans un fichier de propriété?
+* Définir vos formulaire en tant que services (cf doc sy2=> Form!)
+
 * Item - constructeur new Date possède 2heures de moins
 * jquery : TimePicker sur item : add et edit manque un positionnement top 50px  (enlever le top mis par jquery et rajouter un top 50px)
 * Tests
 * Slug
-* Nettoyer git
+* problème resize fenêtre.
 * Designer le form de edition
 * Designer le form de add
 * Pagination sur item et Commentaires
@@ -36,7 +43,12 @@
 * preparation mise en prod
 * nettoyer github les différents fichiers non à mon nom
 * faire tourner sur travis! pour voir
+* mettre tous les css et images non pas dans web mais dans le bundle pour faire : php app/console assets:install web
 
+---------
+-- MEP --
+---------
+http://www.symfony2-checklist.com/fr
 
 ---------
 - Futur -
@@ -54,6 +66,10 @@ Unable to guess the mime type as no guessers are available (Did you enable the p
 ------------
 [done] ajax requete pour afficher photo site
 [done] js scroll infiny rafraichi fenetre !
+[done] NbCom et nb Photos affichées ds entete : Twig : utiliser render au lieu include qui va appele un contoller.
+[done] rss photo et commentaire
+[done] upload seul caractères alphanumériques et extensions dans properties
+
 
 ------------------
 - Tutos & autres -
@@ -69,13 +85,14 @@ Bundle upload file
 https://github.com/punkave/symfony2-file-uploader-bundle
 
 
-Ajax
+Ajax traduction
 !!  http://j-place.developpez.com/tutoriels/php/ameliorez-vos-applications-developpees-avec-symfony2/
 
 Upload ajax file    Tuto
 http://net.tutsplus.com/tutorials/javascript-ajax/uploading-files-with-ajax/
 a voir http://www.siteduzero.com/forum/sujet/symfony2-upload-file-21967
 
+http://www.jquery4u.com/
 
 System notif
 http://appventus.com/blog/les-notifications-ou-comment-ameliorer-la-user-experience-grace-a-noty-et-aux-modals-en-2-minutes
@@ -85,3 +102,9 @@ http://www.siteduzero.com/forum/sujet/symfony2-redimensionner-une-image-a-l-uplo
 
 sources sdz
 https://github.com/winzou/SdzBlog
+
+
+http://www.tutoriel-symfony2.fr/
+Serialisation : http://symfony.com/fr/doc/current/components/serializer.html
+Commandes Sy2 (notament mise en prod)
+http://blog.keiruaprod.fr/2012/03/21/bien-utiliser-les-commandes-console-de-symfony2/

@@ -33,33 +33,45 @@ class WallController extends Controller
 
      public function oldAction()
     {
+        $params = $this->container->getParameter('Request');
         $em = $this->getDoctrine()
                    ->getManager();
 
-        $items = $em->getRepository('GbCreationWallBundle:Item')->getNbItems(10);
+        $items = $em->getRepository('GbCreationWallBundle:Item')->getLastItems($params['NB_ITEM_PER_PAGE']);
 
         return $this->render('GbCreationWallBundle:Wall:old.html.twig', array(
             'items' => $items
         ));
     }
 
+    public function resumeAction()
+    {
+        $em = $this->getDoctrine()
+                   ->getManager();
+
+        $nbItems = $em->getRepository('GbCreationWallBundle:Item')->countAllItems();
+        $nbComments = $em->getRepository('GbCreationWallBundle:Comment')->countAllComments();
+
+        return $this->container->get('templating')->renderResponse('GbCreationWallBundle:Wall:resume.html.twig', array(
+                'nbItems' => $nbItems,
+                'nbComments' => $nbComments,
+            ));
+
+    }
 
      public function indexAction()
     {
-        $NB_ITEM_TO_GET = 10;
+        $params = $this->container->getParameter('Request');
+        $NB_ITEM_TO_GET = $params['NB_ITEM_PER_PAGE'];
 
         $em = $this->getDoctrine()
                    ->getManager();
 
         //Initialisation - récupération des 10 premières images
         $items = $em->getRepository('GbCreationWallBundle:Item')->getItemsInRange(0,$NB_ITEM_TO_GET);
-        $nbItems = $em->getRepository('GbCreationWallBundle:Item')->countAllItems();
-        $nbComments = $em->getRepository('GbCreationWallBundle:Comment')->countAllComments();
-
+    
         return $this->container->get('templating')->renderResponse('GbCreationWallBundle:Wall:index.html.twig', array(
             'items' => $items,
-            'nbItems' => $nbItems,
-            'nbComments' => $nbComments,
         ));
     }
 
@@ -67,8 +79,9 @@ class WallController extends Controller
     public function searchAction()
     {               
         //Par defaut récupère les 10 premiers..
+        $params = $this->container->getParameter('Request');
         $FIRST_ITEM_TO_GET = 0;
-        $NB_ITEM_TO_GET = 10;
+        $NB_ITEM_TO_GET = $params['NB_ITEM_PER_PAGE'];
 
         $logger = $this->get('logger');
 
@@ -105,46 +118,5 @@ class WallController extends Controller
             return $this->indexAction();
         }
     }
-
-/*
-    public function searchAction()
-    {               
-        $logger = $this->get('logger');
-
-        $request = $this->container->get('request');
-
-        if($request->isXmlHttpRequest())
-        {
-            $begin = '';
-            $nb = '';
-            $begin = $request->request->get('begin');
-            $nb = $request->request->get('nb');
-
-            $em = $this->container->get('doctrine')->getEntityManager();
-
-            $logger->info('verif : begin  ['.$begin.'] nb ['.$nb.']');
-
-            if($begin != '' && $nb != '')
-            {
-                //verifier que bien des chiffres...
-                $logger->info('Rafraichissement de la page à partir de ['.$begin.'] et on en prends ['.$nb.']');
-
-                $items = $em->getRepository('GbCreationWallBundle:Item')->getNbItemsFromId($begin,$nb);
-            }
-            else {
-                //récup les 10 premiers par ex
-                $items = $em->getRepository('GbCreationWallBundle:Item')->getNbItems(0,10);
-            }
-
-            //$form = $this->container->get('form.factory')->create(new ItemSearchType());
-            return $this->container->get('templating')->renderResponse('GbCreationWallBundle:Wall:list.html.twig', array(
-                'items' => $items,
-                ));
-        }
-        else {
-            return $this->indexAction();
-        }
-    }*/
-
 
 }
