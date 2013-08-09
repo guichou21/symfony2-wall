@@ -9,13 +9,15 @@
       </div>
 
 {# {{ dump(app.session.flashbag.get('notice')) }} #}
-  {% for flashMessage in app.session.flashbag.get('notice') %}
-   <div id="alertMsg" class="alert alert-success">
-      <button class="close" data-dismiss="alert" type="button">×</button>
-      {{ flashMessage }}
-    </div>
-  {% endfor %}
-
+    
+ {% for type in ['notice', 'info', 'success', 'error'] %}
+        {% for flashMessage in app.session.flashbag.get(type) %}
+            <div  id="alertMsg" class="alert alert-{{ type }}">
+              <button class="close" data-dismiss="alert" type="button">×</button>
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+    {% endfor %}
 
       <table id="resultData" class="table table-striped tableSorter">
          <thead>
@@ -58,7 +60,6 @@
             </div>
             <div class="modal-body">
                 <p>Etes-vous certain de vouloir supprimer ?</p>
-                <p><span class="label label-warning">Attention, Les commentaires associés à la photo seront supprimés.....</span></p>
                 <div class="alert">Attention, Les commentaires associés à la photo seront supprimés.....</div>
             </div>
             <div class="modal-footer">

@@ -7,7 +7,7 @@
 -------------------
 * definir couleur et font text css
 * Migration donnees BDD yo -> ma base !!!!!!!!!!!!!
-* Page d'accueil
+* Page d'accueil : liseur rss (vimeo / wordpress)
 * recréer page d'accueil php seule ds mon bundle
 * Readme : procédure install !!!
 * réecrire et adapter le fichier param.yml http://www.squareeyes.fr/actualite/jouer-avec-les-variables-globales-dans-symfony-2

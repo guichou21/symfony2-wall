@@ -9,12 +9,15 @@
       </div>
 
 {# {{ dump(app.session.flashbag.get('notice')) }} #}
-  {% for flashMessage in app.session.flashbag.get('notice') %}
-   <div id="alertMsg" class="alert alert-success">
-      <button class="close" data-dismiss="alert" type="button">×</button>
-      {{ flashMessage }}
-    </div>
-  {% endfor %}
+
+  {% for type in ['notice', 'info', 'success', 'error'] %}
+        {% for flashMessage in app.session.flashbag.get(type) %}
+            <div  id="alertMsg" class="alert alert-{{ type }}">
+              <button class="close" data-dismiss="alert" type="button">×</button>
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+    {% endfor %}
 
 
       <table id="resultData" class="table table-striped tableSorter">

@@ -36,8 +36,16 @@ class AdminController extends Controller
     public function statsAction()
     {
 
+        $em = $this->getDoctrine()
+                   ->getManager();
 
-        return $this->render('GbCreationWallBundle:Admin:stats.html.twig');
+        $nbItems = $em->getRepository('GbCreationWallBundle:Item')->countAllItems();
+        $nbComments = $em->getRepository('GbCreationWallBundle:Comment')->countAllComments();
+
+        return $this->render('GbCreationWallBundle:Admin:stats.html.twig', array(
+                'nbItems' => $nbItems,
+                'nbComments' => $nbComments,
+            ));
     }
 
 /* notmalement new ???*/ 

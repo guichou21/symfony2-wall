@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
   <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--  <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
         <meta name="copyright" content="GbCreation">
         <meta name="author" content="GbCreation">
         <meta name="language" content="fr">
@@ -13,17 +13,13 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" /> 
 
         {% block stylesheets %}
-        <link href="{{ asset('resources/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
-        <link href="{{ asset('resources/bootstrap/css/bootstrap-responsive.css') }}" rel="stylesheet">     
-        <link href="{{ asset('resources/css/sy2-wall-base.css') }}" rel="stylesheet">  
-
-
-        <link rel="stylesheet" href="{{ asset('resources/home/css/skel-noscript.css') }}" />
-        <link rel="stylesheet" href="{{ asset('resources/home/css/style.css') }}" />
-        <link rel="stylesheet" href="{{ asset('resources/home/css/style-desktop.css') }}" />
-        <link rel="stylesheet" href="{{ asset('resources/home/css/orbit-1.3.0.css') }}">
-        <link href="{{ asset('resources/home/css/homeStyle.css" type="text/css" rel="stylesheet') }}" />
-        <link rel="stylesheet" href="{{ asset('resources/home/css/countdown.css') }}">
+        <link rel="stylesheet" href="{{ asset('resources/homeBundle/css/skel-noscript.css') }}" /> 
+        <link rel="stylesheet" href="{{ asset('resources/homeBundle/css/style.css') }}" />        
+        <link rel="stylesheet" href="{{ asset('resources/homeBundle/css/style-desktop.css') }}" />
+        <link rel="stylesheet" href="{{ asset('resources/homeBundle/css/orbit-1.3.0.css') }}">
+        <link href="{{ asset('resources/css/sy2-home.css') }}" rel="stylesheet"> 
+       <!-- 
+         <link rel="stylesheet" href="{{ asset('resources/homeBundle/css/countdown.css') }}">-->
         {% endblock %}
     </head>
 
@@ -34,7 +30,7 @@
                 <li><a href="#top">Accueil</a></li>
                 <li><a href="#news">News</a></li>
                 <li><a href="#portfolio">Nos sites</a></li>
-                <li><a href="#decompte">Décompte</a></li>
+               <!-- <li><a href="#decompte">Décompte</a></li> -->
             </ul>
         </nav>
 
@@ -45,33 +41,49 @@
 
         <!-- news -->
         <div class="wrapper wrapper-style2">
-            {{ render(controller("GbCreationHomeBundle:Home:news")) }}
+            {{ render(controller("GbCreationHomeBundle:Home:news")) }} 
         </div>
 
         <!-- Portfolio -->
         <div class="wrapper wrapper-style3">
-            {{ render(controller("GbCreationHomeBundle:Home:portfolio")) }}    
+         {{ render(controller("GbCreationHomeBundle:Home:portfolio")) }} 
         </div>
 
         <!-- decompte -->
-        <div class="wrapper wrapper-style2">
-             {{ render(controller("GbCreationHomeBundle:Home:decompte")) }}
+        <!-- <div class="wrapper wrapper-style2">
+          {#   {{ render(controller("GbCreationHomeBundle:Home:decompte")) }}  #}
         </div>
+        -->
 
         <div id="footer">
-                <img src="resources/images/GibeeCreationLogo.png"> <h3>2013 all rights reserved</h3>
+             <p>
+              <img src="{{ asset('resources/img/GibeeCreationLogo.png') }}">
+                <h3>&copy; 2013 all rights reserved</h3>
+            </p>
         </div>
 
+
+
+      <!-- Partie import javascript-->
+        <script src="{{ asset('resources/bootstrap/js/jquery.js') }}"></script>
+        <script src="{{ asset('resources/js/jquery-orbit/jquery.orbit-1.3.0.js') }}"></script>
+        <script src="{{ asset('resources/homeBundle/js/config.js') }}"></script>
+        <script src="{{ asset('resources/js/jquery-orbit/skel.min.js') }}"></script> 
+        <noscript>Votre navigateur ne supporte pas le javaScript</noscript>
+      {% block javascripts %}
+      {% endblock %}
+
+
         <script type="text/javascript">
-            $(window).load(function() {
-                $('#slider').orbit();
+            $(document).ready(function() {
+                $(window).load(function() {
+                    $('#slider').orbit();
+                });
             });
-       </script>
+            
+         </script>
 
 
-
-
-        {% block body %}{% endblock %}
 
     </body>
 

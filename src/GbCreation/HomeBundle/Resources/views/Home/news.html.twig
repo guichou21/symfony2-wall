@@ -8,23 +8,44 @@
             <div class="row">
                 <div class="4u">
                     <section class="box box-style1">
+                        <h3>En Photos</h3>
+                        <p>derniers clichés</p>
+                         {% for item in items %}
+                            <li>
+                                <a href="">{{ item.description }}</a>
+                            </li>
+                        {% endfor %}
 
+                    </section>
+                </div>
+                <div class="4u">
+                    <section class="box box-style1">
                         <h3>Commentaires</h3>
-                        <p>de photos</p>
+                        <p>sur les photos</p>
+                        <ul class="rss">
+                             {% for commentaire in comments %}
+                                <li>
+                                    <span class="author">{{ commentaire.author }}</span> :
+                                    <a href="">{{ commentaire.comment }}</a>
+                                </li>
+                            {% endfor %}
+                        </u>
                     </section>
                 </div>
                 <div class="4u">
                     <section class="box box-style1">
-
-                        <h3>En cours</h3>
-                        <p>de développement</p>
+                        <h3>Vidéos</h3>
+                        <p>derniers montages</p>
+                        en cours
                     </section>
                 </div>
-                <div class="4u">
+            </div>
+            <div class="row">
+                 <div class="4u">
                     <section class="box box-style1">
-
-                        <h3>En cours</h3>
-                        <p>de développement</p>
+                        <h3>Blog</h3>
+                        <p>derniers posts</p>
+                        en cours
                     </section>
                 </div>
             </div>

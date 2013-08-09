@@ -68,7 +68,7 @@ class WallController extends Controller
                    ->getManager();
 
         //Initialisation - récupération des 10 premières images
-        $items = $em->getRepository('GbCreationWallBundle:Item')->getItemsInRange(0,$NB_ITEM_TO_GET);
+        $items = $em->getRepository('GbCreationWallBundle:Item')->getLastItems($NB_ITEM_TO_GET);
     
         return $this->container->get('templating')->renderResponse('GbCreationWallBundle:Wall:index.html.twig', array(
             'items' => $items,

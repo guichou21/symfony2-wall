@@ -7,8 +7,8 @@
                 <div class="homeSlider">
                     <div id="slider">
                         {% for img in headerSlide %}
-                        {% debug  img%}
-                        <img src="{{ asset('images/slider/',img) }}" alt="header slide" /><br/>
+                        {# {{ dump(img) }} #}
+                        <img src="{{ asset(['images/slider/',img]|join) }}" alt="header slide" /><br/>
                         {% endfor %}
                     </div>
                 </div>
@@ -16,6 +16,5 @@
         </div>
     </article>
     <footer>
-            <p>Mise à jour de la version 2 de notre petit site récapitulant nos sites de Photos, Vidéos, Voyage,...</p>
                 <a href="#news" class="button button-big">Voir les nouveautés</a>
     </footer>
