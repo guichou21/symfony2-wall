@@ -6,7 +6,9 @@
 - Evols  &   Bugs -
 -------------------
 * definir couleur et font text css
+* wall - ajouter flux RSS a coté authentification
 * Migration donnees BDD yo -> ma base !!!!!!!!!!!!!
+* icon bar du menu haut a definir... (existe mais vide)
 * Page d'accueil : liseur rss (vimeo / wordpress)
 * recréer page d'accueil php seule ds mon bundle
 * Readme : procédure install !!!
