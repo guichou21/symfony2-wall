@@ -10,6 +10,8 @@ modif mac
 * Migration donnees BDD yo -> ma base !!!!!!!!!!!!!
 * icon bar du menu haut a definir... (existe mais vide)
 * Page d'accueil : liseur rss (vimeo / wordpress)
+* parametre reseauSociaux. si oui : paratger FB et Twiter sinon pas afficher
+* fenetre config admin qu ecris des params.... (si existe pas, par defaut.)
 * recréer page d'accueil php seule ds mon bundle
 * Readme : procédure install !!!
 * réecrire et adapter le fichier param.yml http://www.squareeyes.fr/actualite/jouer-avec-les-variables-globales-dans-symfony-2
@@ -71,6 +73,7 @@ Unable to guess the mime type as no guessers are available (Did you enable the p
 [done] NbCom et nb Photos affichées ds entete : Twig : utiliser render au lieu include qui va appele un contoller.
 [done] rss photo et commentaire
 [done] upload seul caractères alphanumériques et extensions dans properties
+[done] gitignore mis en place 
 
 
 ------------------
