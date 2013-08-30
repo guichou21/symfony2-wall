@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File;
 
+
 /**
 * @ORM\Entity(repositoryClass="GbCreation\WallBundle\Repository\ItemRepository")
 * @ORM\Table(name="gbc_wall_item")
@@ -127,9 +128,58 @@ class Item
         }
 
         // la méthode « move » prend comme arguments le répertoire cible et le nom de fichier cible où le fichier doit être déplacé
-        $this->fileToUpload->move($this->getUploadRootDir(), $this->file);
-
+        $this->fileToUpload->move($this->getUploadRootDir(), $this->file);      
         unset($this->fileToUpload);
+
+        //Creation de la miniature pour le wall
+        $fileName = $this->getUploadRootDir().$this->file;
+        $thumbFileName = $this->getUploadRootDir().'m_'.$this->file;
+
+        $dimensions = getimagesize($fileName);
+       
+        //reduit l'image originale si > a la taille souhaitée
+        $this->generateThumbnail($fileName,$fileName,$dimensions,false);
+        // génère la miniature
+        $this->generateThumbnail($fileName,$thumbFileName,$dimensions);
+    }
+
+    //public function generateThumbnail($path, $thumb_path, $width, $heigth)
+    public function generateThumbnail($path, $thumb_path, $dimensions, $thumb=true)
+    {
+
+        $widthImg = $dimensions[0];
+        $heightImg = $dimensions[1];
+
+        if($thumb == true){
+            $sizeMax = 640;
+        }
+        else{
+            $sizeMax = 1200;   
+        }
+
+        //Calcul du ration de diminution l'image
+        $ImgRatio = 1;
+        if($this->ratio >= 1){
+            $r = $sizeMax / $widthImg;
+            if($r < 1){
+                $ImgRatio = $r;
+            }
+        }
+        else{
+            $r = $sizeMax / $heightImg;
+            if($r < 1){
+                $ImgRatio = $r;
+            }   
+        }
+
+        $widthThumb = $ImgRatio * $widthImg;
+        $heightThumb = $ImgRatio * $heightImg;
+
+       $imagine = new \Imagine\Gd\Imagine();  
+
+       $imagine->open($path)
+         ->thumbnail(new \Imagine\Image\Box($widthThumb, $heightThumb), \Imagine\Image\ImageInterface::THUMBNAIL_OUTBOUND)
+         ->save($thumb_path);
     }
 
     /**
@@ -144,6 +194,12 @@ class Item
             $this->file = $this->fileToUpload->getClientOriginalName();
             //Remplace les caractères autres que alphanumériqu epar des -
             $this->file = preg_replace('/([^.a-z0-9]+)/i', '-', $this->file);
+
+            $dimensions = getimagesize($this->fileToUpload);
+            $widthImg = $dimensions[0];
+            $heightImg = $dimensions[1];
+            $this->ratio = $widthImg / $heightImg;
+            $this->reverseRatio = $heightImg / $widthImg;
         }
     }
 
@@ -165,6 +221,13 @@ class Item
           if (isset($this->fileToUpload) && file_exists ( $this->fileToUpload)) {
               unlink($this->fileToUpload);
         }
+
+          //suppression de la mniniature
+          $thumbImg = $this->getTmpUploadRootDir().'m_'.$this->file;
+           if (isset($thumbImg) && file_exists ($thumbImg)) {
+                unlink($thumbImg);
+            }
+
         
     }
 

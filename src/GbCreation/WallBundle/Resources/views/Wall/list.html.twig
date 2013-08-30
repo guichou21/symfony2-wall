@@ -5,7 +5,7 @@
                 <header>
                 </header>
                 <a href="{{ path('gb_creation_wall__show', { 'id': item.id }) }}">
-                    <img src="{{ asset(['images/wall/', item.file]|join) }}" />
+                    <img src="{{ asset(['images/wall/m_', item.file]|join) }}" />
                 </a>
                     <span class="date"><time datetime="{{ item.date|date('c') }}">{{ item.date|date('d/m/Y') }}</time></span>
                     <span class="description">{{ item.description }}</span>

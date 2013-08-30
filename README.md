@@ -1,14 +1,18 @@
 Symfony2-wall
 ====================
 
-A code to create a wall of item 
+A code to create a homepage and a wall of item (photos for now)
 
 
-Dans App
-=========
-ajouter le wallBlog.yml au config.yml
+Folder App
+===========
+add wallBlog.yml to config.yml
 
-Dans Web
-=========
-- POur stocker les images uploadées créer le dossier: images/wall
+Folder Web
+===========
+- Pour stocker les images uploadées créer le dossier: images/wall
 - Mettre la bonne url dans le templat RSS twig
+
+Admin
+=======
+Connect with admin/adminpass then create a new admin user and delete this one

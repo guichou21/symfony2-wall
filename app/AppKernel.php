@@ -22,6 +22,8 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new GbCreation\HomeBundle\GbCreationHomeBundle(),
 
+            new Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle(),
+
             #new JMS\SerializerBundle\JMSSerializerBundle(),
         );
 

@@ -8,6 +8,7 @@ modif mac
 * definir couleur et font text css
 * wall - ajouter flux RSS a coté authentification
 * Migration donnees BDD yo -> ma base !!!!!!!!!!!!!
+* image existe deja - renommer en mettant un -2 apr ex
 * icon bar du menu haut a definir... (existe mais vide)
 * Page d'accueil : liseur rss (vimeo / wordpress)
 * parametre reseauSociaux. si oui : paratger FB et Twiter sinon pas afficher
@@ -15,7 +16,8 @@ modif mac
 * recréer page d'accueil php seule ds mon bundle
 * Readme : procédure install !!!
 * réecrire et adapter le fichier param.yml http://www.squareeyes.fr/actualite/jouer-avec-les-variables-globales-dans-symfony-2
-
+*Sonata Admin
+* img originale taille max par exemple 1200?
 * nettoyer import js et css des twifg. mettre que dans layout père?
 * Filtre Photo / Vidéo / Année
 * composer.phar a mettre en place
@@ -74,6 +76,7 @@ Unable to guess the mime type as no guessers are available (Did you enable the p
 [done] rss photo et commentaire
 [done] upload seul caractères alphanumériques et extensions dans properties
 [done] gitignore mis en place 
+[done] upload créer une photo m_ et mettre la width ou la height a 640
 
 
 ------------------

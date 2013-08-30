@@ -24,5 +24,7 @@ return array(
     'Doctrine\\Common' => array($vendorDir . '/doctrine/common/lib'),
     'Doctrine\\Bundle\\DoctrineBundle' => array($vendorDir . '/doctrine/doctrine-bundle'),
     'Assetic' => array($vendorDir . '/kriswallsmith/assetic/src'),
+    'Imagine' => array($vendorDir . '/imagine/imagine/lib'),
+    'Avalanche\\Bundle\\ImagineBundle' => array($vendorDir . '/avalanche123/imagine-bundle'),
     '' => array($baseDir . '/src'),
 );
