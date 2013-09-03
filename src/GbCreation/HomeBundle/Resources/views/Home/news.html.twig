@@ -10,12 +10,13 @@
                     <section class="box box-style1">
                         <h3>En Photos</h3>
                         <p>derniers clichés</p>
-                         {% for item in items %}
+                        <ul class="rss">
+                            {% for item in items %}
                             <li>
-                                <a href="">{{ item.description }}</a>
+                                <a href="{{ path('gb_creation_wall_homepage') }}{{ item.id }}">{{ item.description }}</a>
                             </li>
-                        {% endfor %}
-
+                            {% endfor %}
+                        </u>
                     </section>
                 </div>
                 <div class="4u">
@@ -26,7 +27,7 @@
                              {% for commentaire in comments %}
                                 <li>
                                     <span class="author">{{ commentaire.author }}</span> :
-                                    <a href="">{{ commentaire.comment }}</a>
+                                    <a href="{{ path('gb_creation_wall_homepage') }}{{ commentaire.idItem.id }}">{{ commentaire.comment }}</a>
                                 </li>
                             {% endfor %}
                         </u>
@@ -35,8 +36,8 @@
                 <div class="4u">
                     <section class="box box-style1">
                         <h3>Vidéos</h3>
-                        <p>derniers montages</p>
-                        en cours
+                        <p>derniers montages</p>       
+                            <div class="rssVideoContainer"></div>
                     </section>
                 </div>
             </div>
@@ -45,7 +46,7 @@
                     <section class="box box-style1">
                         <h3>Blog</h3>
                         <p>derniers posts</p>
-                        en cours
+                            <div class="rssBlogContainer"></div>
                     </section>
                 </div>
             </div>

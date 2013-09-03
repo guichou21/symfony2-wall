@@ -1,7 +1,3 @@
-
-
-modif mac
-
 -------------------
 - Evols  &   Bugs -
 -------------------
@@ -12,13 +8,13 @@ modif mac
 * icon bar du menu haut a definir... (existe mais vide)
 * Page d'accueil : liseur rss (vimeo / wordpress)
 * parametre reseauSociaux. si oui : paratger FB et Twiter sinon pas afficher
-* fenetre config admin qu ecris des params.... (si existe pas, par defaut.)
+* fenetre config admin qui ecris des params.... (si existe pas, par defaut.)
 * recréer page d'accueil php seule ds mon bundle
 * Readme : procédure install !!!
 * réecrire et adapter le fichier param.yml http://www.squareeyes.fr/actualite/jouer-avec-les-variables-globales-dans-symfony-2
 *Sonata Admin
 * img originale taille max par exemple 1200?
-* nettoyer import js et css des twifg. mettre que dans layout père?
+* nettoyer import js et css des twig. mettre que dans layout père?
 * Filtre Photo / Vidéo / Année
 * composer.phar a mettre en place
 * durée session
@@ -82,6 +78,12 @@ Unable to guess the mime type as no guessers are available (Did you enable the p
 ------------------
 - Tutos & autres -
 ------------------
+Lire RSS en jquery
+http://www.noprobweb.com/rss_feed_flux_jquery.php?lang=fr
+http://codeforbrowser.com/blog/parse-an-rss-feed-with-jquery/
+http://www.svlada.com/blog/2012/06/11/proxy-ajax-requests-curl-and-symfony-2/
+
+
 tuto complet
 http://www.jobeet.thuau.fr/les-tests-unitaires
 

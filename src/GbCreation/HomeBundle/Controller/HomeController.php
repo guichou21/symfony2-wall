@@ -21,10 +21,12 @@ class HomeController extends Controller
 
     public function newsAction()
     {
-    	//$this->FeedParser("http://vimeo.com/user3746792/videos/rss", 2);
     	$params = $this->container->getParameter('param');
         $NB_ITEM_TO_GET = $params['MAX_ITEM'];
         $NB_COMMENT_TO_GET = $params['MAX_COMMENT'];
+		
+		$rssFeeds = $this->container->getParameter('rssFeeds');
+        $RSS_VIDEO_FEED = $rssFeeds['RSS_VIDEO_FEED'];
 
         $em = $this->getDoctrine()
                    ->getManager();
@@ -32,9 +34,13 @@ class HomeController extends Controller
         $items = $em->getRepository('GbCreationWallBundle:Item')->getLastItems($NB_ITEM_TO_GET);
         $comments = $em->getRepository('GbCreationWallBundle:Comment')->getLastComments($NB_COMMENT_TO_GET);
 
+    	//$videos = $this->FeedParser($RSS_VIDEO_FEED, 2);
+    	$videos = "Aucune info sur ce flux rss";
+
         return $this->container->get('templating')->renderResponse('GbCreationHomeBundle:Home:news.html.twig',array(
         		'items' => $items,
         		'comments' => $comments,
+        		'videos' => $videos,
         	));
     }
 
@@ -101,20 +107,159 @@ class HomeController extends Controller
 		return $slides;
 	}
 
-	function FeedParser($url_feed, $nb_items_affiches=10)
-	 {
+
+	function feedRssAction()
+	{
+		$logger = $this->get('logger');
+		$request = $this->container->get('request');
+
+		$logger->info('[feedRssAction] recuperation des infos des flux rss / AJAX');
+        if($request->isXmlHttpRequest())
+        {
+            $rss = '';
+            $rss = $request->request->get('rss');
+
+            if($rss != ''){
+            	if($rss == "video" || $rss == 'blog'){
+            	 $logger->info('[feedRssAction] recuperation des videos ou blogs');
+            	 $items = $this->FeedRssParser($rss);
+	            }
+	            else{
+	            	 $logger->info('[feedRssAction] Erreur. ni video ni blog');
+	            	 $items = 'Aucune info sur ce flux rss';
+	            }
+
+	             return $this->container->get('templating')->renderResponse('GbCreationHomeBundle:Rss:item.display.html.twig', array(
+	                'items' => $items,
+	             ));
+	         } //rss != ''
+	         else{
+	            	 $logger->info('[feedRssAction] argument fourni en paramètre ?rss= doit etre vide ');
+	            	 $items = 'Aucune info sur ce flux rss';
+	         }
+        } //isXmlHttpRequest
+		else {
+            $logger->info('[feedRssAction] rqt non ajax redirect vers index avec affichage par defaut');            
+            return $this->indexAction();
+        }
+	}
+
+
+	function FeedRssParser($rss){
+		$logger = $this->get('logger');
+		
+		$rssFeeds = $this->container->getParameter('rssFeeds');
+		if($rss == "video"){
+			$urlFeed = $rssFeeds['RSS_VIDEO_FEED'];
+        	$nbItem = $rssFeeds['RSS_VIDEO_NB_ITEM'];
+        }
+        else if($rss == "blog"){
+			$urlFeed = $rssFeeds['RSS_BLOG_FEED'];
+        	$nbItem = $rssFeeds['RSS_BLOG_NB_ITEM'];
+        }
+
+	 	$logger->info('[FeedRssParser]  Feed rss sur  ['.$urlFeed.'] ');
+	 	$retour = 'Aucune info sur ce flux rss';
+
 		try {	
 		    // is cURL installed yet?
 		    if (!function_exists('curl_init')){
-		        die('Sorry cURL is not installed!');
+		    	$logger->error('Sorry cURL is not installed!');
+		        return $retour;
 		    }
 		 
 		    // OK cool - then let's create a new cURL resource handle
 		    $ch = curl_init();
 
-		    if (FALSE === $ch)
-		        throw new Exception('failed to initialize');
+		    if (FALSE === $ch){
+		    	$logger->error('[FeedParser] failed to initialize');
+		    	throw new Exception('failed to initialize');
+		    }
+		        	 
+		    // Now set some options (most are optional) 
+		    // Set URL to download
+		    curl_setopt($ch, CURLOPT_URL, $urlFeed);
+		    // Include header in result? (0 = yes, 1 = no)
+		    curl_setopt($ch, CURLOPT_HEADER, 0);
+		    // Should cURL return or print out the data? (true = return, false = print)
+		    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		    // Timeout in seconds
+		    //curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 		 
+			$header[0] = "Accept: text/xml,application/xml,application/xhtml+xml,";
+			$header[0] .= "text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5";
+			$header[] = "Cache-Control: max-age=0";
+			$header[] = "Connection: keep-alive";
+			$header[] = "Keep-Alive: 300";
+			$header[] = "Accept-Charset: utf-8";
+			$header[] = "Accept-Language: fr"; // Langue fr
+			$header[] = "Pragma: "; // Simule un navigateur
+			 
+			$useragent = 'Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0'; // Pour se faire passer pour Firefox
+			curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+
+		    // Download the given URL, and return output
+		    $logger->info('[FeedRssParser] execution curl');
+		    $contenu = curl_exec($ch);
+			$logger->info('[FeedRssParser] execution curl effectuée');
+
+			//var_dump($contenu);
+			//die();
+
+			if (FALSE === $contenu){
+				$logger->error('[FeedParser] Erreur Curl [' . curl_error($ch).']<br>');
+				$logger->error('[FeedParser] Erreur Curl [' . curl_errno($ch).']<br>');
+				//curl_error($ch);
+				return $retour;
+			}
+
+			$rss_doc = new SimpleXmlElement($contenu, LIBXML_NOCDATA);
+			//var_dump($rss_doc);
+
+
+			if(isset($rss_doc->channel))
+			{
+			    $retour = $this->parse_rss($rss_doc);
+			}  
+			elseif(isset($rss_doc->entry))
+			{
+			    $retour = $this->parse_atom($rss_doc);
+			}
+
+		    // Close the cURL resource, and free system resources
+			curl_close($ch);
+
+		} catch(Exception $e) {
+			$logger->error('Exception........ GBE  code['.$e->getCode().'] msg['.$e->getMessage().']');
+			$retour = "Erreur dans la récupération du flux";
+			//echo 'Exception........ GBE  code['.$e->getCode().'] msg['.$e->getMessage().']';
+			//trigger_error(sprintf('Curl failed with error #%d: %s',$e->getCode(), $e->getMessage()),E_USER_ERROR);
+		}
+	 
+	    return $retour;
+	}
+
+	function FeedParser($url_feed, $nb_items_affiches=10)
+	 {
+	 	$logger = $this->get('logger');
+	 	$logger->info('[FeedParser]  Feed rss sur  ['.$url_feed.'] ');
+
+		try {	
+		    // is cURL installed yet?
+		    if (!function_exists('curl_init')){
+		    	$logger->error('Sorry cURL is not installed!');
+		        //die('Sorry cURL is not installed!');
+		    }
+		 
+		    // OK cool - then let's create a new cURL resource handle
+		    $ch = curl_init();
+
+		    if (FALSE === $ch){
+		    	$logger->error('[FeedParser] failed to initialize');
+		    	throw new Exception('failed to initialize');
+		    }
+		        	 
 		    // Now set some options (most are optional) 
 		    // Set URL to download
 		    curl_setopt($ch, CURLOPT_URL, $url_feed);
@@ -139,23 +284,20 @@ class HomeController extends Controller
 			curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 
-
 		    // Download the given URL, and return output
 		    $contenu = curl_exec($ch);
 		 
 		 	//var_dump($contenu);
 
 			if (FALSE === $contenu){
-				echo 'Erreur Curl [' . curl_error($ch).']<br>';
-				echo 'Erreur Curl [' . curl_errno($ch).']<br>';
+				$logger->error('[FeedParser] Erreur Curl [' . curl_error($ch).']<br>');
+				$logger->error('[FeedParser] Erreur Curl [' . curl_errno($ch).']<br>');
 				curl_error($ch);
 				//throw new Exception(curl_error($ch), curl_errno($ch));
 			}
-			echo "GBE test rss";
 
 			//$rss_doc = new SimpleXmlElement($contenu, LIBXML_NOCDATA);
-			$rss_doc ="bla bla bla";
-			echo "<pre>".print_r($rss_doc,1)."</pre>";
+			$rss_doc ="Aucune info sur ce flux rss";
 
 			if(isset($rss_doc->channel))
 			{
@@ -170,14 +312,15 @@ class HomeController extends Controller
 			curl_close($ch);
 
 		} catch(Exception $e) {
-			echo 'Exception........ GBE  code['.$e->getCode().'] msg['.$e->getMessage().']';
+			$logger->error('Exception........ GBE  code['.$e->getCode().'] msg['.$e->getMessage().']');
+			//echo 'Exception........ GBE  code['.$e->getCode().'] msg['.$e->getMessage().']';
 			//trigger_error(sprintf('Curl failed with error #%d: %s',$e->getCode(), $e->getMessage()),E_USER_ERROR);
-
 		}
 	 
-	 	$rssHtml="";
+	 	$rssHtml = $rss_doc;
 	    return $rssHtml;
 	}
+
 	function parse_rss($doc)
 	{
 	    // Pour chaque element...

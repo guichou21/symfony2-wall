@@ -2,4 +2,10 @@ gb_creation_home_homepage:
     pattern:  /
     defaults: { _controller: GbCreationHomeBundle:Home:index }
     requirements:
-        _method:  GET    
+        _method:  GET
+
+gb_creation_home_feed_rss:
+    pattern:  /
+    defaults: { _controller: GbCreationHomeBundle:Home:feedRss }
+    requirements:
+        _method:  POST

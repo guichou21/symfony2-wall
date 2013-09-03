@@ -78,6 +78,18 @@
             $(document).ready(function() {
                 $(window).load(function() {
                     $('#slider').orbit();
+
+                     //On lance la fonction ajax d'affichage des flux rss
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ path('gb_creation_home_feed_rss')}}",
+                        data: 'rss=video',
+                        cache: false,
+                        success: function(data){
+                           $('.rssVideoContainer').append(data);
+                         }
+                    });
+
                 });
             });
             
