@@ -53,4 +53,49 @@
 .timer {  }
 
 div.caption { background:transparent; filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000);zoom: 1; }
-	
+
+
+/* test home container 960 !important au lieu 1200.........
+/* Responsive
+-------------------------------------------------- */
+
+/* Desktop large
+------------------------- *//*
+@media (min-width: 1200px) {
+  .container {
+    width: 1200px;
+  }
+}
+/* Desktop
+------------------------- *//*
+@media (max-width: 980px) {
+   .container {
+    width: 960;
+  }
+}
+
+/* Tablet to desktop
+------------------------- *//*
+@media (min-width: 768px) and (max-width: 979px) {
+  .container {
+    width: 800px;
+  }
+}
+
+/* Tablet
+------------------------- *//*
+@media (max-width: 767px) {
+   .container {
+    width: 767;
+  }
+}
+
+/* Landscape phones
+------------------------- *//*
+@media (max-width: 480px) {
+  .container {
+    width: 480px;
+  }
+
+}
+*/

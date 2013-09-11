@@ -6,7 +6,7 @@
 
 window._skel_config = {
 	preset: 'standard',
-	prefix: '../resources/homeBundle/css/style',
+	prefix: './bundles/gbcreationhome/css/style',
 	resetCSS: true,
 	breakpoints: {
 		'desktop': {

@@ -93,7 +93,7 @@ class WallController extends Controller
             $last = '';
             $last = $request->request->get('last');
 
-            $em = $this->container->get('doctrine')->getEntityManager();
+            $em = $this->container->get('doctrine')->getManager();
 
             $logger->info('[searchAction]  verification nullité de ['.$last.'] ');
 

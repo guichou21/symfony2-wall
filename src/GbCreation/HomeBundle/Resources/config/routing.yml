@@ -9,3 +9,9 @@ gb_creation_home_feed_rss:
     defaults: { _controller: GbCreationHomeBundle:Home:feedRss }
     requirements:
         _method:  POST
+
+gb_creation_contact:
+    pattern:  /contact
+    defaults: { _controller: GbCreationHomeBundle:Contact:contact }
+    requirements:
+        _method:  GET|POST

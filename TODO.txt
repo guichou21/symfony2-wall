@@ -1,51 +1,56 @@
 -------------------
 - Evols  &   Bugs -
 -------------------
-* definir couleur et font text css
-* wall - ajouter flux RSS a coté authentification
+* Page d'accueil : liseur rss (vimeo / wordpress) - A TESTER
+* tester le app_dev.php et app_dev.php/
+* import local (pb taille fichier BUG) ??
 * Migration donnees BDD yo -> ma base !!!!!!!!!!!!!
-* image existe deja - renommer en mettant un -2 apr ex
-* icon bar du menu haut a definir... (existe mais vide)
-* Page d'accueil : liseur rss (vimeo / wordpress)
-* parametre reseauSociaux. si oui : paratger FB et Twiter sinon pas afficher
-* fenetre config admin qui ecris des params.... (si existe pas, par defaut.)
-* recréer page d'accueil php seule ds mon bundle
 * Readme : procédure install !!!
-* réecrire et adapter le fichier param.yml http://www.squareeyes.fr/actualite/jouer-avec-les-variables-globales-dans-symfony-2
-*Sonata Admin
-* img originale taille max par exemple 1200?
+* preparation mise en prod
+------------------------------------------------------------------------
+* wall - ajouter flux RSS a coté authentification
+* form contact
+* faire tourner sur travis! pour voir
+------------------------------------------- livraison possible --------------------------------------------
+* x premiers caractères de commentaire + taille max du bloc
+* soucis responsive design 
+* image existe deja - renommer en mettant un -2 apr ex
 * nettoyer import js et css des twig. mettre que dans layout père?
 * Filtre Photo / Vidéo / Année
 * composer.phar a mettre en place
 * durée session
-* Nettoyer git
+* [Admin] Pagination sur item et Commentaires
+* Pagination sur comments postés?
+* Créer une fenetre de config appli qui ecris un fichier de propriété relatif a l'application contenant. plus un raz par defaut :
+   - lien rss vimeo:youtube:wordpress:...
+   - Nom blog / parties spécifiques à paramétrer
+   - paramétrage : réseaux sociaux actif ou non (permet le share fb, twitter,..)
+   - [RSS]nbItem de rss.twig a récupérer
+   - [RSS] Nom blog et infos a récuéprer ou afficher
+* Item - constructeur new Date possède 2heures de moins
+* Slug
+* ajout de vidéo et affichage de vidéo ds wall
 
+* réecrire et adapter le fichier param.yml http://www.squareeyes.fr/actualite/jouer-avec-les-variables-globales-dans-symfony-2
+* Sonata Admin
 * Mise en place droits admin -> msg d'erreurs a gérer / création compte / profile / + design formulaires
 + pb login différent de register et autres (appel pas layout) => supprimer : Controler - view - routing?
 * JSON
-* Pagination
 * page d'accueil "tout a été affiché" pas centré verticalement
 * Progress bar
 * breadcrum et Badges !  Pannes pour form photo - video
 
-* externaliser url(rss.twig) et valeur nbItem a recuperer dans un fichier de propriété?
 * Définir vos formulaire en tant que services (cf doc sy2=> Form!)
-
-* Item - constructeur new Date possède 2heures de moins
 * jquery : TimePicker sur item : add et edit manque un positionnement top 50px  (enlever le top mis par jquery et rajouter un top 50px)
 * Tests
-* Slug
 * problème resize fenêtre.
 * Designer le form de edition
 * Designer le form de add
-* Pagination sur item et Commentaires
-* form vidéo ou form photo dans onglet
+* [Admin] ajout : deux possibilités -> form vidéo ou form photo dans onglet
 * afficher vidéo en html5
-* customizer error page
-* preparation mise en prod
-* nettoyer github les différents fichiers non à mon nom
-* faire tourner sur travis! pour voir
-* mettre tous les css et images non pas dans web mais dans le bundle pour faire : php app/console assets:install web
+
+
+
 
 ---------
 -- MEP --
@@ -72,7 +77,9 @@ Unable to guess the mime type as no guessers are available (Did you enable the p
 [done] rss photo et commentaire
 [done] upload seul caractères alphanumériques et extensions dans properties
 [done] gitignore mis en place 
-[done] upload créer une photo m_ et mettre la width ou la height a 640
+[done] upload créer une photo m_ et mettre la width ou la height a 640.
+[done] page erreur customisées
+[done] css, js mis dans dossier public du bundle.  Sauf bootsrap et qq plugin  (choix plutot que mettre ds wall)  Template twig  et css normal dans web mais NORMAL. 
 
 
 ------------------

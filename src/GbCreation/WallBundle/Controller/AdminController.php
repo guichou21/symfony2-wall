@@ -110,7 +110,7 @@ class AdminController extends Controller
             //$entity->upload();
 
             $extensions = $params['extensions'];
-            $extension = strrchr($entity->fileToUpload->getClientOriginalName(), '.');
+            $extension = strtolower(strrchr($entity->fileToUpload->getClientOriginalName(), '.'));
 
             if(!in_array($extension, $extensions)){  
                 $this->get('session')->getFlashBag()->add('error', 'Fichier non autorisé');

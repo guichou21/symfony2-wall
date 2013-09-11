@@ -33,6 +33,14 @@ h1, h2, h3, h4, h5, h6 {
      color: #0193A3;
 }
 
+.errorImg{
+    max-width:250px;
+}
+
+.errorMsg{
+     background-image: none;
+}
+
 .myBrand{
     font-family: 'Irish Grover',cursive;
     font-weight: 300;

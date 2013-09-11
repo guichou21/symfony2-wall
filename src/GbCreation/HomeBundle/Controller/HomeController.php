@@ -19,6 +19,11 @@ class HomeController extends Controller
         	));
     }
 
+     public function contactAction()
+    {
+        return $this->render('GbCreationHomeBundle:Home:contact.html.twig');
+    }
+
     public function newsAction()
     {
     	$params = $this->container->getParameter('param');

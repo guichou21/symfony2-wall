@@ -27,7 +27,7 @@
                              {% for commentaire in comments %}
                                 <li>
                                     <span class="author">{{ commentaire.author }}</span> :
-                                    <a href="{{ path('gb_creation_wall_homepage') }}{{ commentaire.idItem.id }}">{{ commentaire.comment }}</a>
+                                    <a href="{{ path('gb_creation_wall_homepage') }}{{ commentaire.idItem.id}}">{{ commentaire.comment | slice(0, 30) }}</a>
                                 </li>
                             {% endfor %}
                         </u>
