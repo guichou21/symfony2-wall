@@ -6,7 +6,7 @@
 app/logs/*
 app/cache/*
 #web/uploads/*
-#web/bundles/*
+web/bundles/*
 web/images/slider/*
 web/images/wall/*
 
