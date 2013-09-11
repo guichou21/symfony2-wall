@@ -1,15 +1,15 @@
 -------------------
 - Evols  &   Bugs -
 -------------------
-* Page d'accueil : liseur rss (vimeo / wordpress) - A TESTER
-* tester le app_dev.php et app_dev.php/
-* import local (pb taille fichier BUG) ??
-* Migration donnees BDD yo -> ma base !!!!!!!!!!!!!
+* Page d'accueil : liseur rss (vimeo / wordpress) 	- A TESTER
+* tester le app_dev.php et app_dev.php/ 			- A TESTER
+* import local (pb taille fichier BUG) ??  			- A TESTER
+* Migration donnees BDD yo -> ma base !!!!!!!!!!!!! 
 * Readme : procédure install !!!
 * preparation mise en prod
 ------------------------------------------------------------------------
 * wall - ajouter flux RSS a coté authentification
-* form contact
+* form contact 										- A TESTER
 * faire tourner sur travis! pour voir
 ------------------------------------------- livraison possible --------------------------------------------
 * x premiers caractères de commentaire + taille max du bloc
