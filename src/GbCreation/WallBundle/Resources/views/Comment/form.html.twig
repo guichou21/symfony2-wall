@@ -1,14 +1,14 @@
 
 <form action="{{ path('gb_creation_comment__create', { 'item_id' : comment.idItem.id } ) }}" method="post" {{ form_enctype(form) }} class="formComment">
-<div class="error">
-	{{ form_errors(form) }}
-</div>
+  <div class="error">
+  	{{ form_errors(form) }}
+  </div>
 
   <fieldset class="itemForm">
     <div class="form-group">
-		{{ form_label(form.author, "Auteur") }}
-	    {{ form_errors(form.author) }}
-		{{ form_widget(form.author, { 'attr': {'class': 'inputAuthor'} }) }}
+  		{{ form_label(form.author, "Auteur") }}
+  	  {{ form_errors(form.author) }}
+  		{{ form_widget(form.author, { 'attr': {'class': 'inputAuthor'} }) }}
 	</div>
 
   <div class="form-group">
@@ -18,6 +18,7 @@
   </div>
 
 	{{ form_rest(form) }}
-    <button class="btn btn-primary" type="submit">Ajouter</button>
+
+  <button class="btn btn-primary" type="submit">Ajouter</button>
   </fieldset>
 </form>

@@ -39,7 +39,7 @@
                 <ul class="nav">
                   <li class="{% if app.request.get('_route') == 'gb_creation_home_homepage' %}active{% endif %}"><a href="{{ path('gb_creation_home_homepage') }}">Accueil</a></li>
                   <li class="{% if app.request.get('_route') == 'gb_creation_wall_homepage' %}active{% endif %}"><a href="{{ path('gb_creation_wall_homepage') }}">Wall</a></li>
-                  <!-- <li class="{% if app.request.get('_route') == 'gb_creation_contact' %}active{% endif %}"><a href="{{ path('gb_creation_contact') }}">Contact</a></li> -->
+                  <li class="{% if app.request.get('_route') == 'gb_creation_contact' %}active{% endif %}"><a href="{{ path('gb_creation_contact') }}">Contact</a></li>
                 </ul>
                  <div id="resume" >{{ render(controller("GbCreationWallBundle:Wall:resume")) }}</div>
                  <p class="navbar-text pull-right"><a href="{{ path('fos_user_security_login') }}"><i class="icon-user"></i></a></p>

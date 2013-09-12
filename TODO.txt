@@ -7,13 +7,14 @@
 * Migration donnees BDD yo -> ma base !!!!!!!!!!!!! 
 * Readme : procédure install !!!
 * preparation mise en prod
+* Gerer les exceptions (exemple 3 mail ds contact)
 ------------------------------------------------------------------------
 * wall - ajouter flux RSS a coté authentification
 * form contact 										- A TESTER
 * faire tourner sur travis! pour voir
 ------------------------------------------- livraison possible --------------------------------------------
 * image existe deja - renommer en mettant un -2 apr ex
-* handler pour contact - decomposer form en fonctions
+* serviece pour envoi mail contact  http://www.siteduzero.com/informatique/tutoriels/developpez-vos-applications-web-avec-symfony2/l-apprentissage-par-l-exemple
 * Filtre Photo / Vidéo / Année
 * composer.phar a mettre en place
 * durée session
