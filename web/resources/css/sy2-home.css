@@ -24,6 +24,11 @@
 	padding-bottom: 20px;
 }
 
+#slider img{
+  height: auto;
+  max-width: 100%;
+}
+
 .homeSlider ul{
 	margin-bottom: 0;
 }
@@ -60,42 +65,56 @@ div.caption { background:transparent; filter:progid:DXImageTransform.Microsoft.g
 -------------------------------------------------- */
 
 /* Desktop large
-------------------------- *//*
+------------------------- */
 @media (min-width: 1200px) {
-  .container {
-    width: 1200px;
+  body {
+    min-width: 1200px;
+  }
+  .homeSlider{
+  width: 999px;
   }
 }
 /* Desktop
-------------------------- *//*
+------------------------- */
 @media (max-width: 980px) {
-   .container {
-    width: 960;
+    body {
+    width: 980px;
+  }
+  .homeSlider{
+  width: 784px;
   }
 }
 
 /* Tablet to desktop
-------------------------- *//*
+------------------------- */
 @media (min-width: 768px) and (max-width: 979px) {
-  .container {
-    width: 800px;
+   body {
+    width: 979px;
+  }
+  .homeSlider{
+  width: 650px;
   }
 }
 
 /* Tablet
-------------------------- *//*
+------------------------- */
 @media (max-width: 767px) {
-   .container {
-    width: 767;
+   body {
+    width: 767px;
+  }
+  .homeSlider{
+  width: 613px;
   }
 }
 
 /* Landscape phones
-------------------------- *//*
+------------------------- */
 @media (max-width: 480px) {
-  .container {
+   body {
     width: 480px;
+  }
+  .homeSlider{
+  width: 320px;
   }
 
 }
-*/

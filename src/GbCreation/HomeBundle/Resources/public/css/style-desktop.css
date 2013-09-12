@@ -11,7 +11,8 @@
 	body
 	{
 		font-size: 13pt;
-		min-width: 1200px;
+		/* mise en commentaire car gestion width dans css general => sy2-home pour tous les medias*/
+		/*min-width: 1200px;*/
 	}
 
 	h1

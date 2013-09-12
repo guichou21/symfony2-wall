@@ -36,7 +36,7 @@
 
         <!-- Home -->
         <div class="wrapper wrapper-style1 wrapper-first">
-            {{ render(controller("GbCreationHomeBundle:Home:home")) }}
+             {{ render(controller("GbCreationHomeBundle:Home:home")) }}
         </div>
 
         <!-- news -->
@@ -46,7 +46,7 @@
 
         <!-- Portfolio -->
         <div class="wrapper wrapper-style3">
-         {{ render(controller("GbCreationHomeBundle:Home:portfolio")) }} 
+         {{ render(controller("GbCreationHomeBundle:Home:portfolio")) }}
         </div>
 
         <!-- decompte -->
@@ -68,6 +68,7 @@
         <script src="{{ asset('resources/bootstrap/js/jquery.js') }}"></script>
         <script src="{{ asset('resources/js/jquery-orbit/jquery.orbit-1.3.0.js') }}"></script>
         <script src="{{ asset('bundles/gbcreationhome/js/config.js') }}"></script>
+        <script src="{{ asset('bundles/gbcreationhome/js/jquery.truncatable.js') }}"></script>
         <script src="{{ asset('resources/js/jquery-orbit/skel.min.js') }}"></script> 
         <noscript>Votre navigateur ne supporte pas le javaScript</noscript>
       {% block javascripts %}
@@ -77,7 +78,12 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 $(window).load(function() {
-                    $('#slider').orbit();
+                    $('#slider').orbit({bullets: true, fluid: true});
+
+                    //tronque le text des news (commentaires, photos)
+                    $('.author').truncatable({    limit: 12, more: '...' }); 
+                    $('.comment').truncatable({    limit: 22, more: '...' }); 
+                    $('.picture').truncatable({    limit: 30, more: '...' }); 
 
                      //On lance la fonction ajax d'affichage des flux rss
                     $.ajax({

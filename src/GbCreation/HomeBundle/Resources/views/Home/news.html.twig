@@ -13,7 +13,7 @@
                         <ul class="rss">
                             {% for item in items %}
                             <li>
-                                <a href="{{ path('gb_creation_wall_homepage') }}{{ item.id }}">{{ item.description }}</a>
+                                <a href="{{ path('gb_creation_wall_homepage') }}{{ item.id }}"><span class="picture">{{ item.description }}</span></a>
                             </li>
                             {% endfor %}
                         </u>
@@ -27,7 +27,7 @@
                              {% for commentaire in comments %}
                                 <li>
                                     <span class="author">{{ commentaire.author }}</span> :
-                                    <a href="{{ path('gb_creation_wall_homepage') }}{{ commentaire.idItem.id}}">{{ commentaire.comment | slice(0, 30) }}</a>
+                                    <a href="{{ path('gb_creation_wall_homepage') }}{{ commentaire.idItem.id}}"><span class="comment">{{ commentaire.comment }}</span></a>
                                 </li>
                             {% endfor %}
                         </u>

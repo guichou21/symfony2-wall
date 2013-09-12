@@ -12,10 +12,8 @@
 * form contact 										- A TESTER
 * faire tourner sur travis! pour voir
 ------------------------------------------- livraison possible --------------------------------------------
-* x premiers caractères de commentaire + taille max du bloc
-* soucis responsive design 
 * image existe deja - renommer en mettant un -2 apr ex
-* nettoyer import js et css des twig. mettre que dans layout père?
+* handler pour contact - decomposer form en fonctions
 * Filtre Photo / Vidéo / Année
 * composer.phar a mettre en place
 * durée session
@@ -64,6 +62,7 @@ http://www.symfony2-checklist.com/fr
 * upload photo : récupérer date dans le mime type? du fichier
 * afficher photo sur survol (partie admin item ou com)
 * admin proposer voir commentaires lors suppression item et gestion commentaires (supr un a un / tous / rien)
+* mettre em au lieu px avec http://pxtoem.com/
 
 erreur eu. a réactiver ou non? a voir...
 Unable to guess the mime type as no guessers are available (Did you enable the php_fileinfo extension?) 
