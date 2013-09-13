@@ -1,13 +1,13 @@
 -------------------
 - Evols  &   Bugs -
 -------------------
+* Stats google !
 * Page d'accueil : liseur rss (vimeo / wordpress) 	- A designer
 * import local (pb taille fichier BUG) ??  			- memory usage a modifier
 * Migration donnees BDD yo -> ma base !!!!!!!!!!!!! 
 * Readme : procédure install !!!
 * preparation mise en prod
 * Gerer les exceptions (exemple 3 mail ds contact)
-* 
 ------------------------------------------------------------------------
 * wall - ajouter flux RSS a coté authentification
 * form contact 										- A TESTER
