@@ -59,6 +59,9 @@ class ContactController extends Controller
         {
 
             $logger = $this->get('logger');
+            $params = $this->container->getParameter('Contact');
+            $EMAIL_WEBSITE_CONTACT = $params['EMAIL_WEBSITE_CONTACT'];
+
             $logger->info('[contactAction] sendEmail');
 
             $emailContent = $data->getContent();
@@ -76,7 +79,7 @@ class ContactController extends Controller
                     ->setContentType('text/html')
                     ->setSubject($data->getSubject())
                     ->setFrom($data->getEmail())
-                    ->setTo('dev.gbe@gmail.com')
+                    ->setTo($EMAIL_WEBSITE_CONTACT)
                     ->setBody($emailContent)
                 ;
                $this->get('mailer')->send($message);

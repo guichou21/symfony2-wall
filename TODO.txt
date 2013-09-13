@@ -1,13 +1,13 @@
 -------------------
 - Evols  &   Bugs -
 -------------------
-* Page d'accueil : liseur rss (vimeo / wordpress) 	- A TESTER
-* tester le app_dev.php et app_dev.php/ 			- A TESTER
-* import local (pb taille fichier BUG) ??  			- A TESTER
+* Page d'accueil : liseur rss (vimeo / wordpress) 	- A designer
+* import local (pb taille fichier BUG) ??  			- memory usage a modifier
 * Migration donnees BDD yo -> ma base !!!!!!!!!!!!! 
 * Readme : procédure install !!!
 * preparation mise en prod
 * Gerer les exceptions (exemple 3 mail ds contact)
+* 
 ------------------------------------------------------------------------
 * wall - ajouter flux RSS a coté authentification
 * form contact 										- A TESTER
@@ -48,8 +48,10 @@
 * [Admin] ajout : deux possibilités -> form vidéo ou form photo dans onglet
 * afficher vidéo en html5
 
+* console bundle pour la prod :  http://www.siteduzero.com/informatique/tutoriels/developpez-votre-site-web-avec-le-framework-symfony2/pratique-utiliser-un-consolebundle
 
-
+* jquery slider responsive http://bxslider.com/
+http://docs.dev7studios.com/jquery-plugins/nivo-slider
 
 ---------
 -- MEP --

@@ -2,6 +2,7 @@
 namespace GbCreation\HomeBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\DependencyInjection\SimpleXMLElement;
 
 class HomeController extends Controller
 {
@@ -219,9 +220,10 @@ class HomeController extends Controller
 				return $retour;
 			}
 
-			//$rss_doc = new SimpleXmlElement($contenu, LIBXML_NOCDATA);
+			$rss_doc = new SimpleXmlElement($contenu, LIBXML_NOCDATA);
 			//var_dump($rss_doc);
-			$rss_doc ="Aucune info sur ce flux rss";
+			//die();
+			//$rss_doc ="Aucune info sur ce flux rss";
 
 			if(isset($rss_doc->channel))
 			{
