@@ -208,7 +208,7 @@ class HomeController extends Controller
 		    // Download the given URL, and return output
 		    $logger->info('[FeedRssParser] execution curl');
 		    $contenu = curl_exec($ch);
-			$logger->info('[FeedRssParser] execution curl effectuée');
+		    $logger->info('[FeedRssParser] execution curl effectuée');
 
 			//var_dump($contenu);
 			//die();
@@ -223,15 +223,18 @@ class HomeController extends Controller
 			$rss_doc = new SimpleXmlElement($contenu, LIBXML_NOCDATA);
 			//var_dump($rss_doc);
 			//die();
+<<<<<<< HEAD
+=======
 			//$rss_doc ="Aucune info sur ce flux rss";
+>>>>>>> 5bc2de52d36a469208627394163b66569139d4ab
 
 			if(isset($rss_doc->channel))
 			{
-			    $retour = $this->parse_rss($rss_doc);
+			    $retour = $this->parse_rss($rss_doc,$nbItem);
 			}  
 			elseif(isset($rss_doc->entry))
 			{
-			    $retour = $this->parse_atom($rss_doc);
+			    $retour = $this->parse_atom($rss_doc,$nbItem);
 			}
 
 		    // Close the cURL resource, and free system resources
@@ -247,107 +250,51 @@ class HomeController extends Controller
 	    return $retour;
 	}
 
-	function FeedParser($url_feed, $nb_items_affiches=10)
-	 {
-	 	$logger = $this->get('logger');
-	 	$logger->info('[FeedParser]  Feed rss sur  ['.$url_feed.'] ');
+	
 
-		try {	
-		    // is cURL installed yet?
-		    if (!function_exists('curl_init')){
-		    	$logger->error('Sorry cURL is not installed!');
-		        //die('Sorry cURL is not installed!');
-		    }
-		 
-		    // OK cool - then let's create a new cURL resource handle
-		    $ch = curl_init();
-
-		    if (FALSE === $ch){
-		    	$logger->error('[FeedParser] failed to initialize');
-		    	throw new Exception('failed to initialize');
-		    }
-		        	 
-		    // Now set some options (most are optional) 
-		    // Set URL to download
-		    curl_setopt($ch, CURLOPT_URL, $url_feed);
-		    // Include header in result? (0 = yes, 1 = no)
-		    curl_setopt($ch, CURLOPT_HEADER, 0);
-		    // Should cURL return or print out the data? (true = return, false = print)
-		    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		    // Timeout in seconds
-		    //curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-		 
-	 
-			$header[0] = "Accept: text/xml,application/xml,application/xhtml+xml,";
-			$header[0] .= "text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5";
-			$header[] = "Cache-Control: max-age=0";
-			$header[] = "Connection: keep-alive";
-			$header[] = "Keep-Alive: 300";
-			$header[] = "Accept-Charset: utf-8";
-			$header[] = "Accept-Language: fr"; // Langue fr
-			$header[] = "Pragma: "; // Simule un navigateur
-			 
-			$useragent = 'Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0'; // Pour se faire passer pour Firefox
-			curl_setopt($ch, CURLOPT_USERAGENT, $useragent);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-
-		    // Download the given URL, and return output
-		    $contenu = curl_exec($ch);
-		 
-		 	//var_dump($contenu);
-
-			if (FALSE === $contenu){
-				$logger->error('[FeedParser] Erreur Curl [' . curl_error($ch).']<br>');
-				$logger->error('[FeedParser] Erreur Curl [' . curl_errno($ch).']<br>');
-				curl_error($ch);
-				//throw new Exception(curl_error($ch), curl_errno($ch));
-			}
-
-			//$rss_doc = new SimpleXmlElement($contenu, LIBXML_NOCDATA);
-			$rss_doc ="Aucune info sur ce flux rss";
-
-			if(isset($rss_doc->channel))
-			{
-			    $this->parse_rss($rss_doc);
-			}  
-			elseif(isset($rss_doc->entry))
-			{
-			    $this->parse_atom($rss_doc);
-			}
-
-		    // Close the cURL resource, and free system resources
-			curl_close($ch);
-
-		} catch(Exception $e) {
-			$logger->error('Exception........ GBE  code['.$e->getCode().'] msg['.$e->getMessage().']');
-			//echo 'Exception........ GBE  code['.$e->getCode().'] msg['.$e->getMessage().']';
-			//trigger_error(sprintf('Curl failed with error #%d: %s',$e->getCode(), $e->getMessage()),E_USER_ERROR);
-		}
-	 
-	 	$rssHtml = $rss_doc;
-	    return $rssHtml;
-	}
-
-	function parse_rss($doc)
+	function parse_rss($doc,$nbItem)
 	{
+	    $nbI = 0;
 	    // Pour chaque element...
 	    foreach($doc->channel->item as $item)
 	    {
-	        echo $item->title . "\n";
-	        echo $item->link . "\n";
-	        echo $item->description . "\n\n";
-	    }  
+		//$retour .= '<span class="author">'.$item->title.'</span>: &ldquo;<a href="'.$item->link.'">'.substr($item->description,0,30).' ...&rdquo;</a>';
+	        if($nbI < $nbItem){
+		    $items = array (
+		      "title" => $item->title,
+		      "link" => $item->link,
+		      //"description" => substr($item->description,0,30),
+		    );
+		    $retour[] = $items; 
+		    $nbI++;
+		}
+		else{
+		    break;
+		}
+	    }
+	    return $retour;
 	}  
 
-	function parse_atom($doc)
+	function parse_atom($doc,$nbItem)
 	{
+	     $nbI = 0;
 	    // Pour chaque element...
 	    foreach($doc->entry as $item)
 	    {
-	        echo $item->title . "\n";
-	        echo $item->link->attributes() . "\n";
-	        echo $item->content . "\n\n";
-	    }  
-}
+		 if($nbI < $nbItem){
+		    $items = array (
+		      "title" => $item->title,
+		      "link" => $item->link->attributes(),
+		      //"description" => substr($item->content,0,30),
+		    );
+		    $retour[] = $items; 
+		    $nbI++;
+		}
+		else{
+		    break;
+		}
+	    }
+	    return $retour;
+	}
 
 }

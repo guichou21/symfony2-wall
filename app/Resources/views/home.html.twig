@@ -92,6 +92,7 @@
                     $('.author').truncatable({    limit: 12, more: '...' }); 
                     $('.comment').truncatable({    limit: 22, more: '...' }); 
                     $('.picture').truncatable({    limit: 30, more: '...' }); 
+                    $('.rssTitle').truncatable({    limit: 30, more: '...' });
 
                      //On lance la fonction ajax d'affichage des flux rss
                     $.ajax({
@@ -101,6 +102,16 @@
                         cache: false,
                         success: function(data){
                            $('.rssVideoContainer').append(data);
+                         }
+                    });
+                    
+                     $.ajax({
+                        type: "POST",
+                        url: "{{ path('gb_creation_home_feed_rss')}}",
+                        data: 'rss=blog',
+                        cache: false,
+                        success: function(data){
+                           $('.rssBlogContainer').append(data);
                          }
                     });
 
