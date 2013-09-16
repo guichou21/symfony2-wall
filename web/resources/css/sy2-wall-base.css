@@ -175,8 +175,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .myItem{
-     width: 31.6239%;
-     min-width: 300px;
+     width: 31%;
+     /*min-width: 300px;*/
      float:left;
      margin: 10px;
 }
@@ -283,6 +283,48 @@ img {
     opacity: 0.8;
     height:50px;
 }
+
+/* Desktop large
+------------------------- */
+@media (min-width: 1200px) {
+ .myItem{
+     width: 31%;
+    }
+}
+/* Desktop
+------------------------- */
+@media (max-width: 980px) {
+    .myItem{
+     width: 31%;
+    }
+}
+
+/* Tablet to desktop
+------------------------- */
+@media (min-width: 768px) and (max-width: 979px) {
+    .myItem{
+     width: 31%;
+    margin: 8px;
+    }
+}
+
+/* Tablet
+------------------------- */
+@media (max-width: 767px) {
+   .myItem{
+     width: 47%;
+     margin: 6px;
+    }
+}
+
+/* Landscape phones
+------------------------- */
+@media (max-width: 480px) {
+   .myItem{
+     width: 95%;
+    }
+}
+
 
 /*
 .column .item span {
