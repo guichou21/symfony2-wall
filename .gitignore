@@ -6,10 +6,15 @@
 app/logs/*
 app/cache/*
 #web/uploads/*
+# bundle générés lors du install web
 web/bundles/*
-web/images/slider/*
-web/images/wall/*
 
 # Configuration files
 #app/config/parameters.ini
-#app/config/parameters.yml
+app/config/parameters.yml
+
+#js propre au site (stats google, ...)
+web/resources/js/sy2-wall.js
+#images propres au site (header, upload, ...)
+web/images/slider/*
+web/images/wall/*

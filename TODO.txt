@@ -1,13 +1,12 @@
 -------------------
 - Evols  &   Bugs -
 -------------------
-* Stats google !
-* Page d'accueil : liseur rss (vimeo / wordpress) 	- A designer
+* Stats google ! (copier ds sy2-wall.js le code adéquat)
 * import local (pb taille fichier BUG) ??  			- memory usage a modifier
 * Migration donnees BDD yo -> ma base !!!!!!!!!!!!! 
 * Readme : procédure install !!!
 * preparation mise en prod
-* Gerer les exceptions (exemple 3 mail ds contact)
+* Gerer les exceptions (exemple mettre 3 mail ds contact-> detecte spam)  - A TESTER prod
 ------------------------------------------------------------------------
 * wall - ajouter flux RSS a coté authentification
 * form contact 										- A TESTER
@@ -127,3 +126,10 @@ http://www.tutoriel-symfony2.fr/
 Serialisation : http://symfony.com/fr/doc/current/components/serializer.html
 Commandes Sy2 (notament mise en prod)
 http://blog.keiruaprod.fr/2012/03/21/bien-utiliser-les-commandes-console-de-symfony2/
+
+
+
+
+
+$logger = $this->get('logger');
+$logger->info('Nous avons récupéré le logger');

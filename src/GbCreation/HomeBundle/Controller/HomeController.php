@@ -223,10 +223,6 @@ class HomeController extends Controller
 			$rss_doc = new SimpleXmlElement($contenu, LIBXML_NOCDATA);
 			//var_dump($rss_doc);
 			//die();
-<<<<<<< HEAD
-=======
-			//$rss_doc ="Aucune info sur ce flux rss";
->>>>>>> 5bc2de52d36a469208627394163b66569139d4ab
 
 			if(isset($rss_doc->channel))
 			{
