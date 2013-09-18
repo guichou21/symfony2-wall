@@ -17,13 +17,18 @@
 /*********************************************************************************/
 /* Home personalisation                                                                */
 /*********************************************************************************/
+
+#myNav{ 
+  background-color: #266BB2 !important;
+}
+
 .slider-wrapper { 
   width: 80%; 
   margin: 100px auto;
 }
 
 .homeSlider{
-  width: 80%; 
+  width: 98%; 
   margin: 100px auto;
 
 	/*margin: 10px  auto;
@@ -78,6 +83,9 @@ div.caption { background:transparent; filter:progid:DXImageTransform.Microsoft.g
   body {
     min-width: 1200px;
   }
+ /* .container{
+  width: 1200px !important;
+  }*/
   .homeSlider{
   width: 999px;
   }
@@ -85,8 +93,11 @@ div.caption { background:transparent; filter:progid:DXImageTransform.Microsoft.g
 /* Desktop
 ------------------------- */
 @media (max-width: 980px) {
-    body {
+ /* body {
     width: 980px;
+  }
+  .container{
+  width: 980px !important;
   }
   .homeSlider{
   width: 784px;
@@ -94,10 +105,13 @@ div.caption { background:transparent; filter:progid:DXImageTransform.Microsoft.g
 }
 
 /* Tablet to desktop
-------------------------- */
+------------------------- *//*
 @media (min-width: 768px) and (max-width: 979px) {
    body {
     width: 979px;
+  }
+  .container{
+  width: 979px !important;
   }
   .homeSlider{
   width: 650px;
@@ -105,10 +119,13 @@ div.caption { background:transparent; filter:progid:DXImageTransform.Microsoft.g
 }
 
 /* Tablet
-------------------------- */
+------------------------- *//*
 @media (max-width: 767px) {
    body {
     width: 767px;
+  }
+  .container{
+  width: 767px !important;
   }
   .homeSlider{
   width: 613px;
@@ -118,11 +135,23 @@ div.caption { background:transparent; filter:progid:DXImageTransform.Microsoft.g
 /* Landscape phones
 ------------------------- */
 @media (max-width: 480px) {
-   body {
+   /*body {
     width: 480px;
-  }
+  }*/
+  /*.container{
+  width: 480 !important;
+  }*/
   .homeSlider{
-  width: 320px;
+  margin: 20px auto;
+  padding-bottom: 20px;
   }
-
+  .orbit-wrapper.fluid .orbit-bullets {
+    bottom:30px;
+  }
+    .hidden-phone {
+    display: none !important;
+  }
+  .footer {
+    margin: 0.5em 0 0;
+  }
 }
