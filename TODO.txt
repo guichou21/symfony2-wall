@@ -11,13 +11,14 @@ Firefox : tester responsive : ctrl maj M
 ------------------------------------------------------------------------
 * wall - ajouter flux RSS a coté authentification
 * form contact 										- A TESTER
+* Item - constructeur new Date possède 2heures de moins - A TESTER
 * faire tourner sur travis! pour voir
 ------------------------------------------- livraison possible --------------------------------------------
-* Mettre composer, supprimer UserBundle et réimporter tout avec composer : http://rkueny.fr/developpement-web/integrer-facilement-facebook-connect-et-twitter-connect-avec-fosuserbundle-pour-symfony-2-1
 * image existe deja - renommer en mettant un -2 apr ex
 * serviece pour envoi mail contact  http://www.siteduzero.com/informatique/tutoriels/developpez-vos-applications-web-avec-symfony2/l-apprentissage-par-l-exemple
 * Filtre Photo / Vidéo / Année
 * composer.phar a mettre en place
+* Puis supprimer FosUSerBundle et réimporter tout avec composer : http://rkueny.fr/developpement-web/integrer-facilement-facebook-connect-et-twitter-connect-avec-fosuserbundle-pour-symfony-2-1
 * durée session
 * [Admin] Pagination sur item et Commentaires
 * Pagination sur comments postés?
@@ -27,7 +28,6 @@ Firefox : tester responsive : ctrl maj M
    - paramétrage : réseaux sociaux actif ou non (permet le share fb, twitter,..)
    - [RSS]nbItem de rss.twig a récupérer
    - [RSS] Nom blog et infos a récuéprer ou afficher
-* Item - constructeur new Date possède 2heures de moins
 * Slug
 * ajout de vidéo et affichage de vidéo ds wall
 
@@ -43,7 +43,6 @@ Firefox : tester responsive : ctrl maj M
 * Définir vos formulaire en tant que services (cf doc sy2=> Form!)
 * jquery : TimePicker sur item : add et edit manque un positionnement top 50px  (enlever le top mis par jquery et rajouter un top 50px)
 * Tests
-* problème resize fenêtre.
 * Designer le form de edition
 * Designer le form de add
 * [Admin] ajout : deux possibilités -> form vidéo ou form photo dans onglet

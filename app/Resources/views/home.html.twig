@@ -2,7 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
   <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="copyright" content="GbCreation">
         <meta name="author" content="GbCreation">
         <meta name="language" content="fr">
@@ -39,17 +38,17 @@
 
         <!-- Home -->
         <div class="wrapper wrapper-style1 wrapper-first">
-             {{ render(controller("GbCreationHomeBundle:Home:home")) }}
+            {{ render(controller("GbCreationHomeBundle:Home:home")) }}
         </div>
 
         <!-- news -->
         <div class="wrapper wrapper-style2">
-             {{ render(controller("GbCreationHomeBundle:Home:news")) }}
+            {{ render(controller("GbCreationHomeBundle:Home:news")) }}
         </div>
 
         <!-- Portfolio -->
         <div class="wrapper wrapper-style3">
-         {{ render(controller("GbCreationHomeBundle:Home:portfolio")) }}
+            {{ render(controller("GbCreationHomeBundle:Home:portfolio")) }}
         </div>
 
         <!-- decompte -->
@@ -58,7 +57,7 @@
         </div>
         -->
 
-        <div id="footer">
+       <div id="footer">
              <p>
               <img src="{{ asset('resources/img/GibeeCreationLogo.png') }}">
                 <h3>&copy; 2013 all rights reserved</h3>
@@ -93,6 +92,8 @@
                     $('.comment').truncatable({    limit: 22, more: '...' }); 
                     $('.picture').truncatable({    limit: 30, more: '...' }); 
                     $('.rssTitle').truncatable({    limit: 30, more: '...' });
+
+                    $('.slider-nav').addClass("hidden-phone");                    
 
                      //On lance la fonction ajax d'affichage des flux rss
                     $.ajax({
