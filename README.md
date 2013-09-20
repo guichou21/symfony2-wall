@@ -6,6 +6,8 @@ A code to create a homepage and a wall of item (photos for now)
 
 Copy public files from web/public bundle to web/public
 =======================================================
+php app/console cache:clear --env=prod --no-debug
+php app/console assets:install web --env=prod
 php app/console assets:install web
 
 

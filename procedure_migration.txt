@@ -33,6 +33,7 @@ coller toutes les lignes et rajouter un '' à la fin pour le tag ou un 'portrait,
 - Au début du script sql d'import et a la fin : mettre:
 SET foreign_key_checks = 0;
 SET foreign_key_checks = 1;
+- sauvegarder le fichier en UTF-8 !
 
 - Importer le sql
 

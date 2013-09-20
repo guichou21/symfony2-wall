@@ -140,3 +140,7 @@ http://html5demos.com/
 
 $logger = $this->get('logger');
 $logger->info('Nous avons récupéré le logger');
+
+SUPER
+console dans app_dev
+http://fr.openclassrooms.com/informatique/cours/developpez-votre-site-web-avec-le-framework-symfony2/pratique-utiliser-un-consolebundle

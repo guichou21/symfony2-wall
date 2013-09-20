@@ -32,6 +32,10 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+
+            // On enregistre ce bundle uniquement pour l'environnement de développement
+            $bundles[] = new CoreSphere\ConsoleBundle\CoreSphereConsoleBundle();
+
         }
 
         return $bundles;
