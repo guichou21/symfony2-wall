@@ -4,6 +4,8 @@ parameters:
         NB_MAX_COMMENT: 10
     Request:
         NB_ITEM_PER_PAGE: 10
+    Pagination:
+        PAGINATION_NB_ITEM_PER_PAGE: 20
     Upload:
         extensions: 
             - '.png'

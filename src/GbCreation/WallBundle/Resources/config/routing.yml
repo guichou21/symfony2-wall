@@ -61,10 +61,18 @@ gb_creation_admin__add:
         _method:  GET
 
 gb_creation_admin_items_show:
-    pattern:  /admin/items
-    defaults: { _controller: GbCreationWallBundle:Admin:items }
+    pattern:  /admin/items/{page}
+    defaults: { _controller: GbCreationWallBundle:Admin:items, page: 1 }
     requirements:
         _method:  GET
+        page: \d+
+
+gb_creation_admin_items_show_noPagination:
+    pattern:  /admin/items/
+    defaults: { _controller: GbCreationWallBundle:Admin:allItems }
+    requirements:
+        _method:  GET
+        page: \d+
 
 gb_creation_admin_item_create:
     pattern:  /admin/item/create/
@@ -87,8 +95,14 @@ gb_creation_admin_item_delete:
         id: \d+
 
 gb_creation_admin_comments_show:
-    pattern:  /admin/comments
-    defaults: { _controller: GbCreationWallBundle:Admin:comments }
+    pattern:  /admin/comments/{page}
+    defaults: { _controller: GbCreationWallBundle:Admin:comments, page: 1 }
+    requirements:
+        _method:  GET
+
+gb_creation_admin_comments_show_noPagination:
+    pattern:  /admin/comments/
+    defaults: { _controller: GbCreationWallBundle:Admin:allComments}
     requirements:
         _method:  GET
 

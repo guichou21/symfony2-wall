@@ -1,0 +1,8 @@
+
+{% extends 'GbCreationWallBundle:Admin:items.layout.html.twig' %}
+
+{% block item_pagination %}
+  <div class="pagination pagination-centered">
+    <ul><li><a href="{{ path('gb_creation_admin_items_show', {'page':1}) }}">Voir avec pagination</a></li></ul>
+  </div>
+{% endblock %}

@@ -3,7 +3,7 @@
 namespace GbCreation\WallBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
-
+use Doctrine\ORM\Tools\Pagination\Paginator;
 /**
  * ItemRepository
  *
@@ -30,7 +30,7 @@ class CommentRepository extends EntityRepository
     }
 
 
-      public function getAllCommentsForBlogWithItem()
+    public function getAllCommentsForBlogWithItem()
     {
         $qb = $this->createQueryBuilder('c')
                    ->select('c')
@@ -42,6 +42,21 @@ class CommentRepository extends EntityRepository
 
         return $qb->getQuery()
                   ->getResult();
+    }
+
+    public function getAllCommentsForBlogWithItemPaginated($page,$nombrePerPage)
+    {
+        $query = $this->createQueryBuilder('c')
+                   ->select('c')
+                   ->leftJoin('c.idItem', 'i')
+                   ->addSelect('i')
+                   ->addOrderBy('c.created', 'DESC')
+                   ->getQuery();
+
+
+      $query->setFirstResult(($page-1) * $nombrePerPage)->setMaxResults($nombrePerPage);
+  
+      return new Paginator($query);
     }
 
     public function countAllComments()

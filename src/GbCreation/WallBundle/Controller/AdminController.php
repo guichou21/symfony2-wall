@@ -68,9 +68,9 @@ class AdminController extends Controller
         ));
     }
 
-    public function itemsAction()
+    public function allItemsAction()
     {
-        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+         if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
           throw new AccessDeniedHttpException('Accès limité aux Admins');
         }
 
@@ -78,9 +78,44 @@ class AdminController extends Controller
         
         $items = $em->getRepository('GbCreationWallBundle:Item')
                 ->getAllItems();
+  
+        
+        return $this->render('GbCreationWallBundle:Admin:allItems.show.html.twig', array(
+            'items' => $items,
+        ));
+    }
 
+    public function itemsAction($page)
+    {
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+          throw new AccessDeniedHttpException('Accès limité aux Admins');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $params = $this->container->getParameter('Pagination');
+
+
+        $nbPerPage = $params['PAGINATION_NB_ITEM_PER_PAGE'];
+        $nbTotal    = $em->getRepository('GbCreationWallBundle:Item')
+                ->countAllItems();
+
+        $last_page         = ceil($nbTotal / $nbPerPage);
+        $previous_page     = $page > 1 ? $page - 1 : 1;
+        $next_page         = $page < $last_page ? $page + 1 : $last_page;
+
+        $items = $em->getRepository('GbCreationWallBundle:Item')
+                ->getAllItemsPaginated($page,$nbPerPage);
+
+
+        //var_dump($items);die();
+        
         return $this->render('GbCreationWallBundle:Admin:items.show.html.twig', array(
-            'items' => $items
+            'items' => $items,
+            'last_page' => $last_page,
+            'current_page' => $page,
+            'previous_page' => $previous_page,
+            'next_page' => $next_page,
+            'total_item' => $nbTotal,
         ));
     }
 
@@ -206,41 +241,8 @@ class AdminController extends Controller
         }
 
 
-        //avant de faire le confirm en popup 
-     public function __form__deleteItemAction($id)
-    {
-        
 
-        // On crée un formulaire vide, qui ne contiendra que le champ CSRF
-        // Cela permet de protéger la suppression d'item contre cette faille
-        $form = $this->createFormBuilder()->getForm();
-        $request = $this->getRequest();
-        if ($request->getMethod() == 'POST') {
-          $form->handleRequest($request);
-     
-          if ($form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entity = $entityManager->getRepository("GbCreationWallBundle:Item")->find($id);;
-            $entityManager->remove($entity);   
-            $entityManager->flush();
-     
-            // On définit un message flash
-            $this->get('session')->getFlashBag()->add('notice', 'item bien supprimé');
-     
-            // Puis on redirige vers l'accueil
-            return $this->redirect($this->generateUrl('gb_creation_admin_items_show'));
-          }
-        }
-         
-            // Si la requête est en GET, on affiche une page de confirmation avant de supprimer
-            return $this->render('GbCreationWallBundle:Admin:delete.html.twig', array(
-              'item_id' => $id,
-              'form'    => $form->createView()
-            ));
-    }
-
-
-         public function commentsAction()
+        public function allCommentsAction()
         {
              if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
                 throw new AccessDeniedHttpException('Accès limité aux Admins');
@@ -251,16 +253,40 @@ class AdminController extends Controller
             $comments = $em->getRepository('GbCreationWallBundle:Comment')
                 ->getAllCommentsForBlogWithItem();
                    
-            /*$comments = $em->createQueryBuilder()
-                    ->select('i')
-                    ->from('GbCreationWallBundle:Comment',  'i')
-                    ->addOrderBy('i.created', 'DESC')
-                    ->getQuery()
-                    ->getResult();*/
-
-
-            return $this->render('GbCreationWallBundle:Admin:comments.show.html.twig', array(
+            return $this->render('GbCreationWallBundle:Admin:allComments.show.html.twig', array(
                 'comments' => $comments
+            ));
+        }
+
+         public function commentsAction($page)
+        {
+             if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+                throw new AccessDeniedHttpException('Accès limité aux Admins');
+             }
+
+            $em = $this->getDoctrine()->getManager();
+            $params = $this->container->getParameter('Pagination');
+
+
+            $nbPerPage = $params['PAGINATION_NB_ITEM_PER_PAGE'];
+            $nbTotal    = $em->getRepository('GbCreationWallBundle:Comment')
+                    ->countAllComments();
+
+            $last_page         = ceil($nbTotal / $nbPerPage);
+            $previous_page     = $page > 1 ? $page - 1 : 1;
+            $next_page         = $page < $last_page ? $page + 1 : $last_page;
+
+            $comments = $em->getRepository('GbCreationWallBundle:Comment')
+                    ->getAllCommentsForBlogWithItemPaginated($page,$nbPerPage);
+
+
+        return $this->render('GbCreationWallBundle:Admin:comments.show.html.twig', array(
+                'comments' => $comments,
+                 'last_page' => $last_page,
+                'current_page' => $page,
+                'previous_page' => $previous_page,
+                'next_page' => $next_page,
+                'total_item' => $nbTotal,
             ));
         }
  

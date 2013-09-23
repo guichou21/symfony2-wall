@@ -3,6 +3,7 @@
 namespace GbCreation\WallBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * ItemRepository
@@ -21,6 +22,18 @@ class ItemRepository extends EntityRepository
       ->getQuery();
  
     	return $query->getResult();
+    }
+
+     public function getAllItemsPaginated($page,$nombrePerPage)
+    {
+        
+      $query = $this->createQueryBuilder('i')
+      ->orderBy('i.date', 'DESC')
+      ->getQuery();
+
+      $query->setFirstResult(($page-1) * $nombrePerPage)->setMaxResults($nombrePerPage);
+  
+      return new Paginator($query);
     }
 
    public function getLastItems($nbItem=10)
