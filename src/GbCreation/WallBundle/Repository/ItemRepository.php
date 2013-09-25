@@ -83,5 +83,42 @@ class ItemRepository extends EntityRepository
     }
 
 
+  public function getAllItemsByType($itemType)
+    {
+        
+      $query = $this->createQueryBuilder('i')
+      ->orderBy('i.date', 'DESC')
+      ->where('i.type = :itemType')
+      ->setParameter('itemType', $itemType)
+      ->getQuery();
+ 
+      return $query->getResult();
+    }
+
+ public function getAllItemsPaginatedByType($page,$nombrePerPage,$itemType)
+    {
+        
+      $query = $this->createQueryBuilder('i')
+      ->orderBy('i.date', 'DESC')
+      ->where('i.type = :itemType')
+      ->setParameter('itemType', $itemType)
+      ->getQuery();
+
+      $query->setFirstResult(($page-1) * $nombrePerPage)->setMaxResults($nombrePerPage);
+  
+      return new Paginator($query);
+    }
+  public function countAllItemsByType($itemType)
+    {
+        
+      $query = $this->createQueryBuilder('i')
+      ->select('COUNT(i)')
+      ->where('i.type = :itemType')
+      ->setParameter('itemType', $itemType)
+      ->getQuery();
+
+      return $query->getSingleScalarResult();
+    }
+
 
 }

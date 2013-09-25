@@ -7,6 +7,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 use GbCreation\WallBundle\Entity\Item;
 use GbCreation\WallBundle\Form\ItemType;
+use GbCreation\WallBundle\Form\ItemVideoType;
 use GbCreation\WallBundle\Form\ItemEditedType;
 use GbCreation\WallBundle\Form\CommentEditedType;
 
@@ -39,11 +40,13 @@ class AdminController extends Controller
         $em = $this->getDoctrine()
                    ->getManager();
 
-        $nbItems = $em->getRepository('GbCreationWallBundle:Item')->countAllItems();
+        $nbPictureItems = $em->getRepository('GbCreationWallBundle:Item')->countAllItemsByType('Picture');
+        $nbVideoItems = $em->getRepository('GbCreationWallBundle:Item')->countAllItemsByType('Video');
         $nbComments = $em->getRepository('GbCreationWallBundle:Comment')->countAllComments();
 
         return $this->render('GbCreationWallBundle:Admin:stats.html.twig', array(
-                'nbItems' => $nbItems,
+                'nbPictureItems' => $nbPictureItems,
+                'nbVideoItems' => $nbVideoItems,
                 'nbComments' => $nbComments,
             ));
     }
@@ -62,9 +65,13 @@ class AdminController extends Controller
         $entity = new Item();
         $form   = $this->createForm(new ItemType(), $entity);
  
+        $video = new Item();
+        $video->setType("Video");
+        $formVideo   = $this->createForm(new ItemVideoType(), $video);
+
         return $this->render('GbCreationWallBundle:Admin:add.html.twig', array(
-            'entity' => $entity,
             'form'   => $form->createView(),
+            'formVideo' => $formVideo->createView(),
         ));
     }
 
@@ -77,7 +84,7 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         $items = $em->getRepository('GbCreationWallBundle:Item')
-                ->getAllItems();
+                ->getAllItemsByType('Picture');
   
         
         return $this->render('GbCreationWallBundle:Admin:allItems.show.html.twig', array(
@@ -97,19 +104,70 @@ class AdminController extends Controller
 
         $nbPerPage = $params['PAGINATION_NB_ITEM_PER_PAGE'];
         $nbTotal    = $em->getRepository('GbCreationWallBundle:Item')
-                ->countAllItems();
+                ->countAllItemsByType('Picture');
 
         $last_page         = ceil($nbTotal / $nbPerPage);
         $previous_page     = $page > 1 ? $page - 1 : 1;
         $next_page         = $page < $last_page ? $page + 1 : $last_page;
 
         $items = $em->getRepository('GbCreationWallBundle:Item')
-                ->getAllItemsPaginated($page,$nbPerPage);
+                ->getAllItemsPaginatedByType($page,$nbPerPage,'Picture');
 
 
         //var_dump($items);die();
         
         return $this->render('GbCreationWallBundle:Admin:items.show.html.twig', array(
+            'items' => $items,
+            'last_page' => $last_page,
+            'current_page' => $page,
+            'previous_page' => $previous_page,
+            'next_page' => $next_page,
+            'total_item' => $nbTotal,
+        ));
+    }
+
+    public function allVideoItemsAction()
+    {
+         if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+          throw new AccessDeniedHttpException('Accès limité aux Admins');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        
+        $items = $em->getRepository('GbCreationWallBundle:Item')
+                ->getAllItemsByType('Video');
+        
+        
+        return $this->render('GbCreationWallBundle:Admin:allVideoItems.show.html.twig', array(
+            'items' => $items,
+        ));
+    }
+
+     public function videoItemsAction($page)
+    {
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+          throw new AccessDeniedHttpException('Accès limité aux Admins');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $params = $this->container->getParameter('Pagination');
+
+
+        $nbPerPage = $params['PAGINATION_NB_ITEM_PER_PAGE'];
+        $nbTotal = $em->getRepository('GbCreationWallBundle:Item')
+                ->countAllItemsByType('Video');
+
+        $last_page         = ceil($nbTotal / $nbPerPage);
+        $previous_page     = $page > 1 ? $page - 1 : 1;
+        $next_page         = $page < $last_page ? $page + 1 : $last_page;
+
+        $items = $em->getRepository('GbCreationWallBundle:Item')
+                ->getAllItemsPaginatedByType($page,$nbPerPage,'Video');
+
+
+        //var_dump($items);die();
+        
+        return $this->render('GbCreationWallBundle:Admin:videoItems.show.html.twig', array(
             'items' => $items,
             'last_page' => $last_page,
             'current_page' => $page,
@@ -134,7 +192,13 @@ class AdminController extends Controller
 
         $entity  = new Item();
         $request = $this->getRequest();
+
         $form    = $this->createForm(new ItemType(), $entity);
+
+        $video = new Item();
+        $video->setType("Video");
+        $formVideo   = $this->createForm(new ItemVideoType(), $video);
+
         //$form->bindRequest($request);
         $form->handleRequest($request);
  
@@ -150,8 +214,8 @@ class AdminController extends Controller
             if(!in_array($extension, $extensions)){  
                 $this->get('session')->getFlashBag()->add('error', 'Fichier non autorisé');
                 return $this->render('GbCreationWallBundle:Admin:add.html.twig', array(
-                    'entity' => $entity,
-                    'form'   => $form->createView()
+                    'form'   => $form->createView(),
+                    'formVideo'   => $formVideo->createView(),
                     ));
             }
 
@@ -161,16 +225,81 @@ class AdminController extends Controller
  
             $this->get('session')->getFlashBag()->add('notice', 'Ajout a été effectué');
             return $this->redirect($this->generateUrl('gb_creation_admin__add'));
-            //return $this->redirect($this->generateUrl('gb_creation_admin__index', array('id' => $entity->getId())));
-             
+            //return $this->redirect($this->generateUrl('gb_creation_admin__index', array('id' => $entity->getId())));     
         }
+
  
         return $this->render('GbCreationWallBundle:Admin:add.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView()
+            'form'   => $form->createView(),
+            'formVideo' => $form->createView(),
         ));
     }
      
+     /**
+     * Creates a new Item entity.
+     *
+     */
+    public function createVideoItemAction()
+    {
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+          throw new AccessDeniedHttpException('Accès limité aux Admins');
+        }
+
+        $params = $this->container->getParameter('Upload');
+
+        $logger = $this->get('logger');
+
+        //cree le form pour nettoyer au cas ou ajout phot derière
+        $picture  = new Item();
+        $form    = $this->createForm(new ItemType(), $picture);
+
+
+        $entity  = new Item();
+        $request = $this->getRequest();
+
+        $formVideo    = $this->createForm(new ItemVideoType(), $entity);
+
+        $formVideo->handleRequest($request);
+ 
+        if ($formVideo->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $videoWebSite = $params['videoWebSite'];
+            $myurl = strtolower($entity->getFile());
+            $logger->info('[createVideoItemAction] tenative creation avec url : ['.$myurl.']');
+
+            $authorized = 'false';
+            foreach ($videoWebSite as $authorizedUrl) {
+                if(stripos($myurl,$authorizedUrl) !== false){
+                    $logger->info('[createVideoItemAction]  url autorisée ');
+                    $authorized ='true';
+                }
+            }
+            if($authorized == 'false'){ 
+                $logger->info('[createVideoItemAction]  url NON autorisée '); 
+                $this->get('session')->getFlashBag()->add('error', 'Url non autorisée');
+                return $this->render('GbCreationWallBundle:Admin:add.html.twig', array(
+                    'formVideo'   => $formVideo->createView(),
+                    'form' => $form->createView(),
+                    ));
+            }
+
+            $entity->setType("Video");
+            $em->persist($entity);
+            $em->flush();
+ 
+            $this->get('session')->getFlashBag()->add('notice', 'Ajout a été effectué');
+            return $this->redirect($this->generateUrl('gb_creation_admin__add'));
+            //return $this->redirect($this->generateUrl('gb_creation_admin__index', array('id' => $entity->getId())));     
+        }
+
+ 
+        return $this->render('GbCreationWallBundle:Admin:add.html.twig', array(
+            'formVideo'   => $formVideo->createView(),
+            'form' => $form->createView(),
+        ));
+    }
+
     private function createDeleteForm($id)
     {
         if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
@@ -210,7 +339,12 @@ class AdminController extends Controller
                 $entityManager->flush();
      
                 $this->get('session')->getFlashBag()->add('notice', 'modification a été prise en compte');
-                return $this->redirect($this->generateUrl('gb_creation_admin_items_show'));
+                if($entity->getType() == "Video"){
+                    return $this->redirect($this->generateUrl('gb_creation_admin_items_video_show'));
+                }
+                else{
+                    return $this->redirect($this->generateUrl('gb_creation_admin_items_show'));   
+                }
             }
         }
  
@@ -219,6 +353,7 @@ class AdminController extends Controller
             "form" => $form->createView(),
             "item_id" => $entity->getId(),
             "item_name" => $entity->getFile(),
+            "itemType" => $entity->getType(),
         ));
     }
 
@@ -230,6 +365,7 @@ class AdminController extends Controller
 
                 $entityManager = $this->getDoctrine()->getManager();
                 $entity = $entityManager->getRepository("GbCreationWallBundle:Item")->find($id);
+                $type = $entity->getType();
                 $entityManager->remove($entity);   
                 $entityManager->flush();
          
@@ -237,7 +373,14 @@ class AdminController extends Controller
                 $this->get('session')->getFlashBag()->add('notice', 'item bien supprimé');
          
                 // Puis on redirige vers l'accueil
-                return $this->redirect($this->generateUrl('gb_creation_admin_items_show'));
+                 if($type == "Video"){
+                    return $this->redirect($this->generateUrl('gb_creation_admin_items_video_show'));
+                }
+                else{
+                    return $this->redirect($this->generateUrl('gb_creation_admin_items_show'));  
+                }
+
+                
         }
 
 

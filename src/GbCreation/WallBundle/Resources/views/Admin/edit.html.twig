@@ -6,8 +6,12 @@
       <div class="page-header">
         <h1>Modification</h1>
       </div>
+          {% if itemType =="Video" %}
+          {% include 'GbCreationWallBundle:Item:editVideo.form.html.twig' with { 'form': form, 'item_id': item_id } %}
+        {% else %}
+          {% include 'GbCreationWallBundle:Item:edit.form.html.twig' with { 'form': form, 'item_id': item_id  } %}
+        {% endif %}
 
-    {% include 'GbCreationWallBundle:Item:edit.form.html.twig' with { 'form': form, 'item_id': item_id  } %}
     </section>
 
 {% endblock %}

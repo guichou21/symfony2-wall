@@ -8,7 +8,14 @@
 
     <div class="row-fluid">
       <div class="span9 pictureBar">
-        <img src="{{ asset(['images/wall/', item.file]|join) }}" alt="{{ item.file }} n'a pas été trouvée" class="large" />
+        {% if item.type=="Video" %}
+        <div class="videoDisplay">
+          <iframe src="{{ item.file }}" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+        </div>
+        {% else %}
+          <img src="{{ asset(['images/wall/', item.file]|join) }}" alt="{{ item.file }} n'a pas été trouvée" class="large" />
+        {% endif %}
+
       </div>
       
       <div class="span3 commentBar" style="min-height: 712px;">

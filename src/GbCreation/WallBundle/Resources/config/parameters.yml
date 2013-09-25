@@ -12,3 +12,6 @@ parameters:
             - '.gif'
             - '.jpg'
             - '.jpeg'
+        videoWebSite:
+            - 'http://www.youtube.com/embed/'
+            - 'http://player.vimeo.com/video/'

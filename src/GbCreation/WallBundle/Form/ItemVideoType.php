@@ -6,12 +6,12 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ItemEditedType extends AbstractType
+class ItemVideoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('file')
+            ->add('file','text' ,array('label' => 'url'))
             ->add('description')
             ->add('date','date',array('required' => true,
                                   'widget' =>'single_text',
@@ -22,6 +22,6 @@ class ItemEditedType extends AbstractType
 
     public function getName()
     {
-        return 'gbcreation_wallbundle_itemeditedtype';
+        return 'gbcreation_wallbundle_itemvideotype';
     }
 }

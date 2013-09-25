@@ -11,11 +11,12 @@ Firefox : tester responsive : ctrl maj M
 * Item - constructeur new Date possède 2heures de moins - A TESTER
 * faire tourner sur travis! pour voir
 ------------------------------------------- livraison possible --------------------------------------------
-* image existe deja - renommer en mettant un -2 apr ex
-* serviece pour envoi mail contact  http://www.siteduzero.com/informatique/tutoriels/developpez-vos-applications-web-avec-symfony2/l-apprentissage-par-l-exemple
+* image existe deja - renommer en mettant un -2 par ex
+* retour arrière scroll infini http://gafish.fr/scroll-continu-et-retour-arriere-en-jquery/
 * Filtre Photo / Vidéo / Année
 * composer.phar a mettre en place
 * Puis supprimer FosUSerBundle et réimporter tout avec composer : http://rkueny.fr/developpement-web/integrer-facilement-facebook-connect-et-twitter-connect-avec-fosuserbundle-pour-symfony-2-1
+* service pour envoi mail contact  http://www.siteduzero.com/informatique/tutoriels/developpez-vos-applications-web-avec-symfony2/l-apprentissage-par-l-exemple
 * durée session
 * Pagination sur comments postés?
 * Créer une fenetre de config appli qui ecris un fichier de propriété relatif a l'application contenant. plus un raz par defaut :
@@ -25,7 +26,6 @@ Firefox : tester responsive : ctrl maj M
    - [RSS]nbItem de rss.twig a récupérer
    - [RSS] Nom blog et infos a récuéprer ou afficher
 * Slug
-* ajout de vidéo et affichage de vidéo ds wall
 
 * réecrire et adapter le fichier param.yml http://www.squareeyes.fr/actualite/jouer-avec-les-variables-globales-dans-symfony-2
 * Sonata Admin
@@ -35,16 +35,12 @@ Firefox : tester responsive : ctrl maj M
 * page d'accueil "tout a été affiché" pas centré verticalement
 * Progress bar
 * breadcrum et Badges !  Pannes pour form photo - video
-
 * Définir vos formulaire en tant que services (cf doc sy2=> Form!)
 * jquery : TimePicker sur item : add et edit manque un positionnement top 50px  (enlever le top mis par jquery et rajouter un top 50px)
 * Tests
 * Designer le form de edition
 * Designer le form de add
-* [Admin] ajout : deux possibilités -> form vidéo ou form photo dans onglet
 * afficher vidéo en html5
-
-* console bundle pour la prod :  http://www.siteduzero.com/informatique/tutoriels/developpez-votre-site-web-avec-le-framework-symfony2/pratique-utiliser-un-consolebundle
 
 * jquery slider responsive http://bxslider.com/
 http://docs.dev7studios.com/jquery-plugins/nivo-slider
@@ -80,6 +76,9 @@ Unable to guess the mime type as no guessers are available (Did you enable the p
 [done] css, js mis dans dossier public du bundle.  Sauf bootsrap et qq plugin  (choix plutot que mettre ds wall)  Template twig  et css normal dans web mais NORMAL. 
 [done] wall responsive design !
 [done] Pagination sur item et Commentaires
+[done] [Admin] ajout : deux possibilités -> form vidéo ou form photo dans onglet
+[done] ajout de vidéo et affichage de vidéo ds wall
+[done] console bundle pour la prod :  http://www.siteduzero.com/informatique/tutoriels/developpez-votre-site-web-avec-le-framework-symfony2/pratique-utiliser-un-consolebundle
 
 ------------------
 - Tutos & autres -
