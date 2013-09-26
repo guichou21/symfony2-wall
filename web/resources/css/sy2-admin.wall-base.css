@@ -239,6 +239,9 @@ table.tableSorter #thAction{
 /* Desktop large
 ------------------------- */
 @media (min-width: 1200px) {
+   body {
+    padding-top: 60px;
+  }
   .bs-docs-container {
     max-width: 970px;
   }
@@ -252,6 +255,9 @@ table.tableSorter #thAction{
 /* Desktop
 ------------------------- */
 @media (max-width: 980px) {
+   body {
+    padding-top: 0px;
+  }
   /* When affixed, space properly */
   .bs-docs-sidenav {
     top: 0;
@@ -264,6 +270,9 @@ table.tableSorter #thAction{
 /* Tablet to desktop
 ------------------------- */
 @media (min-width: 768px) and (max-width: 979px) {
+   body {
+    padding-top: 0px;
+  }
   /* Adjust sidenav width */
   .bs-docs-sidenav {
     width: 166px;
@@ -277,6 +286,9 @@ table.tableSorter #thAction{
 /* Tablet
 ------------------------- */
 @media (max-width: 767px) {
+   body {
+    padding-top: 0px;
+  }
   /* Sidenav */
   .bs-docs-sidenav {
     width: auto;
@@ -292,6 +304,8 @@ table.tableSorter #thAction{
 /* Landscape phones
 ------------------------- */
 @media (max-width: 480px) {
-
+ body {
+    padding-top: 0px;
+  }
 
 }

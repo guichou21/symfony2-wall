@@ -2,18 +2,18 @@ Firefox : tester responsive : ctrl maj M
 -------------------
 - Evols  &   Bugs -
 -------------------
-* import local (pb taille fichier BUG) ??  			- memory usage a modifier
 * Readme : procédure install !!!
-* Gerer les exceptions (exemple mettre 3 mail ds contact-> detecte spam)  - A TESTER prod
+* Gerer les exceptions (exemple mettre 3 mail ds contact-> detecte spam)  - ereur 500....
 ------------------------------------------------------------------------
 * wall - ajouter flux RSS a coté authentification
-* form contact 										- A TESTER
-* Item - constructeur new Date possède 2heures de moins - A TESTER
 * faire tourner sur travis! pour voir
 ------------------------------------------- livraison possible --------------------------------------------
+* form contact  prametrer envoi mail
 * image existe deja - renommer en mettant un -2 par ex
 * retour arrière scroll infini http://gafish.fr/scroll-continu-et-retour-arriere-en-jquery/
 * Filtre Photo / Vidéo / Année
+* Infinite Scroll a refaire avec masonry
+http://desandro.github.io/masonry/demos/infinite-scroll.html
 * composer.phar a mettre en place
 * Puis supprimer FosUSerBundle et réimporter tout avec composer : http://rkueny.fr/developpement-web/integrer-facilement-facebook-connect-et-twitter-connect-avec-fosuserbundle-pour-symfony-2-1
 * service pour envoi mail contact  http://www.siteduzero.com/informatique/tutoriels/developpez-vos-applications-web-avec-symfony2/l-apprentissage-par-l-exemple
@@ -26,7 +26,7 @@ Firefox : tester responsive : ctrl maj M
    - [RSS]nbItem de rss.twig a récupérer
    - [RSS] Nom blog et infos a récuéprer ou afficher
 * Slug
-
+* recuperer les images des vidéos (peut etre pdt l'import?) http://www.memorandom.fr/divers/image-miniature-de-videos-youtube-ou-dailymotion/
 * réecrire et adapter le fichier param.yml http://www.squareeyes.fr/actualite/jouer-avec-les-variables-globales-dans-symfony-2
 * Sonata Admin
 * Mise en place droits admin -> msg d'erreurs a gérer / création compte / profile / + design formulaires
@@ -79,6 +79,7 @@ Unable to guess the mime type as no guessers are available (Did you enable the p
 [done] [Admin] ajout : deux possibilités -> form vidéo ou form photo dans onglet
 [done] ajout de vidéo et affichage de vidéo ds wall
 [done] console bundle pour la prod :  http://www.siteduzero.com/informatique/tutoriels/developpez-votre-site-web-avec-le-framework-symfony2/pratique-utiliser-un-consolebundle
+[done] mise en place imageLoaded pour reorganiser wall lorsque image chargee
 
 ------------------
 - Tutos & autres -

@@ -27,11 +27,13 @@
 
 {% block javascripts %} 
 <script src="{{ asset('resources/plugins/masonry/masonry.min.js') }}"></script>
+<script src="{{ asset('resources/plugins/masonry/imagesloaded.pkgd.min.js') }}"></script>
 
 <script type="text/javascript">
   $(document).ready(function() {
 
         var $container = $('#column');
+        var filter = 'all';
 
         $(".loading").hide();
         var load = false; // aucun chargement de commentaire n'est en cours
@@ -39,9 +41,8 @@
 
             /* si aucun chargement n'est en cours, si tout les items ne sont pas affichés, alors on lance la fonction. */
 
-            /*if($(window).scrollTop()==$(document).height() - $(window).height() && load==false ){*/
-            if(load==false ){
-
+           /* if($(window).scrollTop()==$(document).height() - $(window).height() && load==false ){*/
+           if(load==false ){
                 if(($('.myItem').size()!=$('.nb_item').text())){
                     //On affiche un loader
                     $('.loading').show();
@@ -56,7 +57,7 @@
                     $.ajax({
                         type: "POST",
                         url: "{{ path('gb_creation_wall_search_item')}}",
-                        data: 'last='+nbItems,
+                        data: 'last='+nbItems+'&filter='+filter,
                         cache: false,
                         success: function(data){
                            $('.loading').fadeOut(500);
@@ -66,10 +67,13 @@
                             //on reload les items
                            $container.masonry('reloadItems');
                            //on réaffiche les items
-                           $container.masonry({
+                           $container.imagesLoaded( function() {
+                            $container.masonry({
                                 itemSelector: '.myItem',
                                 isAnimated: true,
                                 isFitWidth: true
+                            });
+                            //console.log('all images are loaded');
                             });
                          }
                     });
@@ -82,11 +86,91 @@
         });
 
     $(".noMore").hide();
-    $container.masonry({
-                    itemSelector: '.myItem',
-                    isAnimated: true,
-                    isFitWidth: true
-                });
+    
+     $container.imagesLoaded( function() {
+        $container.masonry({
+                itemSelector: '.myItem',
+                isAnimated: true,
+                isFitWidth: true
+            });
+        });
+
+
+/******* Gestion filtres ***********/
+ $( "#rqtpicture" ).click(function() {      
+        if($("#rqtpicture").attr('class') == 'active'){
+          cleanFilter(); 
+        }
+        else{
+          if($("#rqtvideo").attr('class') == 'active'){
+            cleanVideoFilter();
+          }
+          filter = 'picture';
+          $("#rqtpicture > span").addClass('label-info');
+          $("#rqtpicture").addClass('active');
+        }        
+        //On lance la fonction ajax
+        ajaxFilterReload();
+      });
+
+      $( "#rqtvideo" ).click(function() {
+        if($("#rqtvideo").attr('class') == 'active'){
+         cleanFilter();
+        }
+        else{
+          if($("#rqtpicture").attr('class') == 'active'){
+             cleanPictureFilter();
+            }
+           filter = 'video';
+           $("#rqtvideo > span").addClass('label-info');
+           $("#rqtvideo").addClass('active');
+        }
+        //On lance la fonction ajax
+        ajaxFilterReload();        
+      });
+
+function cleanFilter()
+{
+  filter = 'all';
+  cleanPictureFilter();
+  cleanVideoFilter();
+  //cleanDate
+}
+function cleanPictureFilter(){
+  $("#rqtpicture > span").removeClass('label-info');
+  $("#rqtpicture").removeClass('active');
+}
+function cleanVideoFilter(){
+  $("#rqtvideo > span").removeClass('label-info');
+  $("#rqtvideo").removeClass('active');
+}
+
+function ajaxFilterReload(){
+      $.ajax({
+        type: "POST",
+        url: "{{ path('gb_creation_wall_search_item')}}",
+        data: 'last='+0+',&filter='+filter,
+        cache: false,
+        success: function(data){
+           $('.loading').fadeOut(500);
+           $container.html(data);
+            //On remet la valeur à faux car c'est fini
+            load = false;
+            //on reload les items
+           $container.masonry('reloadItems');
+           //on réaffiche les items
+           $container.imagesLoaded( function() {
+            $container.masonry({
+                itemSelector: '.myItem',
+                isAnimated: true,
+                isFitWidth: true
+            });
+            //console.log('all images are loaded');
+            });
+         }
+    });
+}
+
   } );
 
 </script>

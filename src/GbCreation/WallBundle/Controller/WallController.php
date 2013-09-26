@@ -49,11 +49,13 @@ class WallController extends Controller
         $em = $this->getDoctrine()
                    ->getManager();
 
-        $nbItems = $em->getRepository('GbCreationWallBundle:Item')->countAllItems();
+        $nbItems = $em->getRepository('GbCreationWallBundle:Item')->countAllItemsByType('Picture');
+        $nbVideoItems = $em->getRepository('GbCreationWallBundle:Item')->countAllItemsByType('Video');
         $nbComments = $em->getRepository('GbCreationWallBundle:Comment')->countAllComments();
 
         return $this->container->get('templating')->renderResponse('GbCreationWallBundle:Wall:resume.html.twig', array(
                 'nbItems' => $nbItems,
+                'nbVideoItems' => $nbVideoItems,
                 'nbComments' => $nbComments,
             ));
 
@@ -93,6 +95,18 @@ class WallController extends Controller
             $last = '';
             $last = $request->request->get('last');
 
+            $requestFilter = $request->request->get('filter');
+            $logger->info('[searchAction] requestFilter = ['.$requestFilter.']');
+            if(strcasecmp($requestFilter, 'Picture') == 0){
+                $filter = 'Picture';
+            }
+            else if(strcasecmp($requestFilter, 'Video') == 0){
+                $filter = 'Video';   
+            }
+            else{
+                $filter = 'all';
+            }
+
             $em = $this->container->get('doctrine')->getManager();
 
             $logger->info('[searchAction]  verification nullité de ['.$last.'] ');
@@ -101,12 +115,25 @@ class WallController extends Controller
             {
                 //verifier que bien des chiffres...
                 $logger->info('[searchAction] Rafraichissement de la page à partir de ['.$last.']');
-                $items = $em->getRepository('GbCreationWallBundle:Item')->getItemsInRange($last,$NB_ITEM_TO_GET);
+                $logger->info('[searchAction] Item filtres sur ['.$filter.']');
+                if($filter == 'all'){
+                    $logger->info('[searchAction] filter ['.$filter.'] donc getItemsInRange');
+                    $items = $em->getRepository('GbCreationWallBundle:Item')->getItemsInRange($last,$NB_ITEM_TO_GET);
+                }
+                else{
+                    $logger->info('[searchAction] filter ['.$filter.'] donc getItemsInRangeFilteredBy');
+                    $items = $em->getRepository('GbCreationWallBundle:Item')->getItemsInRangeFilteredBy($last,$NB_ITEM_TO_GET,$filter);   
+                }
             }
             else {
                 //récup les 10 premiers par ex
                 $logger->info('[searchAction] par defaut Rafraichissement de la page à partir de ['.$FIRST_ITEM_TO_GET.'] jusqu à  ['.$NB_ITEM_TO_GET.']');
-                $items = $em->getRepository('GbCreationWallBundle:Item')->getItemsInRange($FIRST_ITEM_TO_GET,$NB_ITEM_TO_GET);
+                 if($filter = 'all'){
+                    $items = $em->getRepository('GbCreationWallBundle:Item')->getItemsInRange($FIRST_ITEM_TO_GET,$NB_ITEM_TO_GET);
+                }
+                 else{
+                    $items = $em->getRepository('GbCreationWallBundle:Item')->getItemsInRangeFilteredBy($FIRST_ITEM_TO_GET,$NB_ITEM_TO_GET,$filter);   
+                }
             }
 
             return $this->container->get('templating')->renderResponse('GbCreationWallBundle:Wall:list.html.twig', array(

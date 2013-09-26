@@ -59,6 +59,20 @@ class ItemRepository extends EntityRepository
       return $query->getResult();
     }
 
+    public function getItemsInRangeFilteredBy($firstItem=0,$nbItem=10,$filter)
+    {
+        
+      $query = $this->createQueryBuilder('i')
+      ->orderBy('i.date', 'DESC')
+      ->where('i.type = :itemType')
+      ->setParameter('itemType', $filter)
+      ->setMaxResults($nbItem)
+      ->setFirstResult($firstItem)
+      ->getQuery();
+
+      return $query->getResult();
+    }
+
 
     public function getItemsWithComments()
     {

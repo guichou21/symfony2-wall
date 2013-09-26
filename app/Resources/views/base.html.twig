@@ -14,7 +14,8 @@
         {% block stylesheets %}
         <link href="{{ asset('resources/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
         <link href="{{ asset('resources/bootstrap/css/bootstrap-responsive.css') }}" rel="stylesheet">     
-        <link href="{{ asset('resources/css/sy2-wall-base.css') }}" rel="stylesheet">  
+        <link href="{{ asset('resources/css/sy2-wall-base.css') }}" rel="stylesheet">
+        <link href="{{ asset('bundles/gbcreationwall/css/iframeResponsive.css') }}" rel="stylesheet">    
         {% endblock %}
 
 
@@ -39,7 +40,19 @@
                 <ul class="nav">
                   <li class="{% if app.request.get('_route') == 'gb_creation_home_homepage' %}active{% endif %}"><a href="{{ path('gb_creation_home_homepage') }}">Accueil</a></li>
                   <li class="{% if app.request.get('_route') == 'gb_creation_wall_homepage' %}active{% endif %}"><a href="{{ path('gb_creation_wall_homepage') }}">Wall</a></li>
-                  <li class="{% if app.request.get('_route') == 'gb_creation_contact' %}active{% endif %}"><a href="{{ path('gb_creation_contact') }}">Contact</a></li>
+                  <!-- <li class="{% if app.request.get('_route') == 'gb_creation_contact' %}active{% endif %}"><a href="{{ path('gb_creation_contact') }}">Contact</a></li> -->
+
+                   <li class="dropdown">
+                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                      Filtrer
+                      <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a id="rqtpicture" href="#"><i class="icon-camera"></i><span class="label"> Photos</span></a></li>
+                        <li><a id="rqtvideo" href="#"><i class="icon-film"></i><span class="label"> Vidéos</span></a></li>
+                      </ul>
+                </li>
+
                 </ul>
                  <div id="resume" >{{ render(controller("GbCreationWallBundle:Wall:resume")) }}</div>
                  <p class="navbar-text pull-right"><a href="{{ path('fos_user_security_login') }}"><i class="icon-user"></i></a></p>
@@ -68,6 +81,7 @@
       <script src="{{ asset('resources/js/sy2-wall.js') }}"></script>
       <script src="{{ asset('resources/bootstrap/js/jquery.js') }}"></script>
       <script src="{{ asset('resources/bootstrap/js/bootstrap-collapse.js') }}"></script>
+      <script src="{{ asset('resources/bootstrap/js/bootstrap-dropdown.js') }}"></script>
       {% block javascripts %}{% endblock %}
 
     </body>

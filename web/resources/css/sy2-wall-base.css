@@ -292,6 +292,9 @@ img {
 /* Desktop large
 ------------------------- */
 @media (min-width: 1200px) {
+    body {
+    padding-top: 60px;
+  }
  .myItem{
      width: 31%;
     }
@@ -299,6 +302,9 @@ img {
 /* Desktop
 ------------------------- */
 @media (max-width: 980px) {
+    body {
+    padding-top: 0px;
+  }
     .myItem{
      width: 31%;
     }
@@ -307,6 +313,9 @@ img {
 /* Tablet to desktop
 ------------------------- */
 @media (min-width: 768px) and (max-width: 979px) {
+    body {
+    padding-top: 0px;
+  }
     .myItem{
      width: 31%;
     margin: 8px;
@@ -316,6 +325,9 @@ img {
 /* Tablet
 ------------------------- */
 @media (max-width: 767px) {
+    body {
+    padding-top: 0px;
+  }
    .myItem{
      width: 47%;
      margin: 6px;
@@ -325,6 +337,9 @@ img {
 /* Landscape phones
 ------------------------- */
 @media (max-width: 480px) {
+  body {
+    padding-top: 0px;
+  }
    .myItem{
      width: 95%;
     }

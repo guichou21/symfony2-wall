@@ -9,7 +9,7 @@
     <div class="row-fluid">
       <div class="span9 pictureBar">
         {% if item.type=="Video" %}
-        <div class="videoDisplay">
+        <div class="js-video widescreen">
           <iframe src="{{ item.file }}" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
         </div>
         {% else %}
