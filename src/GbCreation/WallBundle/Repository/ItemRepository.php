@@ -47,6 +47,20 @@ class ItemRepository extends EntityRepository
       return $query->getResult();
     }
 
+    public function getLastItemsByType($nbItem=10,$itemType)
+    {
+        
+      $query = $this->createQueryBuilder('i')
+       ->where('i.type = :itemType')
+      ->setParameter('itemType', $itemType)
+      ->orderBy('i.date', 'DESC')
+      ->setMaxResults($nbItem)
+      ->getQuery();
+
+      return $query->getResult();
+    }
+
+
     public function getItemsInRange($firstItem=0,$nbItem=10)
     {
         

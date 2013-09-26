@@ -34,6 +34,7 @@
                 <li><a href="#portfolio">Nos sites</a></li>
                <!-- <li><a href="#decompte">Décompte</a></li> -->
             </ul>
+             <div class="ribbonWrapper"><div class="ribbon-wrapper-green"><div class="ribbon-green">Nouvelle Version</div></div></div>
         </nav>
 
         <!-- Home -->
@@ -78,8 +79,6 @@
         <noscript>Votre navigateur ne supporte pas le javaScript</noscript>
       {% block javascripts %}
       {% endblock %}
-
-
         <script type="text/javascript">
             $(document).ready(function() {
                 $(window).load(function() {
@@ -94,19 +93,8 @@
                     $('.rssTitle').truncatable({    limit: 30, more: '...' });
 
                     $('.slider-nav').addClass("hidden-phone");                    
-
-                     //On lance la fonction ajax d'affichage des flux rss
-                    $.ajax({
-                        type: "POST",
-                        url: "{{ path('gb_creation_home_feed_rss')}}",
-                        data: 'rss=video',
-                        cache: false,
-                        success: function(data){
-                           $('.rssVideoContainer').append(data);
-                         }
-                    });
                     
-                     $.ajax({
+                     /*$.ajax({
                         type: "POST",
                         url: "{{ path('gb_creation_home_feed_rss')}}",
                         data: 'rss=blog',
@@ -114,7 +102,7 @@
                         success: function(data){
                            $('.rssBlogContainer').append(data);
                          }
-                    });
+                    });*/
 
                 });
             });

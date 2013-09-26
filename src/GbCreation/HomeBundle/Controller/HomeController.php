@@ -37,11 +37,10 @@ class HomeController extends Controller
         $em = $this->getDoctrine()
                    ->getManager();
 
-        $items = $em->getRepository('GbCreationWallBundle:Item')->getLastItems($NB_ITEM_TO_GET);
+        $items = $em->getRepository('GbCreationWallBundle:Item')->getLastItemsByType($NB_ITEM_TO_GET,'Picture');
+        $videos = $em->getRepository('GbCreationWallBundle:Item')->getLastItemsByType($NB_ITEM_TO_GET,'Video');
         $comments = $em->getRepository('GbCreationWallBundle:Comment')->getLastComments($NB_COMMENT_TO_GET);
 
-    	//$videos = $this->FeedParser($RSS_VIDEO_FEED, 2);
-    	$videos = "Aucune info sur ce flux rss";
 
         return $this->container->get('templating')->renderResponse('GbCreationHomeBundle:Home:news.html.twig',array(
         		'items' => $items,

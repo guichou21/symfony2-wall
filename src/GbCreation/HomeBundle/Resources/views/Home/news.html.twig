@@ -36,8 +36,15 @@
                 <div class="4u">
                     <section class="box box-style1">
                         <h3>Vidéos</h3>
-                        <p>derniers montages</p>       
-                            <div class="rssVideoContainer"></div>
+                        <p>derniers montages</p>
+                         <ul class="rss">       
+                            <!-- <div class="rssVideoContainer"></div> -->
+                             {% for video in videos %}
+                            <li>
+                                <a href="{{ path('gb_creation_wall_homepage') }}{{ video.id }}"><span class="picture">{{ video.description }}</span></a>
+                            </li>
+                            {% endfor %}
+                        </ul>
                     </section>
                 </div>
             </div>
