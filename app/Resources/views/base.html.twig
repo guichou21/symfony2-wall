@@ -21,8 +21,6 @@
 
     </head>
     <body>
-
-
     <!-- /Menu -->
     {% block menu %}
      <div class="navbar navbar navbar-fixed-top">
@@ -34,11 +32,11 @@
                 <span class="icon-bar"></span>
               </button>
 
-              <a class="brand myBrand" href="{{ path('gb_creation_home_homepage') }}">Karen.Guiom</a>
+              <a class="brand myBrand" href="{{ path('gb_creation_home_homepage') }}">Karen.Guiom </a>
 
               <div class="nav-collapse collapse">
                 <ul class="nav">
-                  <li class="{% if app.request.get('_route') == 'gb_creation_home_homepage' %}active{% endif %}"><a href="{{ path('gb_creation_home_homepage') }}">Accueil</a></li>
+                  <!--<li class="{% if app.request.get('_route') == 'gb_creation_home_homepage' %}active{% endif %}"><a href="{{ path('gb_creation_home_homepage') }}">Accueil</a></li>-->
                   <li class="{% if app.request.get('_route') == 'gb_creation_wall_homepage' %}active{% endif %}"><a href="{{ path('gb_creation_wall_homepage') }}">Wall</a></li>
                   <!-- <li class="{% if app.request.get('_route') == 'gb_creation_contact' %}active{% endif %}"><a href="{{ path('gb_creation_contact') }}">Contact</a></li> -->
 
@@ -48,8 +46,9 @@
                       <span class="caret"></span>
                       </a>
                       <ul class="dropdown-menu">
-                        <li><a id="rqtpicture" href="#"><i class="icon-camera"></i><span class="label"> Photos</span></a></li>
-                        <li><a id="rqtvideo" href="#"><i class="icon-film"></i><span class="label"> Vidéos</span></a></li>
+                        <li><a id="rqtAll" href="#" class="hidden"></a></li>
+                        <li><a id="rqtpicture" href="#picture"><i class="icon-camera"></i><span class="label"> Photos</span></a></li>
+                        <li><a id="rqtvideo" href="#video"><i class="icon-film"></i><span class="label"> Vidéos</span></a></li>
                       </ul>
                 </li>
 

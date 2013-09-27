@@ -32,6 +32,12 @@
 <script type="text/javascript">
   $(document).ready(function() {
 
+        /*var hash = window.location.href;
+        hash = hash.replace(/^.*#/, '');
+        var hash2 = window.location.href.split('#')[1];
+        var hash3 = document.URL.split('#')[1];
+        alert(hash3);*/
+
         var $container = $('#column');
         var filter = 'all';
 
@@ -41,7 +47,7 @@
 
             /* si aucun chargement n'est en cours, si tout les items ne sont pas affichés, alors on lance la fonction. */
 
-           /* if($(window).scrollTop()==$(document).height() - $(window).height() && load==false ){*/
+            /* if($(window).scrollTop()==$(document).height() - $(window).height() && load==false ){ */
            if(load==false ){
                 if(($('.myItem').size()!=$('.nb_item').text())){
                     //On affiche un loader
@@ -99,15 +105,18 @@
 /******* Gestion filtres ***********/
  $( "#rqtpicture" ).click(function() {      
         if($("#rqtpicture").attr('class') == 'active'){
-          cleanFilter(); 
+          cleanFilter();
+          $("#rqtpicture").attr("href", '');
         }
         else{
+          $("#rqtpicture").attr("href", '#picture');
           if($("#rqtvideo").attr('class') == 'active'){
             cleanVideoFilter();
           }
           filter = 'picture';
           $("#rqtpicture > span").addClass('label-info');
           $("#rqtpicture").addClass('active');
+          $(".dropdown ").addClass('active');
         }        
         //On lance la fonction ajax
         ajaxFilterReload();
@@ -116,14 +125,17 @@
       $( "#rqtvideo" ).click(function() {
         if($("#rqtvideo").attr('class') == 'active'){
          cleanFilter();
+         $("#rqtvideo").attr("href", '');
         }
         else{
+         $("#rqtvideo").attr("href", '#video');
           if($("#rqtpicture").attr('class') == 'active'){
              cleanPictureFilter();
             }
            filter = 'video';
            $("#rqtvideo > span").addClass('label-info');
            $("#rqtvideo").addClass('active');
+           $(".dropdown ").addClass('active');
         }
         //On lance la fonction ajax
         ajaxFilterReload();        
@@ -139,10 +151,12 @@ function cleanFilter()
 function cleanPictureFilter(){
   $("#rqtpicture > span").removeClass('label-info');
   $("#rqtpicture").removeClass('active');
+  $(".dropdown").removeClass('active');
 }
 function cleanVideoFilter(){
   $("#rqtvideo > span").removeClass('label-info');
   $("#rqtvideo").removeClass('active');
+  $(".dropdown").removeClass('active');
 }
 
 function ajaxFilterReload(){
