@@ -38,6 +38,12 @@
         var hash3 = document.URL.split('#')[1];
         alert(hash3);*/
 
+      var myhash = document.URL.split('#')[1];
+      if(myhash=='video'){
+        clickOnVideo();
+      }
+
+
         var $container = $('#column');
         var filter = 'all';
 
@@ -47,8 +53,8 @@
 
             /* si aucun chargement n'est en cours, si tout les items ne sont pas affichés, alors on lance la fonction. */
 
-            /* if($(window).scrollTop()==$(document).height() - $(window).height() && load==false ){ */
-           if(load==false ){
+            if($(window).scrollTop()==$(document).height() - $(window).height() && load==false ){
+            /*  if(load==false ){  */
                 if(($('.myItem').size()!=$('.nb_item').text())){
                     //On affiche un loader
                     $('.loading').show();
@@ -104,7 +110,16 @@
 
 /******* Gestion filtres ***********/
  $( "#rqtpicture" ).click(function() {      
-        if($("#rqtpicture").attr('class') == 'active'){
+       clickOnPicture();
+      });
+
+      $( "#rqtvideo" ).click(function() {
+        clickOnVideo();
+      });
+
+
+function clickOnPicture(){
+   if($("#rqtpicture").attr('class') == 'active'){
           cleanFilter();
           $("#rqtpicture").attr("href", '');
         }
@@ -120,10 +135,10 @@
         }        
         //On lance la fonction ajax
         ajaxFilterReload();
-      });
+}
 
-      $( "#rqtvideo" ).click(function() {
-        if($("#rqtvideo").attr('class') == 'active'){
+function clickOnVideo(){
+  if($("#rqtvideo").attr('class') == 'active'){
          cleanFilter();
          $("#rqtvideo").attr("href", '');
         }
@@ -139,7 +154,7 @@
         }
         //On lance la fonction ajax
         ajaxFilterReload();        
-      });
+}
 
 function cleanFilter()
 {

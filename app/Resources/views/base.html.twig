@@ -54,6 +54,7 @@
 
                 </ul>
                  <div id="resume" >{{ render(controller("GbCreationWallBundle:Wall:resume")) }}</div>
+                 <p class="navbar-text pull-right"><a href="{{ path('gb_creation_rss_feed') }}"><img class="rssFeed" src="{{ asset('resources/img/rss.png') }}"></a></p>
                  <p class="navbar-text pull-right"><a href="{{ path('fos_user_security_login') }}"><i class="icon-user"></i></a></p>
               </div><!--/.nav-collapse -->
             </div>

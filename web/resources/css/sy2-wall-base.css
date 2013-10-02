@@ -152,6 +152,16 @@ h1, h2, h3, h4, h5, h6 {
    width:500px;
    height:281px;
 }
+
+.rssFeed{
+    height: 14px;
+    margin-top: 1px;
+    vertical-align: text-top;
+    width: 14px;
+    margin-left:10px;
+}
+
+
 /*********************************/
 /* Footer                        */
 /*********************************/

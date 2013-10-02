@@ -30,20 +30,6 @@ class WallController extends Controller
         ));
     }
 
-
-     public function oldAction()
-    {
-        $params = $this->container->getParameter('Request');
-        $em = $this->getDoctrine()
-                   ->getManager();
-
-        $items = $em->getRepository('GbCreationWallBundle:Item')->getLastItems($params['NB_ITEM_PER_PAGE']);
-
-        return $this->render('GbCreationWallBundle:Wall:old.html.twig', array(
-            'items' => $items
-        ));
-    }
-
     public function resumeAction()
     {
         $em = $this->getDoctrine()

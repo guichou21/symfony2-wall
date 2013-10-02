@@ -2,23 +2,16 @@ Firefox : tester responsive : ctrl maj M
 -------------------
 - Evols  &   Bugs -
 -------------------
-* Readme : procédure install !!!
+* Readme : procédure install à terminer (générer base, ) !!!
 * Gerer les exceptions (exemple mettre 3 mail ds contact-> detecte spam)  - ereur 500....
-------------------------------------------------------------------------
-* wall - ajouter flux RSS a coté authentification
 * faire tourner sur travis! pour voir
-------------------------------------------- livraison possible --------------------------------------------
-* form contact  prametrer envoi mail
+------------------------------------------------------------------------
 * image existe deja - renommer en mettant un -2 par ex
-* retour arrière scroll infini http://gafish.fr/scroll-continu-et-retour-arriere-en-jquery/
 * Filtre Photo / Vidéo / Année
-* Infinite Scroll a refaire avec masonry
-http://desandro.github.io/masonry/demos/infinite-scroll.html
+* form contact  prametrer envoi mail
 * composer.phar a mettre en place
 * Puis supprimer FosUSerBundle et réimporter tout avec composer : http://rkueny.fr/developpement-web/integrer-facilement-facebook-connect-et-twitter-connect-avec-fosuserbundle-pour-symfony-2-1
-* service pour envoi mail contact  http://www.siteduzero.com/informatique/tutoriels/developpez-vos-applications-web-avec-symfony2/l-apprentissage-par-l-exemple
 * durée session
-* Pagination sur comments postés?
 * Créer une fenetre de config appli qui ecris un fichier de propriété relatif a l'application contenant. plus un raz par defaut :
    - lien rss vimeo:youtube:wordpress:...
    - Nom blog / parties spécifiques à paramétrer
@@ -26,22 +19,32 @@ http://desandro.github.io/masonry/demos/infinite-scroll.html
    - [RSS]nbItem de rss.twig a récupérer
    - [RSS] Nom blog et infos a récuéprer ou afficher
 * Slug
-* recuperer les images des vidéos (peut etre pdt l'import?) http://www.memorandom.fr/divers/image-miniature-de-videos-youtube-ou-dailymotion/
 * réecrire et adapter le fichier param.yml http://www.squareeyes.fr/actualite/jouer-avec-les-variables-globales-dans-symfony-2
 * Sonata Admin
 * Mise en place droits admin -> msg d'erreurs a gérer / création compte / profile / + design formulaires
 + pb login différent de register et autres (appel pas layout) => supprimer : Controler - view - routing?
 * JSON
-* page d'accueil "tout a été affiché" pas centré verticalement
-* Progress bar
-* breadcrum et Badges !  Pannes pour form photo - video
 * Définir vos formulaire en tant que services (cf doc sy2=> Form!)
-* jquery : TimePicker sur item : add et edit manque un positionnement top 50px  (enlever le top mis par jquery et rajouter un top 50px)
+------------------------------------------------------------------------
+* dropzone en jquery
+* upload photo : récupérer date dans le mime type? du fichier
+* afficher photo sur survol (partie admin item ou com)
+* admin proposer voir commentaires lors suppression item et gestion commentaires (supr un a un / tous / rien)
+* mettre em au lieu px avec http://pxtoem.com/
+
+
+Boite à idées
+--------------
+* ?? retour arrière scroll infini http://gafish.fr/scroll-continu-et-retour-arriere-en-jquery/
+* ?? Infinite Scroll a refaire avec masonry http://desandro.github.io/masonry/demos/infinite-scroll.html
+* service pour envoi mail contact  http://www.siteduzero.com/informatique/tutoriels/developpez-vos-applications-web-avec-symfony2/l-apprentissage-par-l-exemple
+* Pagination sur comments postés?
+* recuperer les images des vidéos (peut etre pdt l'import?) http://www.memorandom.fr/divers/image-miniature-de-videos-youtube-ou-dailymotion/
+* page d'accueil "tout a été affiché" pas centré verticalement
+* ?? Progress bar
 * Tests
 * Designer le form de edition
 * Designer le form de add
-* afficher vidéo en html5
-
 * jquery slider responsive http://bxslider.com/
 http://docs.dev7studios.com/jquery-plugins/nivo-slider
 
@@ -50,17 +53,6 @@ http://docs.dev7studios.com/jquery-plugins/nivo-slider
 ---------
 http://www.symfony2-checklist.com/fr
 
----------
-- Futur -
----------
-* dropzone en jquery
-* upload photo : récupérer date dans le mime type? du fichier
-* afficher photo sur survol (partie admin item ou com)
-* admin proposer voir commentaires lors suppression item et gestion commentaires (supr un a un / tous / rien)
-* mettre em au lieu px avec http://pxtoem.com/
-
-erreur eu. a réactiver ou non? a voir...
-Unable to guess the mime type as no guessers are available (Did you enable the php_fileinfo extension?) 
 
 ------------
 --- Done ---
@@ -85,11 +77,13 @@ Unable to guess the mime type as no guessers are available (Did you enable the p
 ------------------
 - Tutos & autres -
 ------------------
+!!!!!!!!!!!!!!!!!!!!!!!!!! A Nettoyer !!!!!!!!!!!!!!!!!!!!!!
 Lire RSS en jquery
 http://www.noprobweb.com/rss_feed_flux_jquery.php?lang=fr
 http://codeforbrowser.com/blog/parse-an-rss-feed-with-jquery/
 http://www.svlada.com/blog/2012/06/11/proxy-ajax-requests-curl-and-symfony-2/
 
+http://blog.neilpeyssard.fr/2013/01/30/creer-un-service-email-symfony/
 
 tuto complet
 http://www.jobeet.thuau.fr/les-tests-unitaires
