@@ -195,6 +195,16 @@ class Item
             //Remplace les caractères autres que alphanumériqu epar des -
             $this->file = preg_replace('/([^.a-z0-9]+)/i', '-', $this->file);
 
+            //Recup des elements du fichier            
+            $element = pathinfo($this->file);
+            //Soit explode en tableau soit ext directement......
+            //$ext = pathinfo($this->file, PATHINFO_EXTENSION);
+
+            $unique = substr(sha1(uniqid(mt_rand(), true)),2,6);
+
+            //genere un nom de fichier unique
+            $this->file = $element['filename'] .'-' .$unique . '.' . strtolower($element['extension']);
+
             $dimensions = getimagesize($this->fileToUpload);
             $widthImg = $dimensions[0];
             $heightImg = $dimensions[1];

@@ -342,6 +342,9 @@ img {
      width: 47%;
      margin: 6px;
     }
+    .hidden-wall {
+    display: none !important;
+  }
 }
 
 /* Landscape phones
@@ -353,6 +356,9 @@ img {
    .myItem{
      width: 95%;
     }
+    .hidden-wall {
+    display: none !important;
+  }
 }
 
 
