@@ -3,6 +3,9 @@ Symfony2-wall
 
 A code to create a homepage and a wall of item (photos for now)
 
+
+read gbc-wall project readme in case
+
 Copy public files from web/public bundle to web/public
 =======================================================
 php app/console assets:install web --env=prod
