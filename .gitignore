@@ -1,17 +1,16 @@
-# Bootstrap
-#app/bootstrap*
-
 # Symfony directories
-#vendor/*
-app/logs/*
-app/cache/*
-#web/uploads/*
+/web/bundles/*
+/app/bootstrap*
+/app/logs/*
+/app/cache/*
+/vendor/
+
 # bundle générés lors du install web
-web/bundles/*
+/web/bundles/*
+/web/resources/*
 
 # Configuration files
-#app/config/parameters.ini
-app/config/parameters.yml
+/app/config/parameters.yml
 
 #js propre au site (stats google, ...)
 web/resources/js/sy2-wall.js
