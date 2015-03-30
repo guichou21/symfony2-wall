@@ -11,9 +11,16 @@
 
 # Configuration files
 /app/config/parameters.yml
+#email envoi en clair
+/app/config/config_dev.yml
+
 
 #js propre au site (stats google, ...)
 web/resources/js/sy2-wall.js
 #images propres au site (header, upload, ...)
 web/images/slider/*
 web/images/wall/*
+
+
+#Fichiers mac divers
+*.DS_Store
