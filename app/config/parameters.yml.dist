@@ -1,15 +1,17 @@
 parameters:
-    database_driver:   pdo_mysql
-    database_host:     127.0.0.1
-    database_port:     ~
-    database_name:     symfony
-    database_user:     root
-    database_password: ~
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: todo
+    database_user: todo
+    database_password: todo
+    mailer_transport: todo
+    mailer_host:      ~
+    mailer_user: todo
+    mailer_password: todo
+    locale: fr
+    secret: todo
 
-    mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_user:       ~
-    mailer_password:   ~
-
-    locale:            en
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    param_webSiteName: Guillaume.besset
+    param_webSiteVersion: V 2.0
+    param_webSiteDescription: wall Demo

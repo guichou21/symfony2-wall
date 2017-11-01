@@ -19,11 +19,16 @@ framework:
     trusted_proxies: ~
     session:         ~
     fragments:       ~
+    http_method_override: true
 
 # Twig Configuration
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    globals:
+        webSiteName: %param_webSiteName%
+        webSiteVersion: %param_webSiteVersion%
+        webSiteDescription: %param_webSiteDescription%
 
 # Assetic Configuration
 assetic:
@@ -95,4 +100,4 @@ fos_user:
 #                # Adresse de l'expediteur
 #                address:        admin@monsiteweb.com
 #                # Nom de l'expediteur
-#                sender_name:    Admin Karen.Guiom
+#                sender_name:    Admin du site demo

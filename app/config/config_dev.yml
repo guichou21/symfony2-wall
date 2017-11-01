@@ -32,4 +32,4 @@ swiftmailer:
     transport: gmail
     username:  todo
     password:  todo
-    delivery_address: to.do@gmail.com
+    delivery_address: todo@todo.fr

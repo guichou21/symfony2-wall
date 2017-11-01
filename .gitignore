@@ -1,23 +1,69 @@
+##########################################################
 # Symfony directories
-/web/bundles/*
 /app/bootstrap*
-/app/logs/*
 /app/cache/*
+/app/logs/*
 /vendor/
 
 # bundle générés lors du install web
 /web/bundles/*
 /web/resources/*
 
-# Configuration files
-/app/config/parameters.yml
+robots.txt
 
-#js propre au site (stats google, ...)
-web/resources/js/sy2-wall.js
-#images propres au site (header, upload, ...)
+########################################################   CONF
+#### General Conf   (On ne garde que les .dist)
+/app/config/config_dev.yml
+app/config/config_dev.yml
+/app/config/config_dev.yml.local
+/app/config/config_dev.yml.prod
+
+/app/config/parameters.yml
+/app/config/parameters.yml.prod
+/app/config/parameters.yml.local
+
+
+#### Bundles
+# Local Configuration files
+/app/config/parameters.yml
+/src/GbCreation/HomeBundle/Resources/config/parameters.yml
+/src/GbCreation/UserBundle/Resources/config/services.yml
+/src/GbCreation/WallBundle/Resources/config/services.yml
+
+# PROD files
+/app/config/parameters.yml.prod
+
+
+#Pour les autres (Bundle/Wall et User / config/services.yml)
+*.prod
+
+##js propre au site (stats google, ...)
+#web/resources/js/sy2-wall.js
+web/resources/js/sy2-wall.js.prod
+
+
+## Au cas ou... tous les fichiers de prod
+*.yml.prod
+
+########################################################
+##images propres au site (header, upload, ...)
 web/images/slider/*
 web/images/wall/*
 
 
-#Fichiers mac divers
+########################################################
+#Fichiers temp local
 *.DS_Store
+.DS_Store
+
+######################### Local dev  ######################### 
+                        #Lorsque push depuis workspace "Replicat PROD" penser à commenter tout ce qu'il y a dessous
+
+#/src/GbCreation/UserBundle/Resources/config/services.yml
+#/src/GbCreation/WallBundle/Resources/config/services.yml
+
+######################### Local dev
+
+
+#Test a quoi ca sert ???????????????
+/bin
